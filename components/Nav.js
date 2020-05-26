@@ -59,7 +59,7 @@ export default () => {
                 isHovered={isLogoHovered}
                 className="stroke-none text-3xl sm:mr-1"
               />
-              <h2 className="hidden sm:inline-block font-extrabold text-2xl">
+              <h2 className="hidden sm:inline-block font-bold uppercase text-2xl">
                 Delivery Chimbote
               </h2>
             </a>

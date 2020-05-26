@@ -1,5 +1,5 @@
 @import url('https://rsms.me/inter/inter.css');
-@import url('/optician/optician.css');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
 
 /* purgecss start ignore */
 
@@ -50,7 +50,7 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-optician tracking-tight;
+  @apply font-oswald tracking-tight;
 }
 p {
   @apply leading-normal;
