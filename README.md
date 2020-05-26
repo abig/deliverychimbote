@@ -1,4 +1,4 @@
-# Delivery Chimbote README
+# Delivery Chimbote
 
 This project is forked from the original, designed for Copenhagen. It's source code is visible in [GitHub](https://github.com/covid19-group/dinecph)
 
