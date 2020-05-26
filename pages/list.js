@@ -5,6 +5,7 @@ import { LanguageContext } from '../components/LanguageSelector'
 import Head from '../components/Head'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import LoadingSpinner from '../components/LoadingSpinner'
 import WhatsAppLogo from '../components/WhatsAppLogo'
 
 const lists = {
