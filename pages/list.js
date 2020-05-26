@@ -531,7 +531,6 @@ export async function getStaticProps() {
       view: 'Grid view', // NOTE: changing the view name will break things
     })
     .all()
-  console.log(records);
   const restaurants = await Promise.all(
     records.sort(() => 0.5 - Math.random()).map(record => record.fields)
   )
