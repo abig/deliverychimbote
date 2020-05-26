@@ -270,15 +270,6 @@ const pageContent = {
   },
 }
 
-const toTitleCase = (str) => {
-  return str.replace(
-      /\w\S*/g,
-      function(txt) {
-          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      }
-  );
-}
-
 const ListItem = ({ restaurant, content }) => {
   const name = restaurant.name || undefined
   const address = restaurant.address || undefined
@@ -477,6 +468,7 @@ export default ({ restaurants }) => {
                       restaurant.display &&
                       restaurant.name &&
                       restaurant.description &&
+                      restaurant.address &&
                       restaurant.url
                   )
                   // Filter for business type
