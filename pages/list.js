@@ -10,19 +10,224 @@ import WhatsAppLogo from '../components/WhatsAppLogo'
 
 const lists = {
   businesses: [
-    'Alimentos',
-    'Farmacia'
+    "Comercios",
+    "Restaurantes",
+    "Ferreterías",
+    "Peluquerías",
+    "Otros"
   ],
   zones: [
-    'La Libertad',
-    'Florida',
-    'Centro'
+    "A.H.I.S NUEVA CALETA",
+    "LA CALETA",
+    "HUANCHAQUITO",
+    "MANUEL SEOANE",
+    "EL ACERO",
+    "VICTOR RAUL",
+    "BARRIO FISCAL",
+    "RAMON CASTILLA",
+    "MANUEL AREVALO",
+    "ANTUNEZ DE MAYOLO",
+    "LA BALANZA",
+    "BOLIVAR BAJO",
+    "BOLIVAR ALTO",
+    "CASCO URBANO",
+    "URB. 21 DE ABRIL",
+    "SAN ISIDRO",
+    "EL PROGRESO",
+    "SAN FRANCISCO DE ASIS",
+    "DOS DE MAYO",
+    "ESPERANZA BAJA",
+    "PRIMAVERA BAJA",
+    "PRIMAVERA ALTA",
+    "SANTA CRUZ",
+    "CESAR VALLEJOS",
+    "URB EL CARMEN",
+    "AA.HH 16 DE DICIEMBRE",
+    "LA UNION",
+    "PENSACOLA",
+    "ESPERANZA ALTA",
+    "SAN PEDRO",
+    "LOS JARDINES CONO NORTE ",
+    "URB LADERAS",
+    "URB. LOS PINOS",
+    "MANUEL GONZALES PRADA ",
+    "DOS DE JUNIO",
+    "AA.HH NUEVA GENERACION",
+    "AA.HH AMPLIACION NUEVA GENERACION ",
+    "PUEBLO LIBRE",
+    "MIRAMAR ALTO",
+    "MIRAMAR BAJO",
+    "MAGDALENA NUEVA",
+    "MIRAFLORES BAJO",
+    "LA VICTORIA",
+    "ALTO PERU",
+    "ANTENOR ORREGO",
+    "FRATERNIDAD",
+    "SAN MIGUEL",
+    "AMPLIACION SAN MIGUEL",
+    "SANTA IRENE",
+    "AA.HH RAMAL PLAYA",
+    "AA.HH  AMPLIACION RAMAL PLAYA",
+    "AA.HH 10 DE SETIEMBRE",
+    "TRES ESTRELLAS",
+    "VILLA ESPAÑA",
+    "SAN JUAN",
+    "MIRAFLORES ALTO I ZONA",
+    "MIRAFLORES ALTO III ZONA",
+    "AA.HH MIRAFLORES ZONA DE REUBICACION",
+    "MIRAFLORES ALTO II ZONA",
+    "CIUDAD DE DIOS",
+    "FLORIDA BAJA",
+    "FLORIDA ALTA",
+    "LA LIBERTAD",
+    "SEÑOR DE LOS MILAGROS",
+    "EL TRAPECIO I ETAPA",
+    "EL TRAPECIO II ETAPA",
+    "AA.HH. 15 DE ABRIL",
+    "ZONA INDUSTRIAL 27 DE OCTUBRE",
+    "CHIMBOTE",
+    "NUEVO CHIMBOTE",
+    "VILLA MARIA",
+    "AA.HH. 7 DE JULIO",
+    "AA.HH. COSTA VERDE",
+    "LAS BRISAS",
+    "AA.HH. VILLA JESUS",
+    "VILLA HERMOSA",
+    "VILLA MARIA SECTOR A",
+    "1RO MAYO",
+    "3 DE OCTUBRE",
+    "GOLFO PERSICO",
+    "LAS LOMAS",
+    "DIVINO JESUS",
+    "SATELITE",
+    "PPAO",
+    "DAVID DASSO A",
+    "DAVID DASSO B",
+    "10 DE FEBRERO",
+    "15 DE JUNIO",
+    "LADERAS DE PPAO",
+    "PASEO DEL MAR - DOMUS",
+    "BUENOS AIRES I ETAPA",
+    "BUENOS AIRES II ETAPA",
+    "MIGUEL GRAU",
+    "LAS CASUARINAS",
+    "MARISCAL LUZURIAGA",
+    "PACIFICO",
+    "EL BOSQUE",
+    "LOS CIPRESES",
+    "SANTA ROSA",
+    "LOS PORTALES",
+    "SANTA CRISTINA",
+    "BANCHERO ROSSI",
+    "SAN RAFAEL",
+    "LAS GARDENIAS",
+    "EL DORADO",
+    "SANTO TOMAS",
+    "VILLA AGRARIA",
+    "JOSE CARLOS MARIATEGUI",
+    "LOS OLIVOS",
+    "LOS HEROES",
+    "CACERES ARAMAYO",
+    "BRUCES",
+    "LOS ALAMOS",
+    "LOS PORTALES",
+    "BELLAMAR",
+    "LAS FLORES",
+    "SAN DIEGO",
+    "CALIFORNIA",
+    "LUIS FELIPE DE LAS CASAS",
+    "BELLAMAR 2DA ETAPA",
+    "NICOLAS GARATEA",
+    "AA.HH. LAS PONCIANAS",
+    "VILLA MERCEDES",
+    "ALEJANDRO TOLEDO",
+    "LOS JARDINES",
+    "VILLA DEL MAR",
+    "1RO DE AGOSTO",
+    "AA.HH. BELEN",
+    "UPIS BELEN",
+    "SAN LUIS I ETAPA",
+    "SAN LUIS II ETAPA",
+    "VILLA DEL SUR PARCELA 10",
+    "LOS AMAUTAS",
+    "VILLA DEL PERIODISTA",
+    "LOS DELFINES",
+    "VILLA DEL ABOGADO PARCELA 2",
+    "AA.HH. LAS FLORES",
+    "VILLA DEL SUR PARCELA 17",
+    "AHVR. HAYA DE LA TORRE",
+    "VILLA MAGISTERIAL"
   ],
   offers: [
-    'Comida',
-    'Medicina',
-    'Ropa', 
-    'Electro'
+    "Frutas y Verduras",
+    "Pollo y Huevos",
+    "Carnes",
+    "Pescados y mariscos",
+    "Lacteos",
+    "Desayuno",
+    "Embutidos y fiambres",
+    "Abarrotes",
+    "Panadería y pastelería",
+    "Aguas y bebidas gaseosas",
+    "Cerveza, vinos y licores",
+    "Limpieza y aseo",
+    "Art. Higiene, Salud",
+    "Hogar y Bazar",
+    "Limpieza de ropa y calzado",
+    "Limpieza del hogar",
+    "Higiene y cuidado del cabello",
+    "Higiene y cuidado personal",
+    "Alimento de Mascotas",
+    "Juguetes y regalos",
+    "Artículos para niños y bebes",
+    "Útiles escolares y de oficina",
+    "Gas",
+    "Menú",
+    "Hamburguesas",
+    "Pizza",
+    "Pollo a la Brasa",
+    "Cebiche",
+    "Tortas",
+    "Platos a la Carta",
+    "Postres",
+    "Anticuchos",
+    "Sandwich",
+    "Bebidas Gaseosas",
+    "Herramientas y accesorios",
+    "Artículos de construcción",
+    "Ladrillos y arenas",
+    "Corte para caballeros",
+    "Cementos",
+    "Pinturas y acabados",
+    "Lamparas y colgantes",
+    "Tableros aglomerados",
+    "Cables y alambres eléctricos",
+    "Interruptores y tomacorrientes",
+    "Tubos eléctricos y gasfitería",
+    "Tableros y llaves termomagnéticas",
+    "Productos de fijación",
+    "Accesorios de seguridad",
+    "Accesorios sanitarios y gasfitería",
+    "Tanques de agua y accesorios",
+    "Accesorios para pintar",
+    "Productos químicos y limpiadores",
+    "Focos e iluminación interior",
+    "Iluminación exterior",
+    "Accesorios para autos",
+    "Limpieza de autos",
+    "Corte para damas",
+    "Pintado del cabello",
+    "Peinados y laseados",
+    "Manicure",
+    "Pedicure",
+    "Barbería",
+    "Cortes con diseño",
+    "Cortes para niños",
+    "Farmacias",
+    "Panaderia",
+    "Tiendas de Regalos",
+    "Dulces y pasteles",
+    "Lubricantes"
   ]
 }
 
@@ -31,22 +236,16 @@ const pageContent = {
     title: 'Negocios',
     businessTypeLabel: 'Rubro',
     businessTypes: {
-      ['Alimentos']: 'Alimentos',
-      ['Farmacia']: 'Farmacia'
+      ["Comercios"]: "Comercios",
+      ["Restaurantes"]: "Restaurantes",
+      ["Ferreterías"]: "Ferreterías",
+      ["Peluquerías"]: "Peluquerías",
+      ["Otros"]: "Otros"
     },
     neighbourhoodLabel: 'Zonas',
-    neighbourhoods: {
-      ['La Libertad']: 'La Libertad',
-      ['Florida']: 'Florida',
-      ['Centro']: 'Centro',
-    },
+    neighbourhoods: {},
     offersLabel: 'Productos',
-    offers: {
-      ['Comida']: 'Comida',
-      ['Medicina']: 'Medicina',
-      ['Ropa']: 'Ropa',
-      ['Electro']: 'Electrodomésticos',
-    },
+    offers: {},
     delivery: 'Delivery disponible',
     whatsappLabel: 'Pedir por WhatsApp',
     orderLabel: 'Ir a web',
@@ -55,26 +254,29 @@ const pageContent = {
     title: 'Businesses',
     businessTypeLabel: 'Business Type',
     businessTypes: {
-      ['Alimentos']: 'Food',
-      ['Farmacia']: 'Drug Store'
+      ["Comercios"]: "Shops",
+      ["Restaurantes"]: "Restaurants",
+      ["Ferreterías"]: "Hardware Stores",
+      ["Peluquerías"]: "Hairdressers",
+      ["Otros"]: "Various"
     },
     neighbourhoodLabel: 'Neighbourhood',
-    neighbourhoods: {
-      ['La Libertad']: 'La Libertad',
-      ['Florida']: 'Florida',
-      ['Centro']: 'Centro',
-    },
+    neighbourhoods: {},
     offersLabel: 'Offers',
-    offers: {
-      Comida: 'Food',
-      Medicina: 'Medicines',
-      Ropa: 'Clothing',
-      Electro: 'Technology',
-    },
+    offers: {},
     delivery: 'Delivery available',
     whatsappLabel: 'Order via WhatsApp',
     orderLabel: 'Website',
   },
+}
+
+const toTitleCase = (str) => {
+  return str.replace(
+      /\w\S*/g,
+      function(txt) {
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      }
+  );
 }
 
 const ListItem = ({ restaurant, content }) => {
@@ -98,7 +300,7 @@ const ListItem = ({ restaurant, content }) => {
           {name && <h3 className="text-xl sm:text-2xl">{name}</h3>}
           {neighbourhood && (
             <p className="text-xs sm:text-sm mb-4">
-              {content.neighbourhoods[neighbourhood]}
+              {neighbourhood}
             </p>
           )}
           {address && <p className="text-xs sm:text-sm mb-2"><a href={`https://www.google.com/maps/place/?q=${addrQuery}`} target="_blank" rel="noopener noreferrer">{address}</a></p>}
@@ -114,7 +316,7 @@ const ListItem = ({ restaurant, content }) => {
                   key={offer}
                   className="inline-block rounded font-medium text-xs sm:text-sm bg-sand px-2 py-1 m-1"
                 >
-                  {content.offers[offer]}
+                  {offer}
                 </li>
               ))}
             </ul>
@@ -228,7 +430,7 @@ export default ({ restaurants }) => {
                       key={neighbourhood}
                       handleChange={handleChange}
                       isChecked={isChecked}
-                      label={content.neighbourhoods[neighbourhood]}
+                      label={neighbourhood}
                     />
                   )
                 })}
@@ -253,7 +455,7 @@ export default ({ restaurants }) => {
                       key={offer}
                       handleChange={handleChange}
                       isChecked={isChecked}
-                      label={content.offers[offer]}
+                      label={offer}
                     />
                   )
                 })}
@@ -275,8 +477,7 @@ export default ({ restaurants }) => {
                       restaurant.display &&
                       restaurant.name &&
                       restaurant.description &&
-                      restaurant.url &&
-                      restaurant.phone
+                      restaurant.url
                   )
                   // Filter for business type
                   .filter(restaurant =>
@@ -338,6 +539,7 @@ export async function getStaticProps() {
       view: 'Grid view', // NOTE: changing the view name will break things
     })
     .all()
+  console.log(records);
   const restaurants = await Promise.all(
     records.sort(() => 0.5 - Math.random()).map(record => record.fields)
   )
