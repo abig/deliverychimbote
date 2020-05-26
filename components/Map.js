@@ -12,9 +12,9 @@ import LoadingSpinner from './LoadingSpinner'
 
 export default ({ restaurants, content }) => {
   const [tooltip, setTooltip] = useState(false)
-  const [copenhagen] = useState({
-    lat: 55.6836692,
-    lng: 12.571585,
+  const [chimbote] = useState({
+    lat: -9.1067845,
+    lng: -78.5647257,
   })
 
   // Reducing number of requests to Maps API
@@ -27,7 +27,7 @@ export default ({ restaurants, content }) => {
     return (
       <LoadScriptNext googleMapsApiKey={restrictedGoogleMapsApiKey}>
         <GoogleMap
-          center={copenhagen}
+          center={chimbote}
           clickableIcons={false}
           mapContainerClassName="border-t border-sand"
           mapContainerStyle={{ height: 'calc( 100vh - 85px)' }}
@@ -60,7 +60,7 @@ export default ({ restaurants, content }) => {
       </LoadScriptNext>
     )
   return (
-    <div className="w-full h-full flex items-center justify-center text-3xl text-pink">
+    <div className="w-full h-full flex items-center justify-center text-3xl text-orange">
       <LoadingSpinner />
     </div>
   )
@@ -104,7 +104,7 @@ const Tooltip = ({ tooltip, setTooltip, content }) => {
               <button
                 type="button"
                 onClick={() => setTooltip(false)}
-                className="absolute top-0 right-0 text-navy-light m-2"
+                className="absolute top-0 right-0 text-indigo-light m-2"
               >
                 <X className="text-lg" />
               </button>
@@ -123,7 +123,7 @@ const Tooltip = ({ tooltip, setTooltip, content }) => {
                   ))}
                 </ul>
               )}
-              {delivery && <div className="mb-3">✓ Delivery available</div>}
+              {delivery && <div className="mb-3">{content.delivery}</div>}
               {phone && <div className="mb-3">{phone}</div>}
               {url && (
                 <a

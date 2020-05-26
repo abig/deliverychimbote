@@ -1,14 +1,14 @@
 module.exports = {
   theme: {
     colors: {
-      // https://www.happyhues.co/palettes/17
-      sand: '#f3d2c1',
+      'alice-blue': '#ebf2fa', // page and dropdown background
+      sand: '#f3d2c1', // borders on index
       'sand-light': '#fef6e4',
-      pink: '#f582ae',
-      navy: '#001858',
-      'navy-light': '#172c66',
-      teal: '#8bd3dd',
-      white: '#fff',
+      orange: '#F26419', // index accent (title, intro)
+      indigo: '#103F5E', // primary accent
+      'indigo-light': '#175676', // index intro text and others
+      teal: '#8bd3dd', // secondary accent (btn-secondary bg)
+      white: '#fff', // white text
     },
     fontFamily: {
       inter:
@@ -32,17 +32,17 @@ module.exports = {
       default: {
         'checkbox, input, multiselect, radio, select, textarea': {
           backgroundColor: theme('color.sand-light'),
-          borderColor: theme('colors.navy'),
+          borderColor: theme('colors.indigo'),
           borderRadius: theme('borderRadius.none'),
           borderWidth: theme('borderWidth.2'),
           '&:focus': {
-            borderColor: theme('colors.navy'),
+            borderColor: theme('colors.indigo'),
             boxShadow: theme('boxShadow.outline'),
           },
         },
         'checkbox, radio': {
           '&:checked': {
-            backgroundColor: theme('colors.navy'),
+            backgroundColor: theme('colors.indigo'),
           },
         },
         'input, multiselect, select, textarea': {
@@ -55,5 +55,5 @@ module.exports = {
     margin: ['responsive', 'last'],
     textColor: ['responsive', 'hover', 'focus', 'group-hover'],
   },
-  plugins: [require('@tailwindcss/custom-forms')],
+  plugins: [require('@tailwindcss/custom-forms')]
 }

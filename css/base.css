@@ -8,7 +8,7 @@
 /* Boilerplate */
 
 html {
-  @apply antialiased font-inter leading-tight text-navy smooth-scroll;
+  @apply antialiased font-inter leading-tight text-indigo smooth-scroll;
   font-feature-settings: 'liga' 1;
 }
 @supports (font-variation-settings: normal) {
@@ -17,7 +17,7 @@ html {
   }
 }
 body {
-  @apply bg-sand-light m-0;
+  @apply bg-alice-blue m-0;
 }
 svg {
   height: 1em;
@@ -67,10 +67,10 @@ p > a {
   @apply font-medium leading-none text-center px-4 py-3;
 }
 .btn-primary {
-  @apply text-white bg-navy;
+  @apply text-white bg-indigo;
 }
 .btn-secondary {
-  @apply text-navy-light bg-teal;
+  @apply text-indigo-light bg-teal;
 }
 
 /* purgecss end ignore */

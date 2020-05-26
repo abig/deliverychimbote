@@ -7,24 +7,28 @@ import Head from '../components/Head'
 import Nav from '../components/Nav'
 import Map from '../components/Map'
 
+// start search from google maps: https://www.google.com/maps/place/?q=something (url encoded)
+
 const pageContent = {
-  'da-DK': {
+  'es-PE': {
     offers: {
       Food: 'Mad',
       Wine: 'Vin',
       Drinks: 'Drikkevarer',
       Giftcards: 'Gavekort',
     },
-    orderLabel: 'Besøg og bestil',
+    orderLabel: 'Ir a web',
+    delivery: '✓ Delivery disponible'
   },
-  'en-GB': {
+  'en-US': {
     offers: {
       Food: 'Food',
       Wine: 'Wine',
       Drinks: 'Drinks',
       Giftcards: 'Giftcards',
     },
-    orderLabel: 'View and order',
+    orderLabel: 'Website',
+    delivery: '✓ Delivery available'
   },
 }
 
@@ -70,9 +74,12 @@ export async function getStaticProps() {
   let i = -1
   for await (let restaurant of restaurants) {
     i++
+    const query = restaurant.pluscode
+      ? restaurant.pluscode
+      : restaurant.address
     const res = await fetch(
       'https://maps.googleapis.com/maps/api/geocode/json?address=' +
-        encodeURI(restaurant.address) +
+        encodeURI(query) +
         '&key=' +
         googleMapsApiKey
     ).catch(err => {

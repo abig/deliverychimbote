@@ -1,27 +1,24 @@
 import { useContext } from 'react'
 import LanguageSelector, { LanguageContext } from './LanguageSelector'
-import Link from 'next/link'
-import useBreakpoint from '../hooks/useBreakpoint'
 
 const pageContent = {
-  'da-DK': {
-    prefix: 'Et initiativ af',
-    and: 'og',
-    built: 'Udviklet af',
-    os: 'Det er open source',
-    dinePrefix: 'Spis i',
+  'es-PE': {
+    prefix: 'Una iniciativa de',
+    built: 'Diseñado originalmente por',
+    adapted: 'Adaptado para Chimbote por',
+    os: 'Open-source',
+    dinePrefix: 'También en',
   },
-  'en-GB': {
+  'en-US': {
     prefix: 'An initiative by',
-    and: 'and',
-    built: 'Built by',
-    os: "It's open source",
-    dinePrefix: 'Dine in',
+    built: 'Originally built by',
+    adapted: 'Adapted for Chimbote by',
+    os: "It's open-source",
+    dinePrefix: 'Also in',
   },
 }
 
 export default () => {
-  const breakpoint = useBreakpoint()
   const { language } = useContext(LanguageContext)
   const content = pageContent[language]
   return (
@@ -32,22 +29,9 @@ export default () => {
         </div>
         <p className="mb-4">
           {content.prefix}{' '}
-          {
-            // <a href="https://techvaernet.dk" target="_blank" rel="noopener">
-          }
-          Techværnet
-          {
-            // </a>
-          }{' '}
-          {content.and}{' '}
-          <a
-            href="https://shop.empiricalspirits.co/"
-            target="_blank"
-            rel="noopener"
-          >
-            Empirical Spirits
-          </a>
-          {'. '}
+          <a href="https://abig.pe" target="_blank" rel="noopener">
+            AB Investment Group
+          </a>{'. '}
           {content.built}{' '}
           <a
             href="https://www.sebastianwinther.com"
@@ -56,7 +40,15 @@ export default () => {
           >
             Sebastian Winther
           </a>
-          .
+          {'. '}
+          {content.adapted}{' '}
+          <a
+            href="https://github.com/dalbitresb12"
+            target="_blank"
+            rel="noopener"
+          >
+            Diego Albitres
+          </a>
         </p>
         <p className="mb-12">
           {content.dinePrefix}{' '}
@@ -81,7 +73,7 @@ export default () => {
           {' ⟶ '}
           <a
             className="ml-1"
-            href="https://github.com/covid19-group/dinecph"
+            href="https://github.com/dalbitresb12/deliverychimbote"
             target="_blank"
             rel="noopener"
           >

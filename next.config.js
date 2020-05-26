@@ -1,5 +1,8 @@
 require('dotenv').config()
 module.exports = {
+  devIndicators: {
+    autoPrerender: false
+  },
   env: {
     AIRTABLE_API_KEY: process.env.AIRTABLE_API_KEY,
     AIRTABLE_BASE_KEY: process.env.AIRTABLE_BASE_KEY,

@@ -9,33 +9,33 @@ import Logo from './Logo'
 
 const content = {
   restaurants: {
-    'da-DK': {
-      label: 'Restauranter',
-      map: 'Se på kort',
-      list: 'Se på liste',
+    'es-PE': {
+      label: 'Negocios',
+      map: 'Mapa',
+      list: 'Listado',
     },
-    'en-GB': {
-      label: 'Restaurants',
+    'en-US': {
+      label: 'Businesses',
       map: 'Map view',
       list: 'List view',
     },
   },
-  about: { 'da-DK': 'Om os', 'en-GB': 'About' },
+  about: { 'es-PE': 'Nosotros', 'en-US': 'About' },
   forRestaurants: {
-    'da-DK': {
-      label: 'For restauranter',
-      resources: 'Ressourcer',
-      submit: 'Tilføj',
+    'es-PE': {
+      label: 'Para negocios',
+      resources: 'Recursos',
+      submit: 'Regístrate',
     },
-    'en-GB': {
+    'en-US': {
       label: 'For restaurants',
       resources: 'Resources',
       submit: 'Submit',
     },
   },
   submit: {
-    'da-DK': 'Tilføj',
-    'en-GB': 'Submit',
+    'es-PE': 'Regístrate',
+    'en-US': 'Submit',
   },
 }
 
@@ -60,7 +60,7 @@ export default () => {
                 className="stroke-none text-3xl sm:mr-1"
               />
               <h2 className="hidden sm:inline-block font-extrabold text-2xl">
-                Dine CPH
+                Delivery Chimbote
               </h2>
             </a>
           </Link>
@@ -80,14 +80,8 @@ export default () => {
             <Dropdown
               align="right-0"
               items={[
-                {
-                  href: '/resources',
-                  label: content.forRestaurants[language].resources,
-                },
-                {
-                  href: '/submit',
-                  label: content.forRestaurants[language].submit,
-                },
+                { href: '/resources', label: content.forRestaurants[language].resources },
+                { href: '/submit', label: content.forRestaurants[language].submit },
               ]}
               label={content.forRestaurants[language].label}
             />
@@ -125,7 +119,7 @@ const Dropdown = ({ align, items, label }) => {
           {label}
           <ChevronDown
             style={{ transform: 'translateY(1px)' }}
-            className="text-navy-light ml-2"
+            className="text-indigo-light ml-2"
           />
         </button>
         <div className="relative">
@@ -137,7 +131,7 @@ const Dropdown = ({ align, items, label }) => {
                 exit={{ opacity: 0, y: 0 }}
                 className={
                   (align ? align + ' ' : 'left-0 ') +
-                  'absolute top-0 z-20 w-48 bg-sand-light border border-sand'
+                  'absolute top-0 z-20 w-48 bg-alice-blue border border-sand'
                 }
               >
                 {items.map(({ href, label }) => (
@@ -148,7 +142,7 @@ const Dropdown = ({ align, items, label }) => {
                         className="group flex font-medium px-3 py-2 my-2"
                       >
                         {label}
-                        <span className="flex-auto text-right text-sand-light group-hover:text-navy-light transition-color duration-150 ease-in-out">
+                        <span className="flex-auto text-right text-sand-light group-hover:text-indigo-light transition-color duration-150 ease-in-out">
                           ⟶
                         </span>
                       </a>

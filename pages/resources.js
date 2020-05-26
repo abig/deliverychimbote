@@ -11,9 +11,6 @@ export default () => {
   const content = pageContent[language]
   return (
     <>
-      <Head>
-        <script src="https://static.airtable.com/js/embed/embed_snippet_v1.js"></script>
-      </Head>
       <div className="min-h-screen flex flex-col">
         <Nav />
         <main className="flex-auto px-3 pt-8 sm:pt-16 pb-16">
@@ -21,14 +18,14 @@ export default () => {
             <h2 className="font-extrabold text-2xl sm:text-3xl leading-none mb-6">
               {content.resourcesTitle}
             </h2>
-            <p className="max-w-xl text-navy-light text-lg mb-8">
+            <p className="max-w-xl text-indigo-light text-lg mb-8">
               {content.resourcesDescription}{' '}
-              <a href="mailto:sebastianwinther@gmail.com">{content.contact}</a>.
+              <a href="mailto:deliverychimbote@abig.pe">{content.contact}</a>.
             </p>
             <ul className="mb-16">
               {resourcesList.map(
-                ({ title, description, actionLabel, actionUrl }) => (
-                  <li className="flex flex-col items-start border border-sand overflow-hidden p-4 sm:p-8 md:px-12 mb-4 last:mb-0">
+                ({ title, description, actionLabel, actionUrl }, index) => (
+                  <li key={index} className="flex flex-col rounded items-start border border-sand overflow-hidden p-4 sm:p-8 md:px-12 mb-4 last:mb-0">
                     {title && (
                       <h4 className="text-xl sm:text-2xl mb-2">{title}</h4>
                     )}
@@ -42,7 +39,7 @@ export default () => {
                         href={actionUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn btn-primary text-sm sm:text-base"
+                        className="btn btn-primary rounded text-sm sm:text-base"
                       >
                         {actionLabel}&nbsp;&nbsp;&nbsp;⟶
                       </a>
@@ -60,19 +57,19 @@ export default () => {
 }
 
 const pageContent = {
-  'da-DK': {
-    resourcesTitle: 'Ressourcer',
+  'es-PE': {
+    resourcesTitle: 'Recursos',
     resourcesDescription:
-      'Vi har listet et par ressourcer, som måske kan være hjælpsomme nedenfor. Har du nogle tilføjelser?',
-    contact: 'Skriv til os',
-    submitTitle: 'Tilføj din restaurant',
+      'Hemos listado aquí algunos recursos que podrían servirte en estos tiempos. ¿Conoces algunos otros que podrían ayudar?',
+    contact: 'Ponte en contacto con nosotros',
+    submitTitle: 'Registra tu negocio',
   },
-  'en-GB': {
+  'en-US': {
     resourcesTitle: 'Resources',
     resourcesDescription:
       "We've added a few resources that might be useful for restaurants at this time. Do you know of others that we should add?",
     contact: 'Get in touch',
-    submitTitle: 'Add your restaurant',
+    submitTitle: 'Add your business',
   },
 }
 
@@ -80,9 +77,17 @@ const resourcesList = [
   {
     title: 'Superb Corona Support Programme',
     description:
-      'Superb is currently offering restaurants worldwide to use their platform to sell take-out and gift cards online — free of charge.',
-    actionLabel: 'Sign up now',
+      'Superb ofrece a los restaurantes de todo el mundo el uso de su plataforma para vender tarjetas de regalo y comida para llevar en línea, de forma gratuita.',
+    actionLabel: 'Más información',
     actionUrl:
       'https://www.superbexperience.com/corona-support-program-for-restaurants',
   },
+  {
+    title: 'Cloudflare Teams',
+    description:
+      'Cloudflare está dando acceso libre a su servicio Access/Teams Single Sign On, el cual sirve a las empresas usando la modalidad del tele-trabajo para conectarse remotamente de manera segura, encriptada y sin límite de usuarios. El servicio estará gratuito hasta el 1ero de setiembre, pero podrían expandir el plazo si la crisis se extiende.',
+      actionLabel: 'Más información',
+      actionUrl:
+        'https://www.cloudflare.com/smallbusiness/'
+  }
 ]

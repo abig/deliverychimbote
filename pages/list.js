@@ -1,54 +1,78 @@
 import { useContext, useState } from 'react'
 import Promise from 'promise-polyfill'
-import fetch from 'isomorphic-unfetch'
 
 import { LanguageContext } from '../components/LanguageSelector'
 import Head from '../components/Head'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import WhatsAppLogo from '../components/WhatsAppLogo'
+
+const lists = {
+  businesses: [
+    'Alimentos',
+    'Farmacia'
+  ],
+  zones: [
+    'La Libertad',
+    'Florida',
+    'Centro'
+  ],
+  offers: [
+    'Comida',
+    'Medicina',
+    'Ropa', 
+    'Electro'
+  ]
+}
 
 const pageContent = {
-  'da-DK': {
-    title: 'Restauranter',
-    neighbourhoodLabel: 'Nabolag',
+  'es-PE': {
+    title: 'Negocios',
+    businessTypeLabel: 'Rubro',
+    businessTypes: {
+      ['Alimentos']: 'Alimentos',
+      ['Farmacia']: 'Farmacia'
+    },
+    neighbourhoodLabel: 'Zonas',
     neighbourhoods: {
-      ['Nørrebro']: 'Nørrebro',
-      ['Østerbro']: 'Østerbro',
-      ['Vesterbro']: 'Vesterbro',
-      ['Inner city']: 'Indre by',
-      ['Amager']: 'Amager',
-      ['Frederiksberg']: 'Frederiksberg',
+      ['La Libertad']: 'La Libertad',
+      ['Florida']: 'Florida',
+      ['Centro']: 'Centro',
     },
-    offersLabel: 'Tilbud',
+    offersLabel: 'Productos',
     offers: {
-      Food: 'Mad',
-      Wine: 'Vin',
-      Drinks: 'Drikkevarer',
-      Giftcards: 'Gavekort',
+      ['Comida']: 'Comida',
+      ['Medicina']: 'Medicina',
+      ['Ropa']: 'Ropa',
+      ['Electro']: 'Electrodomésticos',
     },
-    delivery: 'Levering',
-    orderLabel: 'Besøg og bestil',
+    delivery: 'Delivery disponible',
+    whatsappLabel: 'Pedir por WhatsApp',
+    orderLabel: 'Ir a web',
   },
-  'en-GB': {
-    title: 'Restaurants',
+  'en-US': {
+    title: 'Businesses',
+    businessTypeLabel: 'Business Type',
+    businessTypes: {
+      ['Alimentos']: 'Food',
+      ['Farmacia']: 'Drug Store'
+    },
     neighbourhoodLabel: 'Neighbourhood',
     neighbourhoods: {
-      ['Nørrebro']: 'Nørrebro',
-      ['Østerbro']: 'Østerbro',
-      ['Vesterbro']: 'Vesterbro',
-      ['Inner city']: 'Inner city',
-      ['Amager']: 'Amager',
-      ['Frederiksberg']: 'Frederiksberg',
+      ['La Libertad']: 'La Libertad',
+      ['Florida']: 'Florida',
+      ['Centro']: 'Centro',
     },
     offersLabel: 'Offers',
     offers: {
-      Food: 'Food',
-      Wine: 'Wine',
-      Drinks: 'Drinks',
-      Giftcards: 'Giftcards',
+      Comida: 'Food',
+      Medicina: 'Medicines',
+      Ropa: 'Clothing',
+      Electro: 'Technology',
     },
-    delivery: 'Delivery',
-    orderLabel: 'View and order',
+    delivery: 'Delivery available',
+    whatsappLabel: 'Order via WhatsApp',
+    orderLabel: 'Website',
   },
 }
 
@@ -61,9 +85,14 @@ const ListItem = ({ restaurant, content }) => {
   const delivery = restaurant.delivery || false
   const phone = restaurant.phone || undefined
   const url = restaurant.url || undefined
+  const whatsapp = restaurant.whatsapp || undefined
+  const email = restaurant.email || undefined
+  const addrQuery = restaurant.pluscode
+    ? encodeURIComponent(restaurant.pluscode)
+    : encodeURIComponent(restaurant.address)
   return (
     <li className="w-full md:w-1/2 p-3">
-      <div className="relative h-full flex flex-col items-start border border-sand overflow-hidden p-4 sm:p-8 lg:px-12">
+      <div className="rounded relative h-full flex flex-col items-start border border-sand overflow-hidden p-4 sm:p-8 lg:px-12">
         <div className="flex-auto">
           {name && <h3 className="text-xl sm:text-2xl">{name}</h3>}
           {neighbourhood && (
@@ -71,8 +100,9 @@ const ListItem = ({ restaurant, content }) => {
               {content.neighbourhoods[neighbourhood]}
             </p>
           )}
-          {address && <p className="text-xs sm:text-sm mb-2">{address}</p>}
-          {phone && <p className="text-sm mb-4">{phone}</p>}
+          {address && <p className="text-xs sm:text-sm mb-2"><a href={`https://www.google.com/maps/place/?q=${addrQuery}`} target="_blank" rel="noopener noreferrer">{address}</a></p>}
+          {email && <p className="text-sm mb-2"><a href={`mailto:${email}`}>{email}</a></p>}
+          {phone && <p className="text-sm mb-4"><a href={`tel:${phone}`}>{phone}</a></p>}
           {description && (
             <p className="max-w-xl text-sm sm:text-base mb-4">{description}</p>
           )}
@@ -81,7 +111,7 @@ const ListItem = ({ restaurant, content }) => {
               {offers.map(offer => (
                 <li
                   key={offer}
-                  className="inline-block font-medium text-xs sm:text-sm bg-sand px-2 py-1 m-1"
+                  className="inline-block rounded font-medium text-xs sm:text-sm bg-sand px-2 py-1 m-1"
                 >
                   {content.offers[offer]}
                 </li>
@@ -89,19 +119,33 @@ const ListItem = ({ restaurant, content }) => {
             </ul>
           )}
         </div>
-        {url && (
-          <a
-            href={url.includes('http') ? url : 'https://' + url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-primary text-sm sm:text-base"
-          >
-            {content.orderLabel}&nbsp;&nbsp;&nbsp;⟶
-          </a>
-        )}
+        <div className="mt-4 items-center">
+          {/* TODO: FIX WHATSAPP LOGOOOOO */}
+          {phone && whatsapp && (
+            <a
+              href={`https://api.whatsapp.com/send?phone=${phone}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary h-full mr-4 rounded text-sm"
+            >
+              {content.whatsappLabel}&nbsp;&nbsp;&nbsp;
+              <WhatsAppLogo className="inline flex-auto text-right" />
+            </a>
+          )}
+          {url && (
+            <a
+              href={url.includes('http') ? url : 'https://' + url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-secondary h-full rounded text-sm"
+            >
+              {content.orderLabel}&nbsp;&nbsp;&nbsp;⟶
+            </a>
+          )}
+        </div>
         {delivery && (
-          <div className="sm:absolute top-0 right-0 font-medium text-sm sm:bg-sand sm:border-b border-sand sm:px-2 sm:py-1 mt-4 sm:m-2">
-            ✓ Delivery available
+          <div className="sm:absolute rounded top-0 right-0 font-medium text-sm sm:bg-sand sm:border-b border-sand sm:px-2 sm:py-1 mt-4 sm:m-2">
+            ✓ {content.delivery}
           </div>
         )}
       </div>
@@ -112,8 +156,8 @@ const ListItem = ({ restaurant, content }) => {
 const FilterLabel = ({ handleChange, isChecked, label }) => (
   <label
     className={
-      'inline-block font-medium border-2 border-navy cursor-pointer px-2 py-1 m-1' +
-      (isChecked ? ' text-sand-light bg-navy' : ' text-navy')
+      'inline-block rounded font-medium border-2 border-indigo cursor-pointer px-2 py-1 m-1' +
+      (isChecked ? ' text-sand-light bg-indigo' : ' text-indigo')
     }
   >
     <input
@@ -132,7 +176,9 @@ export default ({ restaurants }) => {
 
   const [filterDelivery, setFilterDelivery] = useState(false)
   const [filterOffers, setFilterOffers] = useState([])
+  // TODO: Fix filter for zones
   const [filterNeighbourhood, setFilterNeighbourhood] = useState('')
+  const [filterType, setFilterType] = useState('')
 
   if (restaurants && !!restaurants.length)
     return (
@@ -147,16 +193,30 @@ export default ({ restaurants }) => {
               </h2>
               <div className="flex flex-wrap items-center -m-1 mb-4">
                 <p className="w-full md:w-auto font-medium m-1 mr-2">
+                  {content.businessTypeLabel}
+                </p>
+                {lists.businesses.map(businessType => {
+                  const isChecked = filterType === businessType
+                  const handleChange = () => {
+                    if (isChecked) setFilterType('')
+                    else setFilterType(businessType)
+                  }
+                  return (
+                    <FilterLabel 
+                      key={businessType}
+                      handleChange={handleChange}
+                      isChecked={isChecked}
+                      label={content.businessTypes[businessType]}
+                    />
+                  )
+                })}
+              </div>
+              <div className="flex flex-wrap items-center -m-1 mb-4">
+                <p className="w-full md:w-auto font-medium m-1 mr-2">
                   {content.neighbourhoodLabel}
                 </p>
-                {[
-                  'Nørrebro',
-                  'Østerbro',
-                  'Vesterbro',
-                  'Inner city',
-                  'Amager',
-                  'Frederiksberg',
-                ].map(neighbourhood => {
+                {/* TODO: Fix filter for zones (it has to be multiple-select) */}
+                {lists.zones.map(neighbourhood => {
                   const isChecked = filterNeighbourhood === neighbourhood
                   const handleChange = () => {
                     if (isChecked) setFilterNeighbourhood('')
@@ -176,7 +236,7 @@ export default ({ restaurants }) => {
                 <p className="w-full md:w-auto font-medium m-1 mr-2">
                   {content.offersLabel}
                 </p>
-                {['Food', 'Wine', 'Drinks', 'Giftcards'].map(offer => {
+                {lists.offers.map(offer => {
                   const isChecked = filterOffers.includes(offer)
                   const handleChange = () => {
                     if (isChecked) {
@@ -214,9 +274,16 @@ export default ({ restaurants }) => {
                       restaurant.display &&
                       restaurant.name &&
                       restaurant.description &&
-                      restaurant.url
+                      restaurant.url &&
+                      restaurant.phone
                   )
-                  // Filter for neighbourhood
+                  // Filter for business type
+                  .filter(restaurant =>
+                    filterType
+                      ? restaurant.businesstype === filterType
+                      : true
+                  )
+                  // Filter for neighbourhood (zone) TODO: Fix
                   .filter(restaurant =>
                     filterNeighbourhood
                       ? restaurant.neighbourhood === filterNeighbourhood
@@ -234,9 +301,9 @@ export default ({ restaurants }) => {
                   .filter(restaurant =>
                     filterDelivery ? restaurant.delivery : true
                   )
-                  .map(restaurant => (
+                  .map((restaurant, index) => (
                     <ListItem
-                      key={restaurant.name}
+                      key={index}
                       restaurant={restaurant}
                       content={content}
                     />
@@ -249,7 +316,7 @@ export default ({ restaurants }) => {
       </>
     )
   return (
-    <div className="w-full h-full flex items-center justify-center text-3xl text-pink">
+    <div className="w-full h-full flex items-center justify-center text-3xl text-orange">
       <LoadingSpinner />
     </div>
   )
