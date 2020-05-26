@@ -334,7 +334,7 @@ export async function getStaticProps() {
   const records = await base
     .select({
       maxRecords: 999999, // don't want to paginate...
-      view: 'Grid view', // NOTE: changing the view name will break things
+      view: 'API', // NOTE: changing the view name will break things
     })
     .all()
   const restaurants = await Promise.all(
