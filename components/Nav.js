@@ -40,7 +40,7 @@ const content = {
 }
 
 export default () => {
-  const maintenance = process.env.MAINTENANCE_MODE
+  const maintenance = (process.env.MAINTENANCE_MODE === 'true')
   const breakpoint = useBreakpoint()
   const { language } = useContext(LanguageContext)
 
@@ -50,7 +50,7 @@ export default () => {
         <div className="flex-auto flex items-center -mx-3">
           <Link href="/">
             <a className="inline-flex items-center ml-3 sm:mr-6">
-              <Logo className="h-auto stroke-none text-3xl mr-2" />
+              <Logo className="h-20 stroke-none mr-2" />
               <h2 className="hidden sm:inline-block font-fredoka-one font-spacing-1 uppercase text-2xl">
                 Delivery Chimbote
               </h2>

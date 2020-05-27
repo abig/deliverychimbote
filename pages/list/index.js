@@ -1,12 +1,12 @@
 import { useContext, useState } from 'react'
 import Promise from 'promise-polyfill'
 
-import { LanguageContext } from '../components/LanguageSelector'
-import Head from '../components/Head'
-import Nav from '../components/Nav'
-import Footer from '../components/Footer'
-import LoadingSpinner from '../components/LoadingSpinner'
-import WhatsAppLogo from '../components/WhatsAppLogo'
+import { LanguageContext } from '../../components/LanguageSelector'
+import Head from '../../components/Head'
+import Nav from '../../components/Nav'
+import Footer from '../../components/Footer'
+import LoadingSpinner from '../../components/LoadingSpinner'
+import WhatsAppLogo from '../../components/WhatsAppLogo'
 
 const lists = {
   businesses: [
@@ -468,8 +468,7 @@ export default ({ restaurants }) => {
                       restaurant.display &&
                       restaurant.name &&
                       restaurant.description &&
-                      restaurant.address &&
-                      restaurant.url
+                      restaurant.address
                   )
                   // Filter for business type
                   .filter(restaurant =>

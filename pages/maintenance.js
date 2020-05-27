@@ -39,6 +39,11 @@ export default () => {
                 </Link>
               </div>
             </div>
+            <img
+              src="/assets/main-image.jpeg"
+              alt="Main image"
+              className="hidden md:block w-128 h-auto"
+            />
           </div>
         </main>
         <Footer />

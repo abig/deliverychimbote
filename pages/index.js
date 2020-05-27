@@ -7,7 +7,7 @@ import Footer from '../components/Footer'
 import Maintenance from './maintenance'
 
 export default () => {
-  const maintenance = process.env.MAINTENANCE_MODE
+  const maintenance = (process.env.MAINTENANCE_MODE === 'true')
   const { language } = useContext(LanguageContext)
   const content = pageContent[language]
 
@@ -47,9 +47,9 @@ export default () => {
                 </div>
               </div>
               <img
-                src="/assets/hero-illu-alt.png"
+                src="/assets/main-image.jpeg"
                 alt="Main image"
-                className="hidden md:block w-128 h-128"
+                className="hidden md:block w-128 h-auto"
               />
             </div>
           </main>

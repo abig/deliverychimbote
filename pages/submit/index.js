@@ -30,7 +30,7 @@ export default () => {
               </p>
               <div className="sm:-m-2">
                 <Link href="/submit/chimbote">
-                  <a className="w-full sm:w-auto rounded h-12 btn btn-primary inline-flex items-center sm:m-2">
+                  <a className="w-full sm:w-auto rounded h-12 btn btn-primary inline-flex items-center mb-4 sm:m-2">
                     {content.addChimbote}
                     <span className="inline sm:hidden flex-auto text-right">
                       ⟶

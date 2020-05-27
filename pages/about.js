@@ -68,7 +68,7 @@ const pageContent = {
     description: `La crisis causada por el Covid-19 ha golpeado duro a los negocios de la localidad. Muchos han empezado a ofrecer sus productos por delivery. Decidimos realizar esta página web para que sea más fácil encontrarlos — inspirado por `,
     and: ' y ',
     contact: 'Contacto: ',
-    webmaster: 'Administrador de la página web: ',
+    webmaster: 'Soporte del sitio web: ',
     icons: [
       'Algunos íconos en el sitio web fueron extraídos de la librería ',
       '. Estos íconos están bajo la licencia Creative Commons Attribution 4.0 International. Ningún cambio fue realizado a los íconos. La licencia se puede leer en el siguiente ',
