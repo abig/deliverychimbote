@@ -1,24 +1,11 @@
 import '../css/base.css'
 import { LanguageProvider } from '../components/LanguageSelector'
-import Maintenance from './maintenance'
 
-const App = ({ Component, pageProps }) => {
-  const maintenance = process.env.MAINTENANCE_MODE
-
-  if (maintenance) {
-    return (
-      <LanguageProvider>
-        <Maintenance />
-      </LanguageProvider>
-    )
-  } else {
-    return (
-      <LanguageProvider>
-        <Component {...pageProps} />
-      </LanguageProvider>
-    )
-  }
-}
+const App = ({ Component, pageProps }) => (
+  <LanguageProvider>
+    <Component {...pageProps} />
+  </LanguageProvider>
+)
 
 // Only uncomment this method if you have blocking data requirements for
 // every single page in your application. This disables the ability to

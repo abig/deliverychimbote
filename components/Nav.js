@@ -40,40 +40,34 @@ const content = {
 }
 
 export default () => {
+  const maintenance = process.env.MAINTENANCE_MODE
   const breakpoint = useBreakpoint()
   const { language } = useContext(LanguageContext)
-
-  const [isLogoHovered, setIsLogoHovered] = useState(false)
 
   return (
     <nav className="px-3 py-6">
       <div className="max-w-6xl flex items-center mx-auto">
         <div className="flex-auto flex items-center -mx-3">
           <Link href="/">
-            <a
-              onMouseOver={() => setIsLogoHovered(true)}
-              onMouseLeave={() => setIsLogoHovered(false)}
-              className="inline-flex items-center ml-3 sm:mr-6"
-            >
-              <Logo
-                isHovered={isLogoHovered}
-                className="stroke-none text-3xl sm:mr-1"
-              />
-              <h2 className="hidden sm:inline-block font-bold uppercase text-2xl">
+            <a className="inline-flex items-center ml-3 sm:mr-6">
+              <Logo className="h-auto stroke-none text-3xl mr-2" />
+              <h2 className="hidden sm:inline-block font-fredoka-one font-spacing-1 uppercase text-2xl">
                 Delivery Chimbote
               </h2>
             </a>
           </Link>
-          <Dropdown
-            items={[
-              { href: '/map', label: content.restaurants[language].map },
-              { href: '/list', label: content.restaurants[language].list },
-            ]}
-            label={content.restaurants[language].label}
-          />
-          {breakpoint.sm && (
+          {!maintenance &&
+            <Dropdown
+              items={[
+                { href: '/map', label: content.restaurants[language].map },
+                { href: '/list', label: content.restaurants[language].list },
+              ]}
+              label={content.restaurants[language].label}
+            />
+          }
+          {breakpoint.sm &&
             <NavLink href="/about" label={content.about[language]} />
-          )}
+          }
         </div>
         <div className="-mx-3">
           {breakpoint.sm ? (

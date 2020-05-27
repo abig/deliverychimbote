@@ -30,12 +30,12 @@ export default () => {
             </p>
             <p className="max-w-xl text-lg mb-4">
               {content.contact}
-              <a href="mailto:salbitres@abig.pe">salbitres@abig.pe</a>.
+              <a href="mailto:deliverychimbote@abig.pe">deliverychimbote@abig.pe</a>.
             </p>
             <p className="max-w-xl text-lg">
               {content.webmaster}
-              <a href="mailto:dalbitresb@abig.pe">
-                dalbitresb@abig.pe
+              <a href="mailto:soporte.dch@abig.pe">
+                soporte.dch@abig.pe
               </a>
               .
             </p>

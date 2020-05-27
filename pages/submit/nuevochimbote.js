@@ -1,8 +1,6 @@
-import Link from 'next/link'
-
-import Head from '../components/Head'
-import Nav from '../components/Nav'
-import Footer from '../components/Footer'
+import Head from '../../components/Head'
+import Nav from '../../components/Nav'
+import Footer from '../../components/Footer'
 
 export default () => {
   return (
@@ -15,7 +13,7 @@ export default () => {
         <main style={{ marginBottom: '-2px' }} className="flex-auto">
           <iframe
             className="airtable-embed airtable-dynamic-height"
-            src="https://airtable.com/embed/shrjgvEIVO2br694e"
+            src="https://airtable.com/embed/shrs7HragZJpZajZZ"
             frameBorder="0"
             onmousewheel=""
             width="100%"

@@ -1,5 +1,6 @@
 @import url('https://rsms.me/inter/inter.css');
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
 /* purgecss start ignore */
 
@@ -81,4 +82,7 @@ p > a {
 
 .smooth-scroll {
   scroll-behavior: smooth;
+}
+.font-spacing-1 {
+  letter-spacing: 1px;
 }
