@@ -1,11 +1,28 @@
 import '../css/base.css'
 import { LanguageProvider } from '../components/LanguageSelector'
+import { initGA, logPageView } from '../components/Analytics'
+import { useEffect } from 'react'
 
-const App = ({ Component, pageProps }) => (
-  <LanguageProvider>
-    <Component {...pageProps} />
-  </LanguageProvider>
-)
+const App = ({ Component, pageProps }) => {
+  useEffect(
+    () => {
+      if (process.env.NODE_ENV === 'production') {
+        if (!window.GA_INITIALIZED) {
+          initGA()
+          window.GA_INITIALIZED = true
+        }
+        logPageView()
+      }
+    },
+    []
+  )
+
+  return (
+    <LanguageProvider>
+      <Component {...pageProps} />
+    </LanguageProvider>
+  )
+}
 
 // Only uncomment this method if you have blocking data requirements for
 // every single page in your application. This disables the ability to
