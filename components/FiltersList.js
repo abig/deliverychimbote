@@ -30,7 +30,6 @@ export const FiltersList = {
       "Juguetes y regalos",
       "Artículos para niños y bebes",
       "Útiles escolares y de oficina",
-      "Farmacias y Boticas",
       "Gas"
     ],
     ['Restaurantes']: [
@@ -103,6 +102,8 @@ export const FiltersList = {
       "Cortes para niños"
     ],
     ['Otros']: [
+      "Farmacias y Boticas",
+      "Tiendas de Regalos",
       "Lubricantes",
       "Accesorios para autos",
       "Limpieza de autos"
@@ -337,7 +338,6 @@ export const FiltersTranslation = {
         "Toys and gifts",
         "Articles for children and babies",
         "School and office supplies",
-        "Pharmacies",
         "Gas"
       ],
       ['Restaurantes']: [
@@ -410,6 +410,8 @@ export const FiltersTranslation = {
         "Haircuts for children"
       ],
       ['Otros']: [
+        "Pharmacies",
+        "Gift shops",
         "Lubricants",
         "Car Accessories",
         "Car cleaning"

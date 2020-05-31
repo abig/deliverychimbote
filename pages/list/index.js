@@ -18,7 +18,7 @@ const pageContent = {
     businessTypeLabel: 'Rubro',
     businessTypes: FiltersTranslation["es-PE"].businessTypes,
     selectType: 'Seleccione un rubro...',
-    zonesLabel: 'Zonas',
+    neighbourhoodLabel: 'Zonas',
     offersLabel: 'Productos',
     offers: FiltersTranslation["es-PE"].offers,
     delivery: 'Delivery disponible',
@@ -33,7 +33,7 @@ const pageContent = {
     businessTypeLabel: 'Business Type',
     businessTypes: FiltersTranslation["en-US"].businessTypes,
     selectType: 'Select a business type...',
-    zonesLabel: 'Zones',
+    neighbourhoodLabel: 'Neighbourhood',
     offersLabel: 'Offers',
     offers: FiltersTranslation["en-US"].offers,
     delivery: 'Delivery available',
@@ -47,7 +47,7 @@ const ListItem = ({ restaurant, content }) => {
   const address = restaurant.address || undefined
   const description = restaurant.description || undefined
   const district = restaurant.district || undefined
-  const zone = restaurant.zones || undefined
+  const neighbourhood = restaurant.neighbourhood || undefined
   const offers = restaurant.offerings || undefined
   const delivery = restaurant.delivery || false
   const phone = restaurant.phone || undefined
@@ -61,8 +61,15 @@ const ListItem = ({ restaurant, content }) => {
     <li className="w-full md:w-1/2 p-3">
       <div className="rounded relative h-full flex flex-col items-start border border-sand overflow-hidden p-4 sm:p-8 lg:px-12">
         <div className="flex-auto">
-          {name && <h3 className="uppercase text-xl sm:text-2xl">{name}</h3>}
-          {district && <p className="text-xs sm:text-sm mb-4">{district}</p>}
+          {name && <h3 className="text-xl sm:text-2xl">{name}</h3>}
+          {neighbourhood && (
+            <p className="text-xs sm:text-sm mb-4">
+              {district
+                ? (neighbourhood + ', ' + district) 
+                : neighbourhood
+              }
+            </p>
+          )}
           {address && <p className="text-xs sm:text-sm mb-2"><a href={`https://www.google.com/maps/place/?q=${addrQuery}`} target="_blank" rel="noopener noreferrer">{address}</a></p>}
           {email && <p className="text-sm mb-2"><a href={`mailto:${email}`}>{email}</a></p>}
           {phone && <p className="text-sm mb-4"><a href={`tel:${phone}`}>{phone}</a></p>}
@@ -136,11 +143,11 @@ export default ({ restaurants }) => {
   const { language } = useContext(LanguageContext)
   const content = pageContent[language]
 
-  const [filterDistrict, setFilterDistrict] = useState('')
-  const [filterZone, setFilterZone] = useState([])
-  const [filterType, setFilterType] = useState('')
-  const [filterOffers, setFilterOffers] = useState([])
   const [filterDelivery, setFilterDelivery] = useState(false)
+  const [filterOffers, setFilterOffers] = useState([])
+  const [filterDistrict, setFilterDistrict] = useState('')
+  const [filterNeighbourhood, setFilterNeighbourhood] = useState('')
+  const [filterType, setFilterType] = useState('')
 
   if (restaurants)
     return (
@@ -175,27 +182,22 @@ export default ({ restaurants }) => {
               </div>
               <div className="flex flex-wrap items-center -m-1 mb-4">
                 <p className="w-full md:w-auto font-medium m-1 mr-2">
-                  {content.zonesLabel}
+                  {content.neighbourhoodLabel}
                 </p>
                 {filterDistrict 
                   ? (
-                      FiltersList.zones[filterDistrict].map(zone => {
-                        const isChecked = filterZone.includes(zone)
+                      FiltersList.zones[filterDistrict].map(neighbourhood => {
+                        const isChecked = filterNeighbourhood === neighbourhood
                         const handleChange = () => {
-                          if (isChecked) {
-                            const newZones = [...filterZone]
-                            newZones.splice(newZones.indexOf(zone), 1)
-                            setFilterZone(newZones)
-                          } else {
-                            setFilterZone([...filterZone, zone])
-                          }
+                          if (isChecked) setFilterNeighbourhood('')
+                          else setFilterNeighbourhood(neighbourhood)
                         }
                         return (
                           <FilterLabel
-                            key={zone}
+                            key={neighbourhood}
                             handleChange={handleChange}
                             isChecked={isChecked}
-                            label={zone}
+                            label={neighbourhood}
                           />
                         )
                       })
@@ -287,12 +289,10 @@ export default ({ restaurants }) => {
                       ? restaurant.district === filterDistrict
                       : true  
                   )
-                  // Filter for zones
+                  // Filter for neighbourhood (zone)
                   .filter(restaurant =>
-                    filterZone && filterZone.length
-                      ? filterZone.some(zone =>
-                          restaurant.zones.includes(zone)
-                        )
+                    filterNeighbourhood
+                      ? restaurant.neighbourhood === filterNeighbourhood
                       : true
                   )
                   // Filter for business type
@@ -304,7 +304,7 @@ export default ({ restaurants }) => {
                   // Filter for offers
                   .filter(restaurant =>
                     filterOffers && filterOffers.length
-                      ? filterOffers.some(offer =>
+                      ? filterOffers.every(offer =>
                           restaurant.offerings.includes(offer)
                         )
                       : true
