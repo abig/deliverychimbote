@@ -283,16 +283,22 @@ export default ({ restaurants }) => {
                       restaurant.district &&
                       restaurant.address 
                   )
-                  // Filter for business type
+                  // Filter for district
                   .filter(restaurant =>
-                    filterType
-                      ? restaurant.businesstype === filterType
-                      : true
+                    filterDistrict
+                      ? restaurant.district === filterDistrict
+                      : true  
                   )
                   // Filter for neighbourhood (zone)
                   .filter(restaurant =>
                     filterNeighbourhood
                       ? restaurant.neighbourhood === filterNeighbourhood
+                      : true
+                  )
+                  // Filter for business type
+                  .filter(restaurant =>
+                    filterType
+                      ? restaurant.businesstype === filterType
                       : true
                   )
                   // Filter for offers
