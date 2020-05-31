@@ -13,7 +13,7 @@ export default () => {
         <main style={{ marginBottom: '-2px' }} className="flex-auto">
           <iframe
             className="airtable-embed airtable-dynamic-height"
-            src="https://airtable.com/embed/shrs7HragZJpZajZZ"
+            src="https://airtable.com/embed/shrs7HragZJpZajZZ?prefill_district=Nuevo+Chimbote"
             frameBorder="0"
             onmousewheel=""
             width="100%"

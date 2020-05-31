@@ -22,11 +22,15 @@ export default () => {
                 <span className="text-orange">{content.titleOrange}</span>
               </h1>
               <p className="max-w-xl text-indigo-light text-base sm:text-lg md:text-xl mb-2">
-                {content.description}
+                {content.description[0]}
+              </p>
+              <p className="max-w-xl text-indigo-light text-base sm:text-lg md:text-xl mb-2">
+                {content.description[1]}{' '}
+                <a href="mailto:registro.dch@abig.pe">registro.dch@abig.pe</a>
               </p>
               <p className="max-w-xl text-indigo-light text-base sm:text-lg md:text-xl mb-8">
                 {content.more}{' '}
-                <a href="mailto:registro.dch@abig.pe">registro.dch@abig.pe</a>
+                <a href="mailto:soporte.dch@abig.pe">soporte.dch@abig.pe</a>
               </p>
               <div className="sm:-m-2">
                 <Link href="/submit/chimbote">
@@ -59,7 +63,10 @@ const pageContent = {
   'es-PE': {
     titleBlue: 'Pronto tu negocio podría',
     titleOrange: 'estar aquí',
-    description: `Registrarse no es difícil. Son algunos datos básicos que necesitamos para registrarte en la plataforma. Enviada tu solicitud, la revisaremos y estaremos en contacto contigo para confirmar su aprobación. Es importante mencionar que las solicitudes aceptadas pueden tardar hasta 24 horas en aparecer en la página web.`,
+    description: [
+      `Registrarse no es difícil. Son algunos datos básicos que necesitamos para registrarte en la plataforma. Enviada tu solicitud, la revisaremos y estaremos en contacto contigo para confirmar su aprobación. Es importante mencionar que las solicitudes aceptadas pueden tardar hasta 24 horas en aparecer en la página web.`,
+      `Si quieres que agreguemos algún rubro, zona o categoría, no dudes en escribirnos: `
+    ],
     more: '¿Necesitas ayuda? Escríbenos: ',
     addChimbote: 'Registra tu negocio (Chimbote)',
     addNuevoChimbote: 'Registra tu negocio (Nuevo Chimbote)'
@@ -67,7 +74,10 @@ const pageContent = {
   'en-US': {
     titleBlue: 'Soon your business',
     titleOrange: 'could be here',
-    description: `Signing up isn't difficult. We only need some basic data about you so that we can list you on our platform. Once you've sent your submission, we'll be in touch soon to confirm the aproval. You should know that aproved submissions can take up 24 hours to appear on the site.`,
+    description: [
+      `Signing up isn't difficult. We only need some basic data about you so that we can list you on our platform. Once you've sent your submission, we'll be in touch soon to confirm the aproval. You should know that aproved submissions can take up 24 hours to appear on the site.`,
+      `If you want us to add a business type, neighbourhood or category, drop us a letter: `
+    ],
     more: 'Need help? Write us: ',
     addChimbote: 'Add your business (Chimbote)',
     addNuevoChimbote: 'Add your business (Nuevo Chimbote)'

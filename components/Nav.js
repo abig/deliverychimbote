@@ -111,10 +111,20 @@ const Dropdown = ({ align, items, label }) => {
           className="inline-flex items-center font-medium"
         >
           {label}
-          <ChevronDown
-            style={{ transform: 'translateY(1px)' }}
-            className="text-indigo-light ml-2"
-          />
+          {showDropdown
+            ? (
+              <ChevronUp
+                style={{ transform: 'translateY(1px)' }}
+                className="text-indigo-light ml-2"
+              />
+            )
+            : (
+              <ChevronDown
+                style={{ transform: 'translateY(1px)' }}
+                className="text-indigo-light ml-2"
+              />
+            )
+          }
         </button>
         <div className="relative">
           <AnimatePresence>
