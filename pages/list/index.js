@@ -12,8 +12,12 @@ import { FiltersList, FiltersTranslation } from '../../components/FiltersList'
 const pageContent = {
   'es-PE': {
     title: 'Negocios',
+    districtLabel: 'Distritos',
+    districts: FiltersTranslation["es-PE"].districts,
+    selectDistrict: 'Seleccione un distrito...',
     businessTypeLabel: 'Rubro',
     businessTypes: FiltersTranslation["es-PE"].businessTypes,
+    selectType: 'Seleccione un rubro...',
     neighbourhoodLabel: 'Zonas',
     offersLabel: 'Productos',
     offers: FiltersTranslation["es-PE"].offers,
@@ -23,8 +27,12 @@ const pageContent = {
   },
   'en-US': {
     title: 'Businesses',
+    districtLabel: 'Districts',
+    districts: FiltersTranslation["en-US"].districts,
+    selectDistrict: 'Select a district...',
     businessTypeLabel: 'Business Type',
     businessTypes: FiltersTranslation["en-US"].businessTypes,
+    selectType: 'Select a business type...',
     neighbourhoodLabel: 'Neighbourhood',
     offersLabel: 'Offers',
     offers: FiltersTranslation["en-US"].offers,
@@ -137,7 +145,7 @@ export default ({ restaurants }) => {
 
   const [filterDelivery, setFilterDelivery] = useState(false)
   const [filterOffers, setFilterOffers] = useState([])
-  // TODO: Fix filter for zones
+  const [filterDistrict, setFilterDistrict] = useState('')
   const [filterNeighbourhood, setFilterNeighbourhood] = useState('')
   const [filterType, setFilterType] = useState('')
 
@@ -152,6 +160,55 @@ export default ({ restaurants }) => {
               <h2 className="flex-auto font-extrabold text-2xl sm:text-3xl leading-none mb-4 sm:mb-6">
                 {content.title}
               </h2>
+              <div className="flex flex-wrap items-center -m-1 mb-4">
+                <p className="w-full md:w-auto font-medium m-1 mr-2">
+                  {content.districtLabel}
+                </p>
+                {FiltersList.districts.map(district => {
+                  const isChecked = filterDistrict === district
+                  const handleChange = () => {
+                    if (isChecked) setFilterDistrict('')
+                    else setFilterDistrict(district)
+                  }
+                  return (
+                    <FilterLabel
+                      key={district}
+                      handleChange={handleChange}
+                      isChecked={isChecked}
+                      label={district}
+                    />
+                  )
+                })}
+              </div>
+              <div className="flex flex-wrap items-center -m-1 mb-4">
+                <p className="w-full md:w-auto font-medium m-1 mr-2">
+                  {content.neighbourhoodLabel}
+                </p>
+                {filterDistrict 
+                  ? (
+                      FiltersList.zones[filterDistrict].map(neighbourhood => {
+                        const isChecked = filterNeighbourhood === neighbourhood
+                        const handleChange = () => {
+                          if (isChecked) setFilterNeighbourhood('')
+                          else setFilterNeighbourhood(neighbourhood)
+                        }
+                        return (
+                          <FilterLabel
+                            key={neighbourhood}
+                            handleChange={handleChange}
+                            isChecked={isChecked}
+                            label={neighbourhood}
+                          />
+                        )
+                      })
+                    )
+                  : (
+                      <p className="w-full md:w-auto font-medium m-1 mr-2">
+                        {content.selectDistrict}
+                      </p>
+                    )
+                }
+              </div>
               <div className="flex flex-wrap items-center -m-1 mb-4">
                 <p className="w-full md:w-auto font-medium m-1 mr-2">
                   {content.businessTypeLabel}
@@ -172,51 +229,39 @@ export default ({ restaurants }) => {
                   )
                 })}
               </div>
-              <div className="flex flex-wrap items-center -m-1 mb-4">
-                <p className="w-full md:w-auto font-medium m-1 mr-2">
-                  {content.neighbourhoodLabel}
-                </p>
-                {/* TODO: Fix filter for zones (it has to be multiple-select) */}
-                {FiltersList.zones.map(neighbourhood => {
-                  const isChecked = filterNeighbourhood === neighbourhood
-                  const handleChange = () => {
-                    if (isChecked) setFilterNeighbourhood('')
-                    else setFilterNeighbourhood(neighbourhood)
-                  }
-                  return (
-                    <FilterLabel
-                      key={neighbourhood}
-                      handleChange={handleChange}
-                      isChecked={isChecked}
-                      label={neighbourhood}
-                    />
-                  )
-                })}
-              </div>
               <div className="w-full flex flex-wrap items-center -m-1 mb-4">
                 <p className="w-full md:w-auto font-medium m-1 mr-2">
                   {content.offersLabel}
                 </p>
-                {FiltersList.offers.map(offer => {
-                  const isChecked = filterOffers.includes(offer)
-                  const handleChange = () => {
-                    if (isChecked) {
-                      const newOffers = [...filterOffers]
-                      newOffers.splice(newOffers.indexOf(offer), 1)
-                      setFilterOffers(newOffers)
-                    } else {
-                      setFilterOffers([...filterOffers, offer])
-                    }
-                  }
-                  return (
-                    <FilterLabel
-                      key={offer}
-                      handleChange={handleChange}
-                      isChecked={isChecked}
-                      label={content.offers[offer]}
-                    />
-                  )
-                })}
+                {filterType
+                  ? (
+                      FiltersList.offers[filterType].map(offer => {
+                        const isChecked = filterOffers.includes(offer)
+                        const handleChange = () => {
+                          if (isChecked) {
+                            const newOffers = [...filterOffers]
+                            newOffers.splice(newOffers.indexOf(offer), 1)
+                            setFilterOffers(newOffers)
+                          } else {
+                            setFilterOffers([...filterOffers, offer])
+                          }
+                        }
+                        return (
+                          <FilterLabel
+                            key={offer}
+                            handleChange={handleChange}
+                            isChecked={isChecked}
+                            label={content.offers[filterType][offer]}
+                          />
+                        )
+                      })
+                    )
+                  : (
+                      <p className="w-full md:w-auto font-medium m-1 mr-2">
+                        {content.selectType}
+                      </p>
+                    )
+                }
               </div>
               <label className="inline-flex items-center font-medium cursor-pointer mb-6">
                 <span className="select-none mr-2">{content.delivery}</span>
@@ -244,7 +289,7 @@ export default ({ restaurants }) => {
                       ? restaurant.businesstype === filterType
                       : true
                   )
-                  // Filter for neighbourhood (zone) TODO: Fix
+                  // Filter for neighbourhood (zone)
                   .filter(restaurant =>
                     filterNeighbourhood
                       ? restaurant.neighbourhood === filterNeighbourhood
