@@ -36,14 +36,6 @@ export default () => {
                       </span>
                     </a>
                   </Link>
-                  <Link href="/submit">
-                    <a className="w-full sm:w-auto rounded h-12 btn btn-secondary inline-flex items-center sm:m-2">
-                      {content.add}
-                      <span className="inline sm:hidden flex-auto text-right">
-                        ⟶
-                      </span>
-                    </a>
-                  </Link>
                 </div>
               </div>
               <img
