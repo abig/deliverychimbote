@@ -21,6 +21,14 @@ const content = {
     },
   },
   about: { 'es-PE': 'Nosotros', 'en-US': 'About' },
+  dropdown: { 
+    'es-PE': {
+      soon: 'Próximamente'
+    },
+    'en-US': {
+      soon: 'Soon'
+    }
+  },
   forRestaurants: {
     'es-PE': {
       label: 'Para negocios',
@@ -59,10 +67,11 @@ export default () => {
           {!maintenance &&
             <Dropdown
               items={[
-                { href: '/map', label: content.restaurants[language].map },
                 { href: '/list', label: content.restaurants[language].list },
+                { href: '/map', label: content.restaurants[language].map, disabled: true }
               ]}
               label={content.restaurants[language].label}
+              soon={content.dropdown[language].soon}
             />
           }
           {breakpoint.sm &&
@@ -78,6 +87,7 @@ export default () => {
                 { href: '/submit', label: content.forRestaurants[language].submit },
               ]}
               label={content.forRestaurants[language].label}
+              soon={content.dropdown[language].soon}
             />
           ) : (
             <NavLink href="/submit" label={content.submit[language]} />
@@ -94,7 +104,7 @@ const NavLink = ({ href, label }) => (
   </Link>
 )
 
-const Dropdown = ({ align, items, label }) => {
+const Dropdown = ({ align, items, label, soon }) => {
   const [showDropdown, setShowDropdown] = useState(false)
   return (
     <>
@@ -138,21 +148,28 @@ const Dropdown = ({ align, items, label }) => {
                   'absolute top-0 z-20 w-48 bg-alice-blue border border-sand'
                 }
               >
-                {items.map(({ href, label }) => (
-                  <li key={label} className="w-full">
-                    <Link href={href}>
-                      <a
-                        onClick={() => setShowDropdown(false)}
-                        className="group flex font-medium px-3 py-2 my-2"
-                      >
-                        {label}
-                        <span className="flex-auto text-right text-sand-light group-hover:text-indigo-light transition-color duration-150 ease-in-out">
-                          ⟶
-                        </span>
-                      </a>
-                    </Link>
-                  </li>
-                ))}
+                {items.map(({ href, label, disabled }) => {
+                  const handleClick = (event) => {
+                    if (!disabled) setShowDropdown(false)
+                    else event.preventDefault()
+                  }
+                  return (
+                    <li key={label} className="w-full">
+                      <Link href={disabled ? '#' : href}>
+                        <a
+                          onClick={handleClick}
+                          className="group flex font-medium px-3 py-2 my-2"
+                          disabled={disabled}
+                        >
+                          {label} {disabled && '(' + soon + ')'}
+                          <span className="flex-auto text-right text-sand-light group-hover:text-indigo-light transition-color duration-150 ease-in-out">
+                            ⟶
+                          </span>
+                        </a>
+                      </Link>
+                    </li>
+                  )
+                })}
               </motion.ul>
             )}
           </AnimatePresence>

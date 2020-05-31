@@ -86,3 +86,6 @@ p > a {
 .font-spacing-1 {
   letter-spacing: 1px;
 }
+a[disabled] {
+  pointer-events: none;
+}
