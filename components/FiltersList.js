@@ -5,6 +5,7 @@ export const FiltersList = {
     "Tecnología",
     "Ferreterías",
     "Peluquerías",
+    "Servicios",
     "Otros"
   ],
   offers: {
@@ -17,7 +18,7 @@ export const FiltersList = {
       "Desayuno",
       "Embutidos y fiambres",
       "Abarrotes",
-      "Panadería y pastelería",
+      "Panes y biscochos",
       "Aguas y bebidas gaseosas",
       "Cerveza, vinos y licores",
       "Limpieza y aseo",
@@ -30,7 +31,6 @@ export const FiltersList = {
       "Juguetes y regalos",
       "Artículos para niños y bebes",
       "Útiles escolares y de oficina",
-      "Farmacias y Boticas",
       "Gas"
     ],
     ['Restaurantes']: [
@@ -80,7 +80,7 @@ export const FiltersList = {
       "Tableros aglomerados",
       "Cables y alambres eléctricos",
       "Interruptores y tomacorrientes",
-      "Tubos eléctricos y gasfitería",
+      "Tubos eléctricos y de gasfitería",
       "Tableros y llaves termomagnéticas",
       "Productos de fijación",
       "Accesorios de seguridad",
@@ -102,10 +102,30 @@ export const FiltersList = {
       "Cortes con diseño",
       "Cortes para niños"
     ],
+    ['Servicios']: [
+      "Lavanderías",
+      "Lavadero de autos",
+      "Agentes multibanco",
+      "Casas de cambio",
+      "Gasfitería",
+      "Carpintería",
+      "Fabricación de modulares y melamine",
+      "Electrónica",
+      "Electricista",
+      "Mantenimiento y pintura",
+      "Albañilería y construcción"
+    ],
     ['Otros']: [
+      "Farmacias y boticas",
+      "Panaderías y pastelerías",
+      "Librerías",
+      "Confecciones Textiles",
+      "Florerías",
+      "Vidrierías",
+      "Regalos y novedades",
       "Lubricantes",
-      "Accesorios para autos",
-      "Limpieza de autos"
+      "Repuestos para autos",
+      "Lavadero de autos"
     ]
   },
   districts: [
@@ -213,7 +233,6 @@ export const FiltersList = {
       "EL BOSQUE",
       "LOS CIPRESES",
       "SANTA ROSA",
-      "LOS PORTALES",
       "SANTA CRISTINA",
       "BANCHERO ROSSI",
       "SAN RAFAEL",
@@ -312,108 +331,9 @@ export const FiltersTranslation = {
       "Technology",
       "Hardware Stores",
       "Hairdressers",
+      "Services",
       "Misc"
     ]),
-    offers: ComplexTransObjFromArr(FiltersList.offers, {
-      ['Comercios']: [
-        "Fruits and vegetables",
-        "Chicken and Eggs",
-        "Meats",
-        "Fish and seafood",
-        "Dairy products",
-        "Breakfast",
-        "Sausages and cold cuts",
-        "Groceries",
-        "Bakery and pastry",
-        "Water and carbonated drinks",
-        "Beer, wines and spirits",
-        "Cleaning and grooming",
-        "Home and Bazaar",
-        "Cleaning of clothes and shoes",
-        "Home cleaning",
-        "Hygiene and hair care",
-        "Hygiene and personal care",
-        "Pet Food",
-        "Toys and gifts",
-        "Articles for children and babies",
-        "School and office supplies",
-        "Pharmacies",
-        "Gas"
-      ],
-      ['Restaurantes']: [
-        "Menu",
-        "Burgers",
-        "Pizza",
-        "Grilled chicken",
-        "Cebiche",
-        "Cakes",
-        "A la carte dishes",
-        "Desserts",
-        "Barbecue",
-        "Sandwich",
-        "Fizzy Drinks"
-      ],
-      ['Tecnología']: [
-        "Laptops",
-        "Computers",
-        "Printers",
-        "Monitors",
-        "Computer Accessories",
-        "Gamers components",
-        "Video game",
-        "Consoles",
-        "Controls",
-        "Routers and wireless connection",
-        "Streaming",
-        "Voice assistants",
-        "Robot vacuum cleaners",
-        "Smart security",
-        "Sound equipment",
-        "Headphones",
-        "Speakers",
-        "Audio accessories",
-        "Semi-professional chambers",
-        "Professional cameras",
-        "Camera accessories",
-        "Drones",
-      ],
-      ['Ferreterías']: [
-        "Tools and accessories",
-        "Construction articles",
-        "Bricks and sand",
-        "Cements",
-        "Paints and finishes",
-        "Lamps and pendants",
-        "Chipboard",
-        "Electric cables and wires",
-        "Switches and outlets",
-        "Electric pipes and plumbing",
-        "Boards and thermo-magnetic keys",
-        "Fixing products",
-        "Security accessories",
-        "Sanitary accessories and plumbing",
-        "Water tanks and accessories",
-        "Accessories for painting",
-        "Chemicals and cleaners",
-        "Spotlights and interior lighting",
-        "Exterior lighting"
-      ],
-      ['Peluquerías']: [
-        "Haircuts for men",
-        "Haircuts for ladies",
-        "Painted hair",
-        "Hairstyles",
-        "Manicure",
-        "Pedicure",
-        "Barbershop",
-        "Haircuts with designs",
-        "Haircuts for children"
-      ],
-      ['Otros']: [
-        "Lubricants",
-        "Car Accessories",
-        "Car cleaning"
-      ]
-    })
+    offers: ComplexMapToObj(FiltersList.offers)
   }
 }
