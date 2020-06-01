@@ -5,6 +5,7 @@ export const FiltersList = {
     "Tecnología",
     "Ferreterías",
     "Peluquerías",
+    "Servicios",
     "Otros"
   ],
   offers: {
@@ -17,7 +18,7 @@ export const FiltersList = {
       "Desayuno",
       "Embutidos y fiambres",
       "Abarrotes",
-      "Panadería y pastelería",
+      "Panes y biscochos",
       "Aguas y bebidas gaseosas",
       "Cerveza, vinos y licores",
       "Limpieza y aseo",
@@ -79,7 +80,7 @@ export const FiltersList = {
       "Tableros aglomerados",
       "Cables y alambres eléctricos",
       "Interruptores y tomacorrientes",
-      "Tubos eléctricos y gasfitería",
+      "Tubos eléctricos y de gasfitería",
       "Tableros y llaves termomagnéticas",
       "Productos de fijación",
       "Accesorios de seguridad",
@@ -101,12 +102,30 @@ export const FiltersList = {
       "Cortes con diseño",
       "Cortes para niños"
     ],
+    ['Servicios']: [
+      "Lavanderías",
+      "Lavadero de autos",
+      "Agentes multibanco",
+      "Casas de cambio",
+      "Gasfitería",
+      "Carpintería",
+      "Fabricación de modulares y melamine",
+      "Electrónica",
+      "Electricista",
+      "Mantenimiento y pintura",
+      "Albañilería y construcción"
+    ],
     ['Otros']: [
-      "Farmacias y Boticas",
-      "Tiendas de Regalos",
+      "Farmacias y boticas",
+      "Panaderías y pastelerías",
+      "Librerías",
+      "Confecciones Textiles",
+      "Florerías",
+      "Vidrierías",
+      "Regalos y novedades",
       "Lubricantes",
-      "Accesorios para autos",
-      "Limpieza de autos"
+      "Repuestos para autos",
+      "Lavadero de autos"
     ]
   },
   districts: [
@@ -214,7 +233,6 @@ export const FiltersList = {
       "EL BOSQUE",
       "LOS CIPRESES",
       "SANTA ROSA",
-      "LOS PORTALES",
       "SANTA CRISTINA",
       "BANCHERO ROSSI",
       "SAN RAFAEL",
@@ -313,6 +331,7 @@ export const FiltersTranslation = {
       "Technology",
       "Hardware Stores",
       "Hairdressers",
+      "Services",
       "Misc"
     ]),
     offers: ComplexTransObjFromArr(FiltersList.offers, {
@@ -325,13 +344,13 @@ export const FiltersTranslation = {
         "Breakfast",
         "Sausages and cold cuts",
         "Groceries",
-        "Bakery and pastry",
+        "Breads and biscuits",
         "Water and carbonated drinks",
         "Beer, wines and spirits",
         "Cleaning and grooming",
         "Home and Bazaar",
         "Cleaning of clothes and shoes",
-        "Home cleaning",
+        "Home clean",
         "Hygiene and hair care",
         "Hygiene and personal care",
         "Pet Food",
@@ -359,7 +378,7 @@ export const FiltersTranslation = {
         "Printers",
         "Monitors",
         "Computer Accessories",
-        "Gamers components",
+        "Gamer components",
         "Video game",
         "Consoles",
         "Controls",
@@ -387,7 +406,7 @@ export const FiltersTranslation = {
         "Chipboard",
         "Electric cables and wires",
         "Switches and outlets",
-        "Electric pipes and plumbing",
+        "Electric and plumbing pipes",
         "Boards and thermo-magnetic keys",
         "Fixing products",
         "Security accessories",
@@ -399,22 +418,40 @@ export const FiltersTranslation = {
         "Exterior lighting"
       ],
       ['Peluquerías']: [
-        "Haircuts for men",
-        "Haircuts for ladies",
+        "Haircourts for gentlemen",
+        "Haircourts for ladies",
         "Painted hair",
         "Hairstyles",
         "Manicure",
         "Pedicure",
         "Barbershop",
-        "Haircuts with designs",
-        "Haircuts for children"
+        "Haircourts with design",
+        "Haircourts for children"
+      ],
+      ['Servicios']: [
+        "Laundries",
+        "Car wash",
+        "Multi-bank agents",
+        "Exchange houses",
+        "Gasfitería",
+        "Carpentry",
+        "Modular and melamine manufacturing",
+        "Electronics",
+        "Electrical technician",
+        "Maintenance and painting",
+        "Masonry and construction"
       ],
       ['Otros']: [
         "Pharmacies",
-        "Gift shops",
+        "Bakeries",
+        "Bookstores",
+        "Textile Confections",
+        "Florists",
+        "Glassworks",
+        "Gifts and novelties",
         "Lubricants",
-        "Car Accessories",
-        "Car cleaning"
+        "Spare parts for cars",
+        "Car wash"
       ]
     })
   }
