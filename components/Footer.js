@@ -1,5 +1,7 @@
 import { useContext } from 'react'
 import LanguageSelector, { LanguageContext } from './LanguageSelector'
+import Link from 'next/link'
+import useBreakpoint from '../hooks/useBreakpoint'
 
 const pageContent = {
   'es-PE': {
@@ -8,6 +10,7 @@ const pageContent = {
     adapted: 'Adaptado para Chimbote por',
     os: 'Open-source',
     dinePrefix: 'También en',
+    about: 'Sobre nosotros'
   },
   'en-US': {
     prefix: 'An initiative by',
@@ -15,22 +18,31 @@ const pageContent = {
     adapted: 'Adapted for Chimbote by',
     os: "It's open-source",
     dinePrefix: 'Also in',
+    about: 'About us'
   },
 }
 
 export default () => {
   const { language } = useContext(LanguageContext)
   const content = pageContent[language]
+  const breakpoint = useBreakpoint()
   return (
     <footer className="px-3">
-      <div className="max-w-6xl mx-auto">
-        <div className="border-t-2 border-sand pt-10 mb-4">
+      <div className="max-w-6xl border-t-2 border-sand mx-auto">
+        {!breakpoint.sm &&
+          <Link href="/about">
+            <button className="font-medium underline leading-normal mt-10 mb-4">
+              {content.about}
+            </button>
+          </Link>
+        }
+        <div className="sm:mt-10 mb-4">
           <LanguageSelector />
         </div>
         <p className="mb-4">
           {content.prefix}{' '}
           <a href="https://abig.pe" target="_blank" rel="noopener">
-            AB Investment Group
+            AB Investment Group SAC
           </a>{'. '}
           {content.built}{' '}
           <a

@@ -13,11 +13,13 @@ const content = {
       label: 'Negocios',
       map: 'Mapa',
       list: 'Listado',
+      submit: 'Registra tu negocio'
     },
     'en-US': {
       label: 'Businesses',
       map: 'Map view',
       list: 'List view',
+      submit: 'Submit your business'
     },
   },
   about: { 'es-PE': 'Nosotros', 'en-US': 'About' },
@@ -33,12 +35,12 @@ const content = {
     'es-PE': {
       label: 'Para negocios',
       resources: 'Recursos',
-      submit: 'Regístrate',
+      submit: 'Registra tu negocio',
     },
     'en-US': {
       label: 'For restaurants',
       resources: 'Resources',
-      submit: 'Submit',
+      submit: 'Registra tu negocio',
     },
   },
   submit: {
@@ -58,7 +60,7 @@ export default () => {
         <div className="flex-auto flex items-center -mx-3">
           <Link href="/">
             <a className="inline-flex items-center ml-3 sm:mr-6">
-              <Logo className="h-20 stroke-none mr-2" />
+              <Logo className="h-20 stroke-none sm:mr-2" />
               <h2 className="hidden sm:inline-block font-fredoka-one font-spacing-1 uppercase text-2xl">
                 Delivery Chimbote
               </h2>
@@ -68,6 +70,7 @@ export default () => {
             <Dropdown
               items={[
                 { href: '/list', label: content.restaurants[language].list },
+                { href: '/submit', label: content.restaurants[language].submit },
                 { href: '/map', label: content.restaurants[language].map, disabled: true }
               ]}
               label={content.restaurants[language].label}
@@ -83,8 +86,8 @@ export default () => {
             <Dropdown
               align="right-0"
               items={[
-                { href: '/resources', label: content.forRestaurants[language].resources },
                 { href: '/submit', label: content.forRestaurants[language].submit },
+                { href: '/resources', label: content.forRestaurants[language].resources }
               ]}
               label={content.forRestaurants[language].label}
               soon={content.dropdown[language].soon}
