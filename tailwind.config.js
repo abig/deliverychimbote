@@ -9,6 +9,9 @@ module.exports = {
       'indigo-light': '#175676', // index intro text and others
       teal: '#8bd3dd', // secondary accent (btn-secondary bg)
       white: '#fff', // white text
+      facebook: '#3b5998', // facebook
+      instagram: '#bc2a8d', // instagram
+      twitter: '#1da1f2' // twitter
     },
     fontFamily: {
       inter:
