@@ -40,7 +40,7 @@ const content = {
     'en-US': {
       label: 'For restaurants',
       resources: 'Resources',
-      submit: 'Registra tu negocio',
+      submit: 'Submit your business',
     },
   },
   submit: {
