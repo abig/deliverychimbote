@@ -18,7 +18,8 @@ const pageContent = {
     businessTypeLabel: 'Rubro',
     businessTypes: FiltersTranslation["es-PE"].businessTypes,
     selectType: 'Seleccione un rubro...',
-    neighbourhoodLabel: 'Zonas',
+    zonesLabel: 'Zonas',
+    moreZones: 'Ver zonas donde llegamos',
     offersLabel: 'Productos',
     offers: FiltersTranslation["es-PE"].offers,
     delivery: 'Delivery disponible',
@@ -33,7 +34,8 @@ const pageContent = {
     businessTypeLabel: 'Business Type',
     businessTypes: FiltersTranslation["en-US"].businessTypes,
     selectType: 'Select a business type...',
-    neighbourhoodLabel: 'Neighbourhood',
+    zonesLabel: 'Zones',
+    moreZones: 'See zones were we get',
     offersLabel: 'Offers',
     offers: FiltersTranslation["en-US"].offers,
     delivery: 'Delivery available',
@@ -47,7 +49,7 @@ const ListItem = ({ restaurant, content }) => {
   const address = restaurant.address || undefined
   const description = restaurant.description || undefined
   const district = restaurant.district || undefined
-  const neighbourhood = restaurant.neighbourhood || undefined
+  const zones = restaurant.zones || undefined
   const offers = restaurant.offerings || undefined
   const delivery = restaurant.delivery || false
   const phone = restaurant.phone || undefined
@@ -57,19 +59,15 @@ const ListItem = ({ restaurant, content }) => {
   const addrQuery = restaurant.pluscode
     ? encodeURIComponent(restaurant.pluscode)
     : encodeURIComponent(restaurant.address)
+
+  const [zoneCollapse, setZoneCollapse] = useState(false)
+
   return (
     <li className="w-full md:w-1/2 p-3">
       <div className="rounded relative h-full flex flex-col items-start border border-sand overflow-hidden p-4 sm:p-8 lg:px-12">
         <div className="flex-auto">
-          {name && <h3 className="text-xl sm:text-2xl">{name}</h3>}
-          {neighbourhood && (
-            <p className="text-xs sm:text-sm mb-4">
-              {district
-                ? (neighbourhood + ', ' + district) 
-                : neighbourhood
-              }
-            </p>
-          )}
+          {name && <h3 className="uppercase text-xl sm:text-2xl">{name}</h3>}
+          {district && <p className="text-xs sm:text-sm mb-4">{district}</p>}
           {address && <p className="text-xs sm:text-sm mb-2"><a href={`https://www.google.com/maps/place/?q=${addrQuery}`} target="_blank" rel="noopener noreferrer">{address}</a></p>}
           {email && <p className="text-sm mb-2"><a href={`mailto:${email}`}>{email}</a></p>}
           {phone && <p className="text-sm mb-4"><a href={`tel:${phone}`}>{phone}</a></p>}
@@ -88,6 +86,24 @@ const ListItem = ({ restaurant, content }) => {
               ))}
             </ul>
           )}
+          {zones && !!zones.length &&
+            <button 
+              className="underline text-xs sm:text-sm mb-4"
+              onClick={() => setZoneCollapse(!zoneCollapse)}
+            >+ {content.moreZones}</button>
+          }
+          {zoneCollapse &&
+            <ul className="-m-1 mb-6">
+              {zones.map(zone => (
+                <li
+                  key={zone}
+                  className="inline-block rounded font-medium text-xs sm:text-sm bg-sand px-2 py-1 m-1"
+                >
+                  {zone}
+                </li>
+              ))}
+            </ul>
+          }
         </div>
         <div className="mt-4 items-center">
           {phone && whatsapp && (
@@ -143,11 +159,11 @@ export default ({ restaurants }) => {
   const { language } = useContext(LanguageContext)
   const content = pageContent[language]
 
-  const [filterDelivery, setFilterDelivery] = useState(false)
-  const [filterOffers, setFilterOffers] = useState([])
   const [filterDistrict, setFilterDistrict] = useState('')
-  const [filterNeighbourhood, setFilterNeighbourhood] = useState('')
-  const [filterType, setFilterType] = useState('')
+  const [filterZone, setFilterZone] = useState([])
+  const [filterTypes, setFilterTypes] = useState([])
+  const [filterOffers, setFilterOffers] = useState([])
+  const [filterDelivery, setFilterDelivery] = useState(false)
 
   if (restaurants)
     return (
@@ -167,7 +183,10 @@ export default ({ restaurants }) => {
                 {FiltersList.districts.map(district => {
                   const isChecked = filterDistrict === district
                   const handleChange = () => {
-                    if (isChecked) setFilterDistrict('')
+                    setFilterZone([])
+                    if (isChecked) {
+                      setFilterDistrict('')
+                    }
                     else setFilterDistrict(district)
                   }
                   return (
@@ -182,22 +201,27 @@ export default ({ restaurants }) => {
               </div>
               <div className="flex flex-wrap items-center -m-1 mb-4">
                 <p className="w-full md:w-auto font-medium m-1 mr-2">
-                  {content.neighbourhoodLabel}
+                  {content.zonesLabel}
                 </p>
-                {filterDistrict 
+                {filterDistrict
                   ? (
-                      FiltersList.zones[filterDistrict].map(neighbourhood => {
-                        const isChecked = filterNeighbourhood === neighbourhood
+                      FiltersList.zones[filterDistrict].map(zone => {
+                        const isChecked = filterZone.includes(zone)
                         const handleChange = () => {
-                          if (isChecked) setFilterNeighbourhood('')
-                          else setFilterNeighbourhood(neighbourhood)
+                          if (isChecked) {
+                            const newZones = [...filterZone]
+                            newZones.splice(newZones.indexOf(zone), 1)
+                            setFilterZone(newZones)
+                          } else {
+                            setFilterZone([...filterZone, zone])
+                          }
                         }
                         return (
                           <FilterLabel
-                            key={neighbourhood}
+                            key={zone}
                             handleChange={handleChange}
                             isChecked={isChecked}
-                            label={neighbourhood}
+                            label={zone}
                           />
                         )
                       })
@@ -213,18 +237,30 @@ export default ({ restaurants }) => {
                 <p className="w-full md:w-auto font-medium m-1 mr-2">
                   {content.businessTypeLabel}
                 </p>
-                {FiltersList.businesses.map(businessType => {
-                  const isChecked = filterType === businessType
+                {FiltersList.businesses.map(type => {
+                  const isChecked = filterTypes.includes(type)
                   const handleChange = () => {
-                    if (isChecked) setFilterType('')
-                    else setFilterType(businessType)
+                    if (isChecked) {
+                      const newTypes = [...filterTypes]
+                      newTypes.splice(newTypes.indexOf(type), 1)
+                      setFilterTypes(newTypes)
+                      const newOffers = [...filterOffers]
+                      filterOffers.forEach(offer => {
+                        if (FiltersList.offers[type].indexOf(offer) !== -1) {
+                          newOffers.splice(newOffers.indexOf(offer), 1)
+                        }
+                      })
+                      setFilterOffers(newOffers)
+                    } else {
+                      setFilterTypes([...filterTypes, type])
+                    }
                   }
                   return (
                     <FilterLabel 
-                      key={businessType}
+                      key={type}
                       handleChange={handleChange}
                       isChecked={isChecked}
-                      label={content.businessTypes[businessType]}
+                      label={content.businessTypes[type]}
                     />
                   )
                 })}
@@ -233,27 +269,29 @@ export default ({ restaurants }) => {
                 <p className="w-full md:w-auto font-medium m-1 mr-2">
                   {content.offersLabel}
                 </p>
-                {filterType
+                {filterTypes.length
                   ? (
-                      FiltersList.offers[filterType].map(offer => {
-                        const isChecked = filterOffers.includes(offer)
-                        const handleChange = () => {
-                          if (isChecked) {
-                            const newOffers = [...filterOffers]
-                            newOffers.splice(newOffers.indexOf(offer), 1)
-                            setFilterOffers(newOffers)
-                          } else {
-                            setFilterOffers([...filterOffers, offer])
+                      filterTypes.map(type => {
+                        return FiltersList.offers[type].map(offer => {
+                          const isChecked = filterOffers.includes(offer)
+                          const handleChange = () => {
+                            if (isChecked) {
+                              const newOffers = [...filterOffers]
+                              newOffers.splice(newOffers.indexOf(offer), 1)
+                              setFilterOffers(newOffers)
+                            } else {
+                              setFilterOffers([...filterOffers, offer])
+                            }
                           }
-                        }
-                        return (
-                          <FilterLabel
-                            key={offer}
-                            handleChange={handleChange}
-                            isChecked={isChecked}
-                            label={content.offers[filterType][offer]}
-                          />
-                        )
+                          return (
+                            <FilterLabel
+                              key={offer}
+                              handleChange={handleChange}
+                              isChecked={isChecked}
+                              label={content.offers[type][offer]}
+                            />
+                          )
+                        })
                       })
                     )
                   : (
@@ -289,22 +327,26 @@ export default ({ restaurants }) => {
                       ? restaurant.district === filterDistrict
                       : true  
                   )
-                  // Filter for neighbourhood (zone)
+                  // Filter for zones
                   .filter(restaurant =>
-                    filterNeighbourhood
-                      ? restaurant.neighbourhood === filterNeighbourhood
+                    filterZone && filterZone.length
+                      ? filterZone.some(zone =>
+                          restaurant.zones.includes(zone)
+                        )
                       : true
                   )
                   // Filter for business type
                   .filter(restaurant =>
-                    filterType
-                      ? restaurant.businesstype === filterType
+                    filterTypes && filterTypes.length
+                      ? filterTypes.some(type =>
+                          restaurant.businesstype.includes(type)
+                        )
                       : true
                   )
                   // Filter for offers
                   .filter(restaurant =>
                     filterOffers && filterOffers.length
-                      ? filterOffers.every(offer =>
+                      ? filterOffers.some(offer =>
                           restaurant.offerings.includes(offer)
                         )
                       : true
