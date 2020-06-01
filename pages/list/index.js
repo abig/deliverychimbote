@@ -19,6 +19,7 @@ const pageContent = {
     businessTypes: FiltersTranslation["es-PE"].businessTypes,
     selectType: 'Seleccione un rubro...',
     zonesLabel: 'Zonas',
+    moreZones: 'Ver zonas donde llegamos',
     offersLabel: 'Productos',
     offers: FiltersTranslation["es-PE"].offers,
     delivery: 'Delivery disponible',
@@ -34,6 +35,7 @@ const pageContent = {
     businessTypes: FiltersTranslation["en-US"].businessTypes,
     selectType: 'Select a business type...',
     zonesLabel: 'Zones',
+    moreZones: 'See zones were we get',
     offersLabel: 'Offers',
     offers: FiltersTranslation["en-US"].offers,
     delivery: 'Delivery available',
@@ -47,7 +49,7 @@ const ListItem = ({ restaurant, content }) => {
   const address = restaurant.address || undefined
   const description = restaurant.description || undefined
   const district = restaurant.district || undefined
-  const zone = restaurant.zones || undefined
+  const zones = restaurant.zones || undefined
   const offers = restaurant.offerings || undefined
   const delivery = restaurant.delivery || false
   const phone = restaurant.phone || undefined
@@ -57,6 +59,9 @@ const ListItem = ({ restaurant, content }) => {
   const addrQuery = restaurant.pluscode
     ? encodeURIComponent(restaurant.pluscode)
     : encodeURIComponent(restaurant.address)
+
+  const [zoneCollapse, setZoneCollapse] = useState(false)
+
   return (
     <li className="w-full md:w-1/2 p-3">
       <div className="rounded relative h-full flex flex-col items-start border border-sand overflow-hidden p-4 sm:p-8 lg:px-12">
@@ -81,6 +86,24 @@ const ListItem = ({ restaurant, content }) => {
               ))}
             </ul>
           )}
+          {zones && !!zones.length &&
+            <button 
+              className="underline text-xs sm:text-sm mb-4"
+              onClick={() => setZoneCollapse(!zoneCollapse)}
+            >+ {content.moreZones}</button>
+          }
+          {zoneCollapse &&
+            <ul className="-m-1 mb-6">
+              {zones.map(zone => (
+                <li
+                  key={zone}
+                  className="inline-block rounded font-medium text-xs sm:text-sm bg-sand px-2 py-1 m-1"
+                >
+                  {zone}
+                </li>
+              ))}
+            </ul>
+          }
         </div>
         <div className="mt-4 items-center">
           {phone && whatsapp && (
@@ -138,7 +161,7 @@ export default ({ restaurants }) => {
 
   const [filterDistrict, setFilterDistrict] = useState('')
   const [filterZone, setFilterZone] = useState([])
-  const [filterType, setFilterType] = useState('')
+  const [filterTypes, setFilterTypes] = useState([])
   const [filterOffers, setFilterOffers] = useState([])
   const [filterDelivery, setFilterDelivery] = useState(false)
 
@@ -160,7 +183,10 @@ export default ({ restaurants }) => {
                 {FiltersList.districts.map(district => {
                   const isChecked = filterDistrict === district
                   const handleChange = () => {
-                    if (isChecked) setFilterDistrict('')
+                    setFilterZone([])
+                    if (isChecked) {
+                      setFilterDistrict('')
+                    }
                     else setFilterDistrict(district)
                   }
                   return (
@@ -177,7 +203,7 @@ export default ({ restaurants }) => {
                 <p className="w-full md:w-auto font-medium m-1 mr-2">
                   {content.zonesLabel}
                 </p>
-                {filterDistrict 
+                {filterDistrict
                   ? (
                       FiltersList.zones[filterDistrict].map(zone => {
                         const isChecked = filterZone.includes(zone)
@@ -211,18 +237,30 @@ export default ({ restaurants }) => {
                 <p className="w-full md:w-auto font-medium m-1 mr-2">
                   {content.businessTypeLabel}
                 </p>
-                {FiltersList.businesses.map(businessType => {
-                  const isChecked = filterType === businessType
+                {FiltersList.businesses.map(type => {
+                  const isChecked = filterTypes.includes(type)
                   const handleChange = () => {
-                    if (isChecked) setFilterType('')
-                    else setFilterType(businessType)
+                    if (isChecked) {
+                      const newTypes = [...filterTypes]
+                      newTypes.splice(newTypes.indexOf(type), 1)
+                      setFilterTypes(newTypes)
+                      const newOffers = [...filterOffers]
+                      filterOffers.forEach(offer => {
+                        if (FiltersList.offers[type].indexOf(offer) !== -1) {
+                          newOffers.splice(newOffers.indexOf(offer), 1)
+                        }
+                      })
+                      setFilterOffers(newOffers)
+                    } else {
+                      setFilterTypes([...filterTypes, type])
+                    }
                   }
                   return (
                     <FilterLabel 
-                      key={businessType}
+                      key={type}
                       handleChange={handleChange}
                       isChecked={isChecked}
-                      label={content.businessTypes[businessType]}
+                      label={content.businessTypes[type]}
                     />
                   )
                 })}
@@ -231,27 +269,29 @@ export default ({ restaurants }) => {
                 <p className="w-full md:w-auto font-medium m-1 mr-2">
                   {content.offersLabel}
                 </p>
-                {filterType
+                {filterTypes.length
                   ? (
-                      FiltersList.offers[filterType].map(offer => {
-                        const isChecked = filterOffers.includes(offer)
-                        const handleChange = () => {
-                          if (isChecked) {
-                            const newOffers = [...filterOffers]
-                            newOffers.splice(newOffers.indexOf(offer), 1)
-                            setFilterOffers(newOffers)
-                          } else {
-                            setFilterOffers([...filterOffers, offer])
+                      filterTypes.map(type => {
+                        return FiltersList.offers[type].map(offer => {
+                          const isChecked = filterOffers.includes(offer)
+                          const handleChange = () => {
+                            if (isChecked) {
+                              const newOffers = [...filterOffers]
+                              newOffers.splice(newOffers.indexOf(offer), 1)
+                              setFilterOffers(newOffers)
+                            } else {
+                              setFilterOffers([...filterOffers, offer])
+                            }
                           }
-                        }
-                        return (
-                          <FilterLabel
-                            key={offer}
-                            handleChange={handleChange}
-                            isChecked={isChecked}
-                            label={content.offers[filterType][offer]}
-                          />
-                        )
+                          return (
+                            <FilterLabel
+                              key={offer}
+                              handleChange={handleChange}
+                              isChecked={isChecked}
+                              label={content.offers[type][offer]}
+                            />
+                          )
+                        })
                       })
                     )
                   : (
@@ -297,8 +337,10 @@ export default ({ restaurants }) => {
                   )
                   // Filter for business type
                   .filter(restaurant =>
-                    filterType
-                      ? restaurant.businesstype === filterType
+                    filterTypes && filterTypes.length
+                      ? filterTypes.some(type =>
+                          restaurant.businesstype.includes(type)
+                        )
                       : true
                   )
                   // Filter for offers
