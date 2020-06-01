@@ -52,10 +52,16 @@ const ListItem = ({ restaurant, content }) => {
   const zones = restaurant.zones || undefined
   const offers = restaurant.offerings || undefined
   const delivery = restaurant.delivery || false
-  const phone = restaurant.phone || undefined
+  const phone = restaurant.phone
+    ? restaurant.phone.includes("+51")
+      ? restaurant.phone
+      : "+51" + restaurant.phone
+    : undefined
   const url = restaurant.url || undefined
   const whatsapp = restaurant.whatsapp || undefined
-  const email = restaurant.email || undefined
+  const email = restaurant.email
+    ? restaurant.email.toLowerCase()
+    : undefined
   const addrQuery = restaurant.pluscode
     ? encodeURIComponent(restaurant.pluscode)
     : encodeURIComponent(restaurant.address)
@@ -68,7 +74,7 @@ const ListItem = ({ restaurant, content }) => {
         <div className="flex-auto">
           {name && <h3 className="uppercase text-xl sm:text-2xl">{name}</h3>}
           {district && <p className="text-xs sm:text-sm mb-4">{district}</p>}
-          {address && <p className="text-xs sm:text-sm mb-2"><a href={`https://www.google.com/maps/place/?q=${addrQuery}`} target="_blank" rel="noopener noreferrer">{address}</a></p>}
+          {address && <p className="text-sm mb-2"><a href={`https://www.google.com/maps/place/?q=${addrQuery}`} target="_blank" rel="noopener noreferrer">{address}</a></p>}
           {email && <p className="text-sm mb-2"><a href={`mailto:${email}`}>{email}</a></p>}
           {phone && <p className="text-sm mb-4"><a href={`tel:${phone}`}>{phone}</a></p>}
           {description && (
