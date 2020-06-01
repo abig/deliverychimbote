@@ -52,6 +52,10 @@ export default () => {
         </p>
         <p className="mb-12">
           {content.dinePrefix}{' '}
+          <a href="https://dinecph.dk" target="_blank" rel="noopener">
+            Copenhagen
+          </a>
+          {', '}
           <a href="https://dineinberlin.com" target="_blank" rel="noopener">
             Berlin
           </a>
