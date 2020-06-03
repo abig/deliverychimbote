@@ -4,6 +4,7 @@ import { initGA, logPageView } from '../components/Analytics'
 import { useEffect } from 'react'
 
 const App = ({ Component, pageProps }) => {
+
   useEffect(
     () => {
       if (process.env.NODE_ENV === 'production') {
@@ -15,6 +16,18 @@ const App = ({ Component, pageProps }) => {
       }
     },
     []
+  )
+
+  useEffect(
+    () => {
+      if (process.env.NODE_ENV === 'production') {
+        console.log("¡Hola! ¿Eres un programador chimbotano y tienes sugerencias o quieres ayudar?")
+        console.log("El proyecto está desarrollado usando Next.js y hosteado en Vercel (http://vercel.com/).")
+        console.log("Nuestro código es open-source, puedes encontrarlo en GitHub: https://github.com/dalbitresb12/deliverychimbote.")
+        console.log("Estaremos muy agradecidos si deseas ayudarnos con este proyecto.")
+      }
+    },
+    [Component]
   )
 
   return (
