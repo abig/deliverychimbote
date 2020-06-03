@@ -1,6 +1,7 @@
 import Head from '../../components/Head'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
+import TermsDialog from '../../components/TermsDialog'
 
 export default () => {
   return (
@@ -10,6 +11,7 @@ export default () => {
       </Head>
       <div className="min-h-screen flex flex-col">
         <Nav />
+        <TermsDialog />
         <main style={{ marginBottom: '-2px' }} className="flex-auto">
           <iframe
             className="airtable-embed airtable-dynamic-height"

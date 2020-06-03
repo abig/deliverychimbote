@@ -10,7 +10,8 @@ const pageContent = {
     adapted: 'Adaptado para Chimbote por',
     os: 'Open-source',
     dinePrefix: 'También en',
-    about: 'Sobre nosotros'
+    about: 'Sobre nosotros',
+    terms: 'Términos y Condiciones'
   },
   'en-US': {
     prefix: 'An initiative by',
@@ -18,7 +19,8 @@ const pageContent = {
     adapted: 'Adapted for Chimbote by',
     os: "It's open-source",
     dinePrefix: 'Also in',
-    about: 'About us'
+    about: 'About us',
+    terms: 'Terms of Service'
   },
   'social': {
     facebook: 'https://www.facebook.com/deliverychimboteapp/',
@@ -77,8 +79,15 @@ export default () => {
             rel="noopener"
           >
             Diego Albitres
-          </a>
+          </a>.
         </p>
+        <div className="mb-4">
+          <Link href="/terms">
+            <button className="font-extrabold underline leading-normal">
+              {content.terms}
+            </button>
+          </Link>
+        </div>
         <p className="mb-12">
           {content.dinePrefix}{' '}
           <a href="https://dinecph.dk" target="_blank" rel="noopener">
