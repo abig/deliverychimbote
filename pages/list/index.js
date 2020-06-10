@@ -78,34 +78,37 @@ const ListItem = ({ restaurant, content }) => {
           {district && <p className="text-xs sm:text-sm mb-4">{district}</p>}
           {address && 
             <p className="text-sm mb-2">
-              <Obfuscate
-                href={`https://www.google.com/maps/place/?q=${addrQuery}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => Event("Business Address", "Google Maps opened", name)}
-              >
-                {address}
-              </Obfuscate>
+              <button onClick={() => Event("Business Address", "Click", name)}>
+                <Obfuscate
+                  href={`https://www.google.com/maps/place/?q=${addrQuery}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {address}
+                </Obfuscate>
+              </button>
             </p>
           }
           {email &&
             <p className="text-sm mb-2">
-              <Obfuscate
-                email={email}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => Event("Business Email", "Email opened", name)}
-              />
+              <button onClick={() => Event("Business Email", "Click", name)}>
+                <Obfuscate
+                  email={email}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                />
+              </button>
             </p>
           }
           {phone && 
             <p className="text-sm mb-4">
-              <Obfuscate
-                tel={phone}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => Event("Business Phone", "Phone clicked", name)}
-              />
+              <button onClick={() => Event("Business Phone", "Click", name)}>
+                <Obfuscate
+                  tel={phone}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                />
+              </button>
             </p>
           }
           {description && (
@@ -143,18 +146,20 @@ const ListItem = ({ restaurant, content }) => {
           }
         </div>
         <div className="mt-4 items-center">
-          {phone && whatsapp && (
-            <Obfuscate
-              href={`https://api.whatsapp.com/send?phone=${phone}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary h-full mr-4 rounded text-sm"
-              obfuscateChildren={false}
-              onClick={() => Event("WhatsApp", "Chat opened", name)}
-            >
-              {content.whatsappLabel}&nbsp;&nbsp;&nbsp;
-              <WhatsAppLogo className="inline flex-auto text-right" />
-            </Obfuscate>
+        {/* try wrapped in button for onClick */}
+        {phone && whatsapp && (
+            <button onClick={() => Event("WhatsApp", "Click", name)}>
+              <Obfuscate
+                href={`https://api.whatsapp.com/send?phone=${phone}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary h-full mr-4 rounded text-sm"
+                obfuscateChildren={false}
+              >
+                {content.whatsappLabel}&nbsp;&nbsp;&nbsp;
+                <WhatsAppLogo className="inline flex-auto text-right" />
+              </Obfuscate>
+            </button>
           )}
           {url && (
             <OutboundLink
