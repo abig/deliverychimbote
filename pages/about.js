@@ -30,11 +30,11 @@ export default () => {
             </p>
             <p className="max-w-xl text-lg mb-4">
               {content.contact}
-              <Obfuscate email="deliverychimbote@abig.pe" />.
+              <Obfuscate email="deliverychimbote@abig.pe" target="_blank" rel="noopener noreferrer" />.
             </p>
             <p className="max-w-xl text-lg">
               {content.webmaster}
-              <Obfuscate email="soporte.dch@abig.pe" />.
+              <Obfuscate email="soporte.dch@abig.pe" target="_blank" rel="noopener noreferrer" />.
             </p>
           </div>
           <div className="max-w-6xl mx-auto mt-4">

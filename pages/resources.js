@@ -21,7 +21,7 @@ export default () => {
             <p className="max-w-xl text-indigo-light text-lg mb-8">
               {content.resourcesDescription}{' '}
               <a href="mailto:">{content.contact}</a>
-              <Obfuscate email="deliverychimbote@abig.pe" obfuscateChildren={false}>{content.contact}</Obfuscate>.
+              <Obfuscate email="deliverychimbote@abig.pe" obfuscateChildren={false} target="_blank" rel="noopener noreferrer">{content.contact}</Obfuscate>.
             </p>
             <ul className="mb-16">
               {resourcesList.map(

@@ -106,7 +106,7 @@ export default () => {
             </ul>
             <p className="sm:text-lg mb-4">
               {content.contact}
-              <Obfuscate email="deliverychimbote@abig.pe" />.
+              <Obfuscate email="deliverychimbote@abig.pe" target="_blank" rel="noopener noreferrer" />.
             </p>
           </div>
         </main>
