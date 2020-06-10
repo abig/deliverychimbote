@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import LanguageSelector, { LanguageContext } from './LanguageSelector'
 import Link from 'next/link'
 import { Facebook, Instagram, Twitter } from 'react-feather'
+import { OutboundLink } from 'react-ga'
 
 const pageContent = {
   'es-PE': {
@@ -31,15 +32,33 @@ const pageContent = {
 
 const Social = ({ size, strokeWidth, ...props }) => (
   <div {...props}>
-    <a className="text-facebook" href={pageContent.social.facebook} target="_blank" rel="noopener noreferrer">
+    <OutboundLink
+      eventLabel={pageContent.social.facebook}
+      className="text-facebook"
+      to={pageContent.social.facebook}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <Facebook className="h-auto" size={size} strokeWidth={strokeWidth} />
-    </a>
-    <a className="text-instagram mx-4" href={pageContent.social.instagram} target="_blank" rel="noopener noreferrer"> 
+    </OutboundLink>
+    <OutboundLink
+      eventLabel={pageContent.social.instagram}
+      className="text-instagram mx-4"
+      to={pageContent.social.instagram}
+      target="_blank"
+      rel="noopener noreferrer"
+    > 
       <Instagram className="h-auto" size={size} strokeWidth={strokeWidth} />
-    </a>
-    <a className="text-twitter" href={pageContent.social.twitter} target="_blank" rel="noopener noreferrer">
+    </OutboundLink>
+    <OutboundLink
+      eventLabel={pageContent.social.twitter}
+      className="text-twitter"
+      to={pageContent.social.twitter}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <Twitter className="h-auto" size={size} strokeWidth={strokeWidth} />
-    </a>
+    </OutboundLink>
   </div>
 )
 
@@ -60,26 +79,28 @@ export default () => {
         </div>
         <p className="mb-4">
           {content.prefix}{' '}
-          <a href="https://abig.pe" target="_blank" rel="noopener">
+          <OutboundLink eventLabel="https://abig.pe" to="https://abig.pe" target="_blank" rel="noopener noreferrer">
             AB Investment Group SAC
-          </a>{'. '}
+          </OutboundLink>{'. '}
           {content.built}{' '}
-          <a
-            href="https://www.sebastianwinther.com"
+          <OutboundLink
+            eventLabel="https://www.sebastianwinther.com"
+            to="https://www.sebastianwinther.com"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
             Sebastian Winther
-          </a>
+          </OutboundLink>
           {'. '}
           {content.adapted}{' '}
-          <a
-            href="https://github.com/dalbitresb12"
+          <OutboundLink
+            eventLabel="https://github.com/dalbitresb12"
+            to="https://github.com/dalbitresb12"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
             Diego Albitres
-          </a>.
+          </OutboundLink>.
         </p>
         <div className="mb-4">
           <Link href="/terms">
@@ -90,37 +111,38 @@ export default () => {
         </div>
         <p className="mb-12">
           {content.dinePrefix}{' '}
-          <a href="https://dinecph.dk" target="_blank" rel="noopener">
+          <OutboundLink eventLabel="https://dinecph.dk" to="https://dinecph.dk" target="_blank" rel="noopener noreferrer">
             Copenhagen
-          </a>
+          </OutboundLink>
           {', '}
-          <a href="https://dineinberlin.com" target="_blank" rel="noopener">
+          <OutboundLink eventLabel="https://dineinberlin.com" to="https://dineinberlin.com" target="_blank" rel="noopener noreferrer">
             Berlin
-          </a>
+          </OutboundLink>
           {', '}
-          <a href="https://jantarada.pt" target="_blank" rel="noopener">
+          <OutboundLink eventLabel="https://dineinberlin.com" to="https://jantarada.pt" target="_blank" rel="noopener noreferrer">
             Portugal
-          </a>
+          </OutboundLink>
           {', '}
-          <a href="https://llegamosatucasa.com" target="_blank" rel="noopener">
+          <OutboundLink eventLabel="https://llegamosatucasa.com" to="https://llegamosatucasa.com" target="_blank" rel="noopener noreferrer">
             Lima
-          </a>
+          </OutboundLink>
           {', '}
-          <a href="https://vamosatucasa.com/" target="_blank" rel="noopener">
+          <OutboundLink eventLabel="https://vamosatucasa.com/" to="https://vamosatucasa.com/" target="_blank" rel="noopener noreferrer">
             Honduras
-          </a>
+          </OutboundLink>
         </p>
         <p className="border-t-2 border-sand py-8">
           {content.os}
           {' ⟶ '}
-          <a
+          <OutboundLink
+            eventLabel="https://github.com/dalbitresb12/deliverychimbote"
             className="ml-1"
-            href="https://github.com/dalbitresb12/deliverychimbote"
+            to="https://github.com/dalbitresb12/deliverychimbote"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
             GitHub
-          </a>
+          </OutboundLink>
         </p>
       </div>
     </footer>
