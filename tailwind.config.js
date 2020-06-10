@@ -55,6 +55,12 @@ module.exports = {
         },
       },
     }),
+    screens: {
+      'sm': {'min': '576px'},
+      'md': {'min': '768px'},
+      'lg': {'min': '992px'},
+      'xl': {'min': '1200px'}
+    }
   },
   variants: {
     margin: ['responsive', 'last'],

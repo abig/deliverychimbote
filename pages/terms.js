@@ -4,6 +4,8 @@ import Head from '../components/Head'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import Obfuscate from 'react-obfuscate'
+import { Event } from '../components/Analytics'
+import Link from 'next/link'
 
 export default () => {
   const { language } = useContext(LanguageContext)
@@ -23,7 +25,7 @@ export default () => {
               {content.label}
             </p>
             <p className="sm:text-lg mb-2">
-              La plataforma “Delivery Chimbote” (<a href="https://deliverychimbote.com">https://deliverychimbote.com</a>) es un directorio de comercios que clasifica la oferta de bienes o servicios en función a determinados criterio propio. Busca conectar comercios con consumidores. “Delivery Chimbote” NO es un portal de venta de productos o servicios ni un servicio de entrega o delivery. En tal medida no realiza ventas, presta servicios ni garantiza la entrega o calidad de los bienes o servicios ofertados ni el pago por los mismos.
+              La plataforma “Delivery Chimbote” (<Link href="/">https://deliverychimbote.com</Link>) es un directorio de comercios que clasifica la oferta de bienes o servicios en función a determinados criterio propio. Busca conectar comercios con consumidores. “Delivery Chimbote” NO es un portal de venta de productos o servicios ni un servicio de entrega o delivery. En tal medida no realiza ventas, presta servicios ni garantiza la entrega o calidad de los bienes o servicios ofertados ni el pago por los mismos.
             </p>
             <h3 className="sm:text-lg font-bold mt-4 mb-2">
               1. Cumplimiento de la Ley:
@@ -106,7 +108,9 @@ export default () => {
             </ul>
             <p className="sm:text-lg mb-4">
               {content.contact}
-              <Obfuscate email="deliverychimbote@abig.pe" target="_blank" rel="noopener noreferrer" />.
+              <button onClick={() => Event("Email", "Click", "deliverychimbote@abig.pe")}>
+                <Obfuscate email="deliverychimbote@abig.pe" target="_blank" rel="noopener noreferrer" />  
+              </button>.
             </p>
           </div>
         </main>

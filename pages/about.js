@@ -4,6 +4,7 @@ import { LanguageContext } from '../components/LanguageSelector'
 import Head from '../components/Head'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import { Event } from '../components/Analytics'
 
 export default () => {
   const { language } = useContext(LanguageContext)
@@ -30,11 +31,15 @@ export default () => {
             </p>
             <p className="max-w-xl text-lg mb-4">
               {content.contact}
-              <Obfuscate email="deliverychimbote@abig.pe" target="_blank" rel="noopener noreferrer" />.
+              <button onClick={() => Event("Email", "Click", "info.dch@abig.pe")}>
+                <Obfuscate email="info.dch@abig.pe" target="_blank" rel="noopener noreferrer" />
+              </button>.
             </p>
             <p className="max-w-xl text-lg">
               {content.webmaster}
-              <Obfuscate email="soporte.dch@abig.pe" target="_blank" rel="noopener noreferrer" />.
+              <button onClick={() => Event("Email", "Click", "soporte.dch@abig.pe")}>
+                <Obfuscate email="soporte.dch@abig.pe" target="_blank" rel="noopener noreferrer" />  
+              </button>.
             </p>
           </div>
           <div className="max-w-6xl mx-auto mt-4">

@@ -5,6 +5,7 @@ import Head from '../components/Head'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import Obfuscate from 'react-obfuscate'
+import { Event } from '../components/Analytics'
 
 export default () => {
   const { language } = useContext(LanguageContext)
@@ -27,7 +28,9 @@ export default () => {
               </p>
               <p className="max-w-xl text-indigo-light text-base sm:text-lg md:text-xl mb-8">
                 {content.more}{' '}
-                <Obfuscate email="info.dch@abig.pe" target="_blank" rel="noopener noreferrer" />
+                <button onClick={() => Event("Email", "Click", "info.dch@abig.pe")}>
+                  <Obfuscate email="info.dch@abig.pe" target="_blank" rel="noopener noreferrer" />
+                </button>
               </p>
               <div className="sm:-m-2">
                 <Link href="/submit">

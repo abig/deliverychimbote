@@ -5,6 +5,7 @@ import Head from '../../components/Head'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import Obfuscate from 'react-obfuscate'
+import { Event } from '../../components/Analytics'
 
 export default () => {
   const { language } = useContext(LanguageContext)
@@ -27,11 +28,15 @@ export default () => {
               </p>
               <p className="max-w-xl text-indigo-light text-base sm:text-lg md:text-xl mb-2">
                 {content.description[1]}{' '}
-                <Obfuscate email="registro.dch@abig.pe" target="_blank" rel="noopener noreferrer" />
+                <button onClick={() => Event("Email", "Click", "registro.dch@abig.pe")}>
+                  <Obfuscate email="registro.dch@abig.pe" target="_blank" rel="noopener noreferrer" />
+                </button>
               </p>
               <p className="max-w-xl text-indigo-light text-base sm:text-lg md:text-xl mb-8">
                 {content.more}{' '}
-                <Obfuscate email="soporte.dch@abig.pe" target="_blank" rel="noopener noreferrer" />
+                <button onClick={() => Event("Email", "Click", "soporte.dch@abig.pe")}>
+                  <Obfuscate email="soporte.dch@abig.pe" target="_blank" rel="noopener noreferrer" />
+                </button>
               </p>
               <div className="sm:-m-2">
                 <Link href="/submit/chimbote">

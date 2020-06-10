@@ -78,19 +78,18 @@ const ListItem = ({ restaurant, content }) => {
           {district && <p className="text-xs sm:text-sm mb-4">{district}</p>}
           {address && 
             <p className="text-sm mb-2">
-              <button onClick={() => Event("Business Address", "Click", name)}>
-                <Obfuscate
-                  href={`https://www.google.com/maps/place/?q=${addrQuery}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {address}
-                </Obfuscate>
-              </button>
+              <OutboundLink
+                eventLabel={`https://www.google.com/maps/place/?q=${addrQuery}`}
+                to={`https://www.google.com/maps/place/?q=${addrQuery}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {address}
+              </OutboundLink>
             </p>
           }
           {email &&
-            <p className="text-sm mb-2">
+            <p className="text-sm underline mb-2">
               <button onClick={() => Event("Business Email", "Click", name)}>
                 <Obfuscate
                   email={email}
@@ -101,7 +100,7 @@ const ListItem = ({ restaurant, content }) => {
             </p>
           }
           {phone && 
-            <p className="text-sm mb-4">
+            <p className="text-sm underline mb-4">
               <button onClick={() => Event("Business Phone", "Click", name)}>
                 <Obfuscate
                   tel={phone}
@@ -146,7 +145,6 @@ const ListItem = ({ restaurant, content }) => {
           }
         </div>
         <div className="mt-4 items-center">
-        {/* try wrapped in button for onClick */}
         {phone && whatsapp && (
             <button onClick={() => Event("WhatsApp", "Click", name)}>
               <Obfuscate
@@ -162,15 +160,17 @@ const ListItem = ({ restaurant, content }) => {
             </button>
           )}
           {url && (
-            <OutboundLink
-              eventLabel={name}
-              to={url.includes('http') ? url : 'https://' + url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-secondary h-full rounded text-sm"
-            >
-              {content.orderLabel}&nbsp;&nbsp;&nbsp;⟶
-            </OutboundLink>
+            <button className="mt-2">
+              <OutboundLink
+                eventLabel={name}
+                to={url.includes('http') ? url : 'https://' + url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-secondary h-full rounded text-sm"
+              >
+                {content.orderLabel}&nbsp;&nbsp;&nbsp;⟶
+              </OutboundLink>
+            </button>
           )}
         </div>
         {delivery && (

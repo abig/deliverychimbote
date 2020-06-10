@@ -1,10 +1,10 @@
-import Link from 'next/link'
 import { useContext } from 'react'
-
+import { Event } from '../components/Analytics'
 import { LanguageContext } from '../components/LanguageSelector'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import Obfuscate from 'react-obfuscate'
+import { OutboundLink } from 'react-ga'
 
 export default () => {
   const { language } = useContext(LanguageContext)
@@ -21,7 +21,11 @@ export default () => {
             <p className="max-w-xl text-indigo-light text-lg mb-8">
               {content.resourcesDescription}{' '}
               <a href="mailto:">{content.contact}</a>
-              <Obfuscate email="deliverychimbote@abig.pe" obfuscateChildren={false} target="_blank" rel="noopener noreferrer">{content.contact}</Obfuscate>.
+              <button onClick={() => Event("Email", "Click", "deliverychimbote@abig.pe")}>
+                <Obfuscate email="deliverychimbote@abig.pe" obfuscateChildren={false} target="_blank" rel="noopener noreferrer">
+                  {content.contact}
+                </Obfuscate>
+              </button>.
             </p>
             <ul className="mb-16">
               {resourcesList.map(
@@ -36,14 +40,15 @@ export default () => {
                       </p>
                     )}
                     {actionLabel && actionUrl && (
-                      <a
-                        href={actionUrl}
+                      <OutboundLink
+                        eventLabel={actionUrl}
+                        to={actionUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn btn-primary rounded text-sm sm:text-base"
                       >
                         {actionLabel}&nbsp;&nbsp;&nbsp;⟶
-                      </a>
+                      </OutboundLink>
                     )}
                   </li>
                 )

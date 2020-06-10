@@ -2,8 +2,6 @@ import { useContext, useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, ChevronUp } from 'react-feather'
-
-import useBreakpoint from '../hooks/useBreakpoint'
 import { LanguageContext } from './LanguageSelector'
 import Logo from './Logo'
 
@@ -51,7 +49,6 @@ const content = {
 
 export default () => {
   const maintenance = (process.env.MAINTENANCE_MODE === 'true')
-  const breakpoint = useBreakpoint()
   const { language } = useContext(LanguageContext)
 
   return (
@@ -77,37 +74,33 @@ export default () => {
               soon={content.dropdown[language].soon}
             />
           }
-          {breakpoint.sm &&
-            <NavLink href="/about" label={content.about[language]} />
-          }
+          <NavLink className="hidden sm:inline-block" href="/about" label={content.about[language]} />
         </div>
         <div className="-mx-3">
-          {breakpoint.sm ? (
-            <Dropdown
-              align="right-0"
-              items={[
-                { href: '/submit', label: content.forRestaurants[language].submit },
-                { href: '/resources', label: content.forRestaurants[language].resources }
-              ]}
-              label={content.forRestaurants[language].label}
-              soon={content.dropdown[language].soon}
-            />
-          ) : (
-            <NavLink href="/submit" label={content.submit[language]} />
-          )}
+          <Dropdown
+            className="hidden sm:block"
+            align="right-0"
+            items={[
+              { href: '/submit', label: content.forRestaurants[language].submit },
+              { href: '/resources', label: content.forRestaurants[language].resources }
+            ]}
+            label={content.forRestaurants[language].label}
+            soon={content.dropdown[language].soon}
+          />
+          <NavLink className="inline-block sm:hidden" href="/submit" label={content.submit[language]} />
         </div>
       </div>
     </nav>
   )
 }
 
-const NavLink = ({ href, label }) => (
+const NavLink = ({ href, label, className }) => (
   <Link href={href}>
-    <a className="font-medium mx-3">{label}</a>
+    <a className={`font-medium mx-3${className ? ' ' + className : ''}`}>{label}</a>
   </Link>
 )
 
-const Dropdown = ({ align, items, label, soon }) => {
+const Dropdown = ({ align, items, label, soon, className }) => {
   const [showDropdown, setShowDropdown] = useState(false)
   return (
     <>
@@ -117,7 +110,7 @@ const Dropdown = ({ align, items, label, soon }) => {
           className="fixed inset-0 z-10"
         />
       )}
-      <div className="flex flex-col mx-3">
+      <div className={`flex flex-col mx-3${className ? ' ' + className : ''}`}>
         <button
           type="button"
           onClick={() => setShowDropdown(!showDropdown)}
