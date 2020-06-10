@@ -15,7 +15,7 @@ const App = ({ Component, pageProps }) => {
         logPageView()
       }
     },
-    []
+    [Component]
   )
 
   useEffect(
@@ -27,7 +27,7 @@ const App = ({ Component, pageProps }) => {
         console.log("Estaremos muy agradecidos si deseas ayudarnos con este proyecto.")
       }
     },
-    [Component]
+    []
   )
 
   return (
