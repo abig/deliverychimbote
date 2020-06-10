@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-
+import Obfuscate from 'react-obfuscate'
 import { LanguageContext } from '../components/LanguageSelector'
 import Head from '../components/Head'
 import Nav from '../components/Nav'
@@ -30,14 +30,11 @@ export default () => {
             </p>
             <p className="max-w-xl text-lg mb-4">
               {content.contact}
-              <a href="mailto:deliverychimbote@abig.pe">deliverychimbote@abig.pe</a>.
+              <Obfuscate email="deliverychimbote@abig.pe" />.
             </p>
             <p className="max-w-xl text-lg">
               {content.webmaster}
-              <a href="mailto:soporte.dch@abig.pe">
-                soporte.dch@abig.pe
-              </a>
-              .
+              <Obfuscate email="soporte.dch@abig.pe" />.
             </p>
           </div>
           <div className="max-w-6xl mx-auto mt-4">

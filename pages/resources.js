@@ -2,9 +2,9 @@ import Link from 'next/link'
 import { useContext } from 'react'
 
 import { LanguageContext } from '../components/LanguageSelector'
-import Head from '../components/Head'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import Obfuscate from 'react-obfuscate'
 
 export default () => {
   const { language } = useContext(LanguageContext)
@@ -20,7 +20,8 @@ export default () => {
             </h2>
             <p className="max-w-xl text-indigo-light text-lg mb-8">
               {content.resourcesDescription}{' '}
-              <a href="mailto:deliverychimbote@abig.pe">{content.contact}</a>.
+              <a href="mailto:">{content.contact}</a>
+              <Obfuscate email="deliverychimbote@abig.pe" obfuscateChildren={false}>{content.contact}</Obfuscate>.
             </p>
             <ul className="mb-16">
               {resourcesList.map(

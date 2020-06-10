@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react'
 import Promise from 'promise-polyfill'
-
+import Obfuscate from 'react-obfuscate'
 import { LanguageContext } from '../../components/LanguageSelector'
 import Head from '../../components/Head'
 import Nav from '../../components/Nav'
@@ -74,9 +74,9 @@ const ListItem = ({ restaurant, content }) => {
         <div className="flex-auto">
           {name && <h3 className="uppercase text-xl sm:text-2xl">{name}</h3>}
           {district && <p className="text-xs sm:text-sm mb-4">{district}</p>}
-          {address && <p className="text-sm mb-2"><a href={`https://www.google.com/maps/place/?q=${addrQuery}`} target="_blank" rel="noopener noreferrer">{address}</a></p>}
-          {email && <p className="text-sm mb-2"><a href={`mailto:${email}`}>{email}</a></p>}
-          {phone && <p className="text-sm mb-4"><a href={`tel:${phone}`}>{phone}</a></p>}
+          {address && <p className="text-sm mb-2"><Obfuscate href={`https://www.google.com/maps/place/?q=${addrQuery}`} target="_blank" rel="noopener noreferrer">{address}</Obfuscate></p>}
+          {email && <p className="text-sm mb-2"><Obfuscate email={email} target="_blank" rel="noopener noreferrer" /></p>}
+          {phone && <p className="text-sm mb-4"><Obfuscate tel={phone} target="_blank" rel="noopener noreferrer" /></p>}
           {description && (
             <p className="max-w-xl text-sm sm:text-base mb-4">{description}</p>
           )}
@@ -113,15 +113,16 @@ const ListItem = ({ restaurant, content }) => {
         </div>
         <div className="mt-4 items-center">
           {phone && whatsapp && (
-            <a
+            <Obfuscate
               href={`https://api.whatsapp.com/send?phone=${phone}`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary h-full mr-4 rounded text-sm"
+              obfuscateChildren={false}
             >
               {content.whatsappLabel}&nbsp;&nbsp;&nbsp;
               <WhatsAppLogo className="inline flex-auto text-right" />
-            </a>
+            </Obfuscate>
           )}
           {url && (
             <a

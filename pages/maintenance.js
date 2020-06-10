@@ -4,6 +4,7 @@ import { LanguageContext } from '../components/LanguageSelector'
 import Head from '../components/Head'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import Obfuscate from 'react-obfuscate'
 
 export default () => {
   const { language } = useContext(LanguageContext)
@@ -26,7 +27,7 @@ export default () => {
               </p>
               <p className="max-w-xl text-indigo-light text-base sm:text-lg md:text-xl mb-8">
                 {content.more}{' '}
-                <a href="mailto:info.dch@abig.pe">info.dch@abig.pe</a>
+                <Obfuscate email="info.dch@abig.pe" />
               </p>
               <div className="sm:-m-2">
                 <Link href="/submit">
