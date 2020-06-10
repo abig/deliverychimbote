@@ -8,6 +8,8 @@ import Footer from '../../components/Footer'
 import LoadingSpinner from '../../components/LoadingSpinner'
 import WhatsAppLogo from '../../components/WhatsAppLogo'
 import { FiltersList, FiltersTranslation } from '../../components/FiltersList'
+import { OutboundLink } from 'react-ga'
+import { Event } from '../../components/Analytics'
 
 const pageContent = {
   'es-PE': {
@@ -74,9 +76,38 @@ const ListItem = ({ restaurant, content }) => {
         <div className="flex-auto">
           {name && <h3 className="uppercase text-xl sm:text-2xl">{name}</h3>}
           {district && <p className="text-xs sm:text-sm mb-4">{district}</p>}
-          {address && <p className="text-sm mb-2"><Obfuscate href={`https://www.google.com/maps/place/?q=${addrQuery}`} target="_blank" rel="noopener noreferrer">{address}</Obfuscate></p>}
-          {email && <p className="text-sm mb-2"><Obfuscate email={email} target="_blank" rel="noopener noreferrer" /></p>}
-          {phone && <p className="text-sm mb-4"><Obfuscate tel={phone} target="_blank" rel="noopener noreferrer" /></p>}
+          {address && 
+            <p className="text-sm mb-2">
+              <Obfuscate
+                href={`https://www.google.com/maps/place/?q=${addrQuery}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => Event("Business Address", "Google Maps opened", name)}
+              >
+                {address}
+              </Obfuscate>
+            </p>
+          }
+          {email &&
+            <p className="text-sm mb-2">
+              <Obfuscate
+                email={email}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => Event("Business Email", "Email opened", name)}
+              />
+            </p>
+          }
+          {phone && 
+            <p className="text-sm mb-4">
+              <Obfuscate
+                tel={phone}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => Event("Business Phone", "Phone clicked", name)}
+              />
+            </p>
+          }
           {description && (
             <p className="max-w-xl text-sm sm:text-base mb-4">{description}</p>
           )}
@@ -119,20 +150,22 @@ const ListItem = ({ restaurant, content }) => {
               rel="noopener noreferrer"
               className="btn btn-primary h-full mr-4 rounded text-sm"
               obfuscateChildren={false}
+              onClick={() => Event("WhatsApp", "Chat opened", name)}
             >
               {content.whatsappLabel}&nbsp;&nbsp;&nbsp;
               <WhatsAppLogo className="inline flex-auto text-right" />
             </Obfuscate>
           )}
           {url && (
-            <a
-              href={url.includes('http') ? url : 'https://' + url}
+            <OutboundLink
+              eventLabel={name}
+              to={url.includes('http') ? url : 'https://' + url}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-secondary h-full rounded text-sm"
             >
               {content.orderLabel}&nbsp;&nbsp;&nbsp;⟶
-            </a>
+            </OutboundLink>
           )}
         </div>
         {delivery && (
