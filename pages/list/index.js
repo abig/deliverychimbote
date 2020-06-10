@@ -89,9 +89,10 @@ const ListItem = ({ restaurant, content }) => {
             </p>
           }
           {email &&
-            <p className="text-sm underline mb-2">
+            <p className="text-sm mb-2">
               <button onClick={() => Event("Business Email", "Click", name)}>
                 <Obfuscate
+                  className="underline"
                   email={email}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -100,9 +101,10 @@ const ListItem = ({ restaurant, content }) => {
             </p>
           }
           {phone && 
-            <p className="text-sm underline mb-4">
+            <p className="text-sm mb-4">
               <button onClick={() => Event("Business Phone", "Click", name)}>
                 <Obfuscate
+                  className="underline"
                   tel={phone}
                   target="_blank"
                   rel="noopener noreferrer"
