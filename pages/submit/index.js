@@ -97,5 +97,19 @@ const pageContent = {
     ],
     more: 'Need help? Write us: ',
     register: 'Add your business',
+    demo: {
+      name: 'Your Business',
+      address: 'Av. Avenue 123',
+      description: 'Your business data should show up in a card similar like the one here.',
+      district: ['District 1', 'District 2'],
+      zones: ['Zone 1', 'Zone 2', 'Zone 3'],
+      offerings: ['Product 1', 'Product 2', 'Product 3', 'Product 4'],
+      delivery: true,
+      phone: '123456789',
+      url: 'https://example.com',
+      whatsapp: true,
+      email: 'yourmail@yourbusiness.com',
+      hours: 'Monday - Saturday 00:00am - 00:00pm'
+    }
   },
 }
