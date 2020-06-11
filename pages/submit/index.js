@@ -18,7 +18,7 @@ export default () => {
         <Nav maint={true} />
         <main className="flex-auto px-3 md:pr-0 pt-8 lg:pt-0 pb-16">
           <div className="max-w-6xl flex items-center md:overflow-hidden mx-auto">
-            <div className="flex-auto w-128 md:flex-shrink-0 md:pr-16">
+            <div className="flex-auto w-128 md:flex-shrink-0 lg:pr-16">
               <h1 className="max-w-xl font-bold uppercase text-3xl sm:text-5xl leading-none mb-6 mt-8">
                 {content.titleBlue}{' '}
                 <span className="text-orange">{content.titleOrange}</span>
@@ -39,23 +39,20 @@ export default () => {
                 </button>
               </p>
               <div className="sm:-m-2">
-                <Link href="/submit/chimbote">
-                  <a className="w-full sm:w-auto rounded h-12 btn btn-primary inline-flex items-center mb-4 sm:m-2">
-                    {content.addChimbote}
-                    <span className="inline sm:hidden flex-auto text-right">
-                      ⟶
-                    </span>
-                  </a>
-                </Link>
-                <Link href="/submit/nuevochimbote">
+                <Link href="/submit/new">
                   <a className="w-full sm:w-auto rounded h-12 btn btn-primary inline-flex items-center sm:m-2">
-                    {content.addNuevoChimbote}
+                    <span>
+                      {content.register}
+                    </span>
                     <span className="inline sm:hidden flex-auto text-right">
                       ⟶
                     </span>
                   </a>
                 </Link>
               </div>
+            </div>
+            <div className="hidden lg:block w-128">
+              hola
             </div>
           </div>
         </main>
@@ -74,8 +71,7 @@ const pageContent = {
       `Si quieres que agreguemos algún rubro, zona o categoría, no dudes en escribirnos: `
     ],
     more: '¿Necesitas ayuda? Escríbenos: ',
-    addChimbote: 'Registra tu negocio (Chimbote)',
-    addNuevoChimbote: 'Registra tu negocio (Nuevo Chimbote)'
+    register: 'Registra tu negocio',
   },
   'en-US': {
     titleBlue: 'Soon your business',
@@ -85,7 +81,6 @@ const pageContent = {
       `If you want us to add a business type, neighbourhood or category, drop us a letter: `
     ],
     more: 'Need help? Write us: ',
-    addChimbote: 'Add your business (Chimbote)',
-    addNuevoChimbote: 'Add your business (Nuevo Chimbote)'
+    register: 'Add your business',
   },
 }
