@@ -75,7 +75,7 @@ const ListItem = ({ restaurant, content }) => {
       <div className="rounded relative h-full flex flex-col items-start border border-sand overflow-hidden p-4 sm:p-8 lg:px-12">
         <div className="flex-auto">
           {name && <h3 className="uppercase text-xl sm:text-2xl">{name}</h3>}
-          {district && <p className="text-xs sm:text-sm mb-4">{district}</p>}
+          {district && district.length && <p className="text-xs sm:text-sm mb-4">{district.join(", ")}</p>}
           {address && 
             <p className="text-sm mb-2">
               <OutboundLink
@@ -371,14 +371,14 @@ export default ({ restaurants }) => {
                   // Filter for district
                   .filter(restaurant =>
                     filterDistrict
-                      ? restaurant.district === filterDistrict
+                      ? restaurant.district.includes(filterDistrict)
                       : true  
                   )
                   // Filter for zones
                   .filter(restaurant =>
                     filterZone && filterZone.length
                       ? filterZone.some(zone =>
-                          restaurant.zones.includes(zone)
+                          restaurant.zones.includes(filterDistrict + ": " + zone)
                         )
                       : true
                   )
