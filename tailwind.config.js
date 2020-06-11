@@ -11,7 +11,8 @@ module.exports = {
       white: '#fff', // white text
       facebook: '#3b5998', // facebook
       instagram: '#bc2a8d', // instagram
-      twitter: '#1da1f2' // twitter
+      twitter: '#1da1f2', // twitter
+      whatsapp: '#4fce5d' // whatsapp
     },
     fontFamily: {
       inter:

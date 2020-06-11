@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import LanguageSelector, { LanguageContext } from './LanguageSelector'
 import Link from 'next/link'
 import { Facebook, Instagram, Twitter } from 'react-feather'
+import WhatsAppLogo from './WhatsAppLogo'
 import { OutboundLink } from 'react-ga'
 
 const pageContent = {
@@ -26,7 +27,8 @@ const pageContent = {
   'social': {
     facebook: 'https://www.facebook.com/deliverychimboteapp/',
     instagram: 'https://www.instagram.com/deliverychimboteapp/',
-    twitter: 'https://twitter.com/delivchimbotapp'
+    twitter: 'https://twitter.com/delivchimbotapp',
+    whatsapp: 'https://wa.me/5143489026'
   }
 }
 
@@ -43,12 +45,21 @@ const Social = ({ size, strokeWidth, ...props }) => (
     </OutboundLink>
     <OutboundLink
       eventLabel={pageContent.social.instagram}
-      className="text-instagram mx-4"
+      className="text-instagram ml-4 mr-2"
       to={pageContent.social.instagram}
       target="_blank"
       rel="noopener noreferrer"
     > 
       <Instagram className="h-auto" size={size} strokeWidth={strokeWidth} />
+    </OutboundLink>
+    <OutboundLink
+      eventLabel={pageContent.social.whatsapp}
+      className="text-whatsapp ml-2 mr-4"
+      to={pageContent.social.whatsapp}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <WhatsAppLogo className="h-auto" size={size} strokeWidth={strokeWidth} />
     </OutboundLink>
     <OutboundLink
       eventLabel={pageContent.social.twitter}
