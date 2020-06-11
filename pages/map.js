@@ -62,7 +62,7 @@ export async function getStaticProps() {
   const airtable = new Airtable({
     apiKey: airtableApiKey,
   }).base(airtableBaseKey)
-  const base = await airtable('Restaurants')
+  const base = await airtable('Negocios')
   const records = await base
     .select({
       maxRecords: 999999, // don't want to paginate...
