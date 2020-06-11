@@ -6,6 +6,7 @@ import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import Obfuscate from 'react-obfuscate'
 import { Event } from '../../components/Analytics'
+import ListItem from '../../components/ListItem'
 
 export default () => {
   const { language } = useContext(LanguageContext)
@@ -17,8 +18,8 @@ export default () => {
       <div className="min-h-screen flex flex-col">
         <Nav maint={true} />
         <main className="flex-auto px-3 md:pr-0 pt-8 lg:pt-0 pb-16">
-          <div className="max-w-6xl flex items-center md:overflow-hidden mx-auto">
-            <div className="flex-auto w-128 md:flex-shrink-0 lg:pr-16">
+          <div className="max-w-6xl flex flex-wrap items-center md:overflow-hidden mx-auto">
+            <div className="flex-auto w-128 md:flex-shrink-0 lg:pr-8 mb-4 lg:mb-0">
               <h1 className="max-w-xl font-bold uppercase text-3xl sm:text-5xl leading-none mb-6 mt-8">
                 {content.titleBlue}{' '}
                 <span className="text-orange">{content.titleOrange}</span>
@@ -51,8 +52,8 @@ export default () => {
                 </Link>
               </div>
             </div>
-            <div className="hidden lg:block w-128">
-              hola
+            <div className="flex-auto w-128 md:flex-shrink-0">
+              <ListItem item={content.demo} standalone={true} />
             </div>
           </div>
         </main>
@@ -72,6 +73,20 @@ const pageContent = {
     ],
     more: '¿Necesitas ayuda? Escríbenos: ',
     register: 'Registra tu negocio',
+    demo: {
+      name: 'Tu Negocio',
+      address: 'Av. Avenida 123 - Urb. Urbanización',
+      description: 'Los datos que ingreses de tu negocio entrarían en una tarjeta similar a esta.',
+      district: ['Distrito 1', 'Distrito 2'],
+      zones: ['Zona 1', 'Zona 2', 'Zona 3'],
+      offerings: ['Producto 1', 'Producto 2', 'Producto 3', 'Producto 4'],
+      delivery: true,
+      phone: '123456789',
+      url: 'https://example.com',
+      whatsapp: true,
+      email: 'tucorreo@tunegocio.com',
+      hours: 'Lunes a Sábado de 00:00am a 00:00pm'
+    }
   },
   'en-US': {
     titleBlue: 'Soon your business',
