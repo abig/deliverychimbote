@@ -1,36 +1,57 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { LanguageContext } from './LanguageSelector'
 import Obfuscate from 'react-obfuscate'
 import WhatsAppLogo from './WhatsAppLogo'
 import { OutboundLink } from 'react-ga'
 import { Event } from './Analytics'
 
-export default ({ restaurant, content }) => {
-  const name = restaurant.name || undefined
-  const address = restaurant.address || undefined
-  const description = restaurant.description || undefined
-  const district = restaurant.district || undefined
-  const zones = restaurant.zones || undefined
-  const offers = restaurant.offerings || undefined
-  const delivery = restaurant.delivery || false
-  const phone = restaurant.phone
-    ? restaurant.phone.includes("+51")
-      ? restaurant.phone
-      : "+51" + restaurant.phone
+const pageContent = {
+  'es-PE': {
+    hours: 'Horario de atención',
+    moreZones: 'Ver zonas donde llegamos',
+    delivery: 'Delivery disponible',
+    whatsappLabel: 'Pedir por WhatsApp',
+    webLabel: 'Ir a web',
+  },
+  'en-US': {
+    hours: 'Opening hours',
+    moreZones: 'See zones were we get',
+    delivery: 'Delivery available',
+    whatsappLabel: 'Order via WhatsApp',
+    webLabel: 'Website',
+  },
+}
+
+export default ({ item, standalone }) => {
+  const { language } = useContext(LanguageContext)
+  const content = pageContent[language]
+
+  const name = item.name || undefined
+  const address = item.address || undefined
+  const description = item.description || undefined
+  const district = item.district || undefined
+  const zones = item.zones || undefined
+  const offers = item.offerings || undefined
+  const delivery = item.delivery || false
+  const phone = item.phone
+    ? item.phone.includes("+51")
+      ? item.phone
+      : "+51" + item.phone
     : undefined
-  const url = restaurant.url || undefined
-  const whatsapp = restaurant.whatsapp || undefined
-  const email = restaurant.email
-    ? restaurant.email.toLowerCase()
+  const url = item.url || undefined
+  const whatsapp = item.whatsapp || undefined
+  const email = item.email
+    ? item.email.toLowerCase()
     : undefined
-  const addrQuery = restaurant.pluscode
-    ? encodeURIComponent(restaurant.pluscode)
-    : encodeURIComponent(restaurant.address)
-  const hours = restaurant.hours || undefined
+  const addrQuery = item.pluscode
+    ? encodeURIComponent(item.pluscode)
+    : encodeURIComponent(item.address)
+  const hours = item.hours || undefined
 
   const [zoneCollapse, setZoneCollapse] = useState(false)
 
   return (
-    <li className="w-full md:w-1/2 p-3">
+    <li className={!standalone ? 'w-full md:w-1/2 p-3' : 'list-none'}>
       <div className="rounded relative h-full flex flex-col items-start border border-sand overflow-hidden p-4 sm:p-8 lg:px-12">
         <div className="flex-auto">
           {name && <h3 className="uppercase text-xl sm:text-2xl">{name}</h3>}
@@ -130,7 +151,7 @@ export default ({ restaurant, content }) => {
                 rel="noopener noreferrer"
                 className="btn btn-secondary h-full rounded text-sm"
               >
-                {content.orderLabel}&nbsp;&nbsp;&nbsp;⟶
+                {content.webLabel}&nbsp;&nbsp;&nbsp;⟶
                 </OutboundLink>
             </button>
           )}
