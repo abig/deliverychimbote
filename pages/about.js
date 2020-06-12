@@ -31,15 +31,21 @@ export default () => {
             </p>
             <p className="max-w-xl text-lg mb-4">
               {content.contact}
-              <button onClick={() => Event("Email", "Click", "info.dch@abig.pe")}>
-                <Obfuscate email="info.dch@abig.pe" target="_blank" rel="noopener noreferrer" />
-              </button>.
+              <Obfuscate
+                email="info.dch@abig.pe"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => Event("Email", "Click", "info.dch@abig.pe")} 
+              />.
             </p>
             <p className="max-w-xl text-lg">
               {content.webmaster}
-              <button onClick={() => Event("Email", "Click", "soporte.dch@abig.pe")}>
-                <Obfuscate email="soporte.dch@abig.pe" target="_blank" rel="noopener noreferrer" />  
-              </button>.
+              <Obfuscate
+                email="soporte.dch@abig.pe"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => Event("Email", "Click", "soporte.dch@abig.pe")}
+              />.
             </p>
           </div>
           <div className="max-w-6xl mx-auto mt-4">

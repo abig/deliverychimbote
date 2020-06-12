@@ -108,9 +108,12 @@ export default () => {
             </ul>
             <p className="sm:text-lg mb-4">
               {content.contact}
-              <button onClick={() => Event("Email", "Click", "deliverychimbote@abig.pe")}>
-                <Obfuscate email="deliverychimbote@abig.pe" target="_blank" rel="noopener noreferrer" />  
-              </button>.
+              <Obfuscate
+                email="deliverychimbote@abig.pe"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => Event("Email", "Click", "deliverychimbote@abig.pe")}
+              />.
             </p>
           </div>
         </main>

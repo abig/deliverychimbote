@@ -28,9 +28,12 @@ export default () => {
               </p>
               <p className="max-w-xl text-indigo-light text-base sm:text-lg md:text-xl mb-8">
                 {content.more}{' '}
-                <button onClick={() => Event("Email", "Click", "info.dch@abig.pe")}>
-                  <Obfuscate email="info.dch@abig.pe" target="_blank" rel="noopener noreferrer" />
-                </button>
+                <Obfuscate
+                  email="info.dch@abig.pe"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => Event("Email", "Click", "info.dch@abig.pe")}
+                />
               </p>
               <div className="sm:-m-2">
                 <Link href="/submit">

@@ -70,26 +70,24 @@ export default ({ item, standalone }) => {
           }
           {email &&
             <p className="text-sm mb-2">
-              <button onClick={() => Event("Business Email", "Click", name)}>
-                <Obfuscate
-                  className="underline"
-                  email={email}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                />
-              </button>
+              <Obfuscate
+                className="underline"
+                email={email}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => Event("Business Email", "Click", name)}
+              />
             </p>
           }
           {phone &&
             <p className="text-sm mb-4">
-              <button onClick={() => Event("Business Phone", "Click", name)}>
-                <Obfuscate
-                  className="underline"
-                  tel={phone}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                />
-              </button>
+              <Obfuscate
+                className="underline"
+                tel={phone}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => Event("Business Phone", "Click", name)}
+              />
             </p>
           }
           {description && (
@@ -128,32 +126,29 @@ export default ({ item, standalone }) => {
           }
         </div>
         <div className="mt-4 items-center">
-          {phone && whatsapp && (
-            <button onClick={() => Event("WhatsApp", "Click", name)}>
-              <Obfuscate
-                href={`https://api.whatsapp.com/send?phone=${phone}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-primary h-full mr-4 rounded text-sm"
-                obfuscateChildren={false}
-              >
-                {content.whatsappLabel}&nbsp;&nbsp;&nbsp;
-                  <WhatsAppLogo className="inline flex-auto text-right" />
-              </Obfuscate>
-            </button>
-          )}
+          {phone && whatsapp &&
+            <Obfuscate
+              href={`https://api.whatsapp.com/send?phone=${phone}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary mr-4 rounded text-sm"
+              obfuscateChildren={false}
+              onClick={() => Event("WhatsApp", "Click", name)}
+            >
+              {content.whatsappLabel}&nbsp;&nbsp;&nbsp;
+              <WhatsAppLogo className="inline flex-auto text-right" />
+            </Obfuscate>
+          }
           {url && (
-            <button className="mt-2">
-              <OutboundLink
-                eventLabel={name}
-                to={url.includes('http') ? url : 'https://' + url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-secondary h-full rounded text-sm"
-              >
-                {content.webLabel}&nbsp;&nbsp;&nbsp;⟶
-                </OutboundLink>
-            </button>
+            <OutboundLink
+              eventLabel={name}
+              to={url.includes('http') ? url : 'https://' + url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-secondary rounded text-sm mt-2"
+            >
+              {content.webLabel}&nbsp;&nbsp;&nbsp;⟶
+            </OutboundLink>
           )}
         </div>
         {delivery && (
