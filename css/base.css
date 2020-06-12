@@ -2,8 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
-/* purgecss start ignore */
-
 @tailwind base;
 
 /* Boilerplate */
@@ -73,8 +71,6 @@ p > a {
 .btn-secondary {
   @apply text-indigo-light bg-teal;
 }
-
-/* purgecss end ignore */
 
 @tailwind utilities;
 
