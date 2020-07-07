@@ -7,10 +7,12 @@ import {
   OverlayView,
 } from '@react-google-maps/api'
 import { X } from 'react-feather'
-
+import { OutboundLink } from 'react-ga'
+import Obfuscate from 'react-obfuscate'
+import WhatsAppLogo from './WhatsAppLogo'
 import LoadingSpinner from './LoadingSpinner'
 
-export default ({ restaurants, content }) => {
+export default ({ items, content }) => {
   const [tooltip, setTooltip] = useState(false)
   const [chimbote] = useState({
     lat: -9.1067845,
@@ -19,11 +21,12 @@ export default ({ restaurants, content }) => {
 
   // Reducing number of requests to Maps API
   const restrictedGoogleMapsApiKey =
-    process.env.NODE_ENV === 'production'
+    // process.env.NODE_ENV === 'production'
+    true
       ? process.env.RESTRICTED_GOOGLE_MAPS_API_KEY
       : undefined
 
-  if (restaurants && !!restaurants.length)
+  if (items && !!items.length)
     return (
       <LoadScriptNext googleMapsApiKey={restrictedGoogleMapsApiKey}>
         <GoogleMap
@@ -38,20 +41,20 @@ export default ({ restaurants, content }) => {
             setTooltip={setTooltip}
             content={content}
           />
-          {restaurants.map(restaurant => {
+          {items.map(item => {
             const position =
-              restaurant &&
-              restaurant.positionData &&
-              restaurant.positionData.results &&
-              !!restaurant.positionData.results.length &&
-              restaurant.positionData.results[0].geometry &&
-              restaurant.positionData.results[0].geometry.location
-            if (restaurant.display && position)
+              item &&
+              item.positionData &&
+              item.positionData.results &&
+              !!item.positionData.results.length &&
+              item.positionData.results[0].geometry &&
+              item.positionData.results[0].geometry.location
+            if (item.display && position)
               return (
                 <Marker
-                  key={restaurant.name}
+                  key={item.name}
                   position={position}
-                  onClick={() => setTooltip(restaurant)}
+                  onClick={() => setTooltip(item)}
                 />
               )
             return null
@@ -75,8 +78,13 @@ const Tooltip = ({ tooltip, setTooltip, content }) => {
     : undefined
   const offers = tooltip.offerings || undefined
   const delivery = tooltip.delivery || false
-  const phone = tooltip.phone || undefined
+  const phone = tooltip.phone
+    ? tooltip.phone.includes("+51")
+      ? tooltip.phone
+      : "+51" + tooltip.phone
+    : undefined
   const url = tooltip.url || undefined
+  const whatsapp = tooltip.whatsapp || undefined
   const position =
     (tooltip &&
       tooltip.positionData &&
@@ -100,7 +108,7 @@ const Tooltip = ({ tooltip, setTooltip, content }) => {
             exit={{ opacity: 0, y: -32 }}
             className="relative flex justify-center"
           >
-            <div className="absolute bottom-0 w-80 font-inter font-inter-var bg-sand-light px-8 py-6">
+            <div className="absolute bottom-0 w-80 bg-sand-light px-8 py-6">
               <button
                 type="button"
                 onClick={() => setTooltip(false)}
@@ -123,17 +131,31 @@ const Tooltip = ({ tooltip, setTooltip, content }) => {
                   ))}
                 </ul>
               )}
-              {delivery && <div className="mb-3">{content.delivery}</div>}
+              {delivery && <div className="mb-3">✓ {content.delivery}</div>}
               {phone && <div className="mb-3">{phone}</div>}
-              {url && (
-                <a
-                  href={url.includes('http') ? url : 'https://' + url}
+              {phone && whatsapp &&
+                <Obfuscate
+                  href={`https://api.whatsapp.com/send?phone=${phone}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-primary py-2"
+                  className="btn btn-primary mr-4 py-2 rounded text-xs"
+                  obfuscateChildren={false}
+                  onClick={() => Event("WhatsApp", "Click", name)}
                 >
-                  {content.orderLabel}&nbsp;&nbsp;&nbsp;⟶
-                </a>
+                  {content.whatsappLabel}&nbsp;&nbsp;&nbsp;
+                  <WhatsAppLogo className="inline flex-auto text-right" />
+                </Obfuscate>
+              }
+              {url && (
+                <OutboundLink
+                  eventLabel={name}
+                  to={url.includes('http') ? url : 'https://' + url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-secondary rounded text-xs mt-2 py-2"
+                >
+                  {content.webLabel}&nbsp;&nbsp;&nbsp;⟶
+                </OutboundLink>
               )}
 
               <div className="absolute inset-x-0 bottom-0 flex justify-center">

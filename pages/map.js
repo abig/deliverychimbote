@@ -1,38 +1,32 @@
 import { useContext } from 'react'
 import Promise from 'promise-polyfill'
 import fetch from 'isomorphic-unfetch'
-
 import { LanguageContext } from '../components/LanguageSelector'
 import Head from '../components/Head'
 import Nav from '../components/Nav'
 import Map from '../components/Map'
+import { FiltersTranslation } from '../components/FiltersList'
 
 // start search from google maps: https://www.google.com/maps/place/?q=something (url encoded)
 
 const pageContent = {
   'es-PE': {
-    offers: {
-      Food: 'Mad',
-      Wine: 'Vin',
-      Drinks: 'Drikkevarer',
-      Giftcards: 'Gavekort',
-    },
+    offers: FiltersTranslation["es-PE"].offers,
     orderLabel: 'Ir a web',
-    delivery: '✓ Delivery disponible'
+    delivery: 'Delivery disponible',
+    whatsappLabel: 'Pedir por WhatsApp',
+    webLabel: 'Ir a web',
   },
   'en-US': {
-    offers: {
-      Food: 'Food',
-      Wine: 'Wine',
-      Drinks: 'Drinks',
-      Giftcards: 'Giftcards',
-    },
+    offers: FiltersTranslation["en-US"].offers,
     orderLabel: 'Website',
-    delivery: '✓ Delivery available'
+    delivery: 'Delivery available',
+    whatsappLabel: 'Order via WhatsApp',
+    webLabel: 'Website',
   },
 }
 
-export default ({ restaurants }) => {
+export default ({ items }) => {
   const { language } = useContext(LanguageContext)
   const content = pageContent[language]
 
@@ -42,7 +36,7 @@ export default ({ restaurants }) => {
       <div className="h-screen flex flex-col">
         <Nav />
         <main className="flex-auto">
-          <Map restaurants={restaurants} content={content} />
+          <Map items={items} content={content} />
         </main>
       </div>
     </>
@@ -54,7 +48,8 @@ export async function getStaticProps() {
   const airtableBaseKey = process.env.AIRTABLE_BASE_KEY
   // Reducing number of requests to Maps API
   const googleMapsApiKey =
-    process.env.NODE_ENV === 'production'
+    // process.env.NODE_ENV === 'production'
+    true
       ? process.env.GOOGLE_MAPS_API_KEY
       : undefined
 
@@ -69,25 +64,25 @@ export async function getStaticProps() {
       view: 'Grid view', // NOTE: changing the view name will break things
     })
     .all()
-  const restaurants = await Promise.all(records.map(record => record.fields))
+  const items = await Promise.all(records.map(record => record.fields))
 
   let i = -1
-  for await (let restaurant of restaurants) {
+  for await (let item of items) {
     i++
-    const query = restaurant.pluscode
-      ? restaurant.pluscode
-      : restaurant.address
+    const query = item.pluscode
+      ? item.pluscode
+      : item.address
     const res = await fetch(
       'https://maps.googleapis.com/maps/api/geocode/json?address=' +
-        encodeURI(query) +
+        encodeURIComponent(query) +
         '&key=' +
         googleMapsApiKey
     ).catch(err => {
       console.log(err)
     })
     const positionData = await res.json()
-    if (positionData) restaurants[i].positionData = positionData
+    if (positionData) items[i].positionData = positionData
   }
 
-  return { props: { restaurants } }
+  return { props: { items } }
 }
