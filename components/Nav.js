@@ -96,7 +96,7 @@ export default () => {
 
 const NavLink = ({ href, label, className }) => (
   <Link href={href}>
-    <a className={`font-medium mx-3${className ? ' ' + className : ''}`}>{label}</a>
+    <a className={className ? 'font-medium mx-3 ' + className : 'font-medium mx-3'}>{label}</a>
   </Link>
 )
 
@@ -110,7 +110,7 @@ const Dropdown = ({ align, items, label, soon, className }) => {
           className="fixed inset-0 z-10"
         />
       )}
-      <div className={`flex flex-col mx-3${className ? ' ' + className : ''}`}>
+      <div className={className ? 'flex flex-col mx-3 ' + className : 'flex flex-col mx-3'}>
         <button
           type="button"
           onClick={() => setShowDropdown(!showDropdown)}

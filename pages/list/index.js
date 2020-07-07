@@ -20,6 +20,7 @@ const pageContent = {
     zonesLabel: 'Zonas',
     offersLabel: 'Productos',
     offers: FiltersTranslation["es-PE"].offers,
+    delivery: 'Delivery disponible',
   },
   'en-US': {
     title: 'Businesses',
@@ -32,6 +33,7 @@ const pageContent = {
     zonesLabel: 'Zones',
     offersLabel: 'Offers',
     offers: FiltersTranslation["en-US"].offers,
+    delivery: 'Delivery available',
   },
 }
 
