@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import Promise from 'promise-polyfill'
 import { LanguageContext } from '../../components/LanguageSelector'
 import Head from '../../components/Head'

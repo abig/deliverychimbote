@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { GoogleMap, LoadScriptNext, Marker, OverlayView } from '@react-google-maps/api'
 import { X } from 'react-feather'
@@ -6,13 +6,28 @@ import { OutboundLink } from 'react-ga'
 import Obfuscate from 'react-obfuscate'
 import WhatsAppLogo from './WhatsAppLogo'
 import LoadingSpinner from './LoadingSpinner'
+import Link from 'next/link'
+import slugify from 'slugify'
 
-export default ({ items, content }) => {
+export default ({ items, content, active }) => {
   const [tooltip, setTooltip] = useState(false)
-  const [chimbote] = useState({
+  const [center, setCenter] = useState({
     lat: -9.1067845,
     lng: -78.5647257,
   })
+
+  useEffect(
+    () => {
+      if (active && active.positionData && active.positionData.results && !!active.positionData.results.length && active.positionData.results[0].geometry && active.positionData.results[0].geometry.location) {
+        setTooltip(active)
+        setCenter({
+          lat: active.positionData.results[0].geometry.location.lat - (-0.001),
+          lng: active.positionData.results[0].geometry.location.lng
+        })
+      }
+    },
+    [active]
+  )
 
   // Reducing number of requests to Maps API
   const restrictedGoogleMapsApiKey =
@@ -25,11 +40,11 @@ export default ({ items, content }) => {
     return (
       <LoadScriptNext googleMapsApiKey={restrictedGoogleMapsApiKey}>
         <GoogleMap
-          center={chimbote}
+          center={center}
           clickableIcons={false}
           mapContainerClassName="border-t border-sand"
-          mapContainerStyle={{ height: 'calc( 100vh - 85px)' }}
-          zoom={13}
+          mapContainerStyle={{ height: 'calc( 100vh - 128px)' }}
+          zoom={active ? 18 : 13}
         >
           <Tooltip
             tooltip={tooltip}
@@ -103,7 +118,7 @@ const Tooltip = ({ tooltip, setTooltip, content }) => {
             exit={{ opacity: 0, y: -32 }}
             className="relative flex justify-center"
           >
-            <div className="absolute bottom-0 w-80 bg-sand-light px-8 py-6">
+            <div className="absolute bottom-0 w-96 bg-sand-light px-8 py-6">
               <button
                 type="button"
                 onClick={() => setTooltip(false)}
@@ -116,42 +131,54 @@ const Tooltip = ({ tooltip, setTooltip, content }) => {
               {description && <p className="text-xs mb-3">{description}</p>}
               {offers && !!offers.length && (
                 <ul className="-m-1 mb-3">
-                  {offers.map(offer => (
+                  {offers.slice(0, 5).map(offer => (
                     <li
                       key={offer}
-                      className="inline-block font-medium bg-sand px-2 py-1 m-1"
+                      className="inline-block font-medium rounded bg-sand px-2 py-1 m-1"
                     >
-                      {content.offers[offer]}
+                      {offer}
                     </li>
                   ))}
+                  {offers.length > 5 &&
+                    <li className="inline-block font-medium bg-sand px-2 py-1 m-1">{content.more}...</li>
+                  }
                 </ul>
               )}
               {delivery && <div className="mb-3">✓ {content.delivery}</div>}
               {phone && <div className="mb-3">{phone}</div>}
-              {phone && whatsapp &&
-                <Obfuscate
-                  href={`https://api.whatsapp.com/send?phone=${phone}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-primary mr-4 py-2 rounded text-xs"
-                  obfuscateChildren={false}
-                  onClick={() => Event("WhatsApp", "Click", name)}
-                >
-                  {content.whatsappLabel}&nbsp;&nbsp;&nbsp;
-                  <WhatsAppLogo className="inline flex-auto text-right" />
-                </Obfuscate>
-              }
-              {url && (
-                <OutboundLink
-                  eventLabel={name}
-                  to={url.includes('http') ? url : 'https://' + url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-secondary rounded text-xs mt-2 py-2"
-                >
-                  {content.webLabel}&nbsp;&nbsp;&nbsp;⟶
-                </OutboundLink>
-              )}
+              <div className="w-full flex items-center">
+                <Link href={{ pathname: '/list', hash: slugify(name.toLowerCase()) }}>
+                  <button className="btn btn-primary flex-1 h-full flex justify-center items-center rounded text-xs py-2">
+                    <span>{content.seeMore} +</span>
+                  </button>
+                </Link>
+              </div>
+              <div className="w-full flex items-center mt-2 space-x-2">
+                {phone && whatsapp &&
+                  <Obfuscate
+                    href={`https://api.whatsapp.com/send?phone=${phone}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-secondary rounded flex-1 h-full flex justify-center items-center text-xs py-2"
+                    obfuscateChildren={false}
+                    onClick={() => Event("WhatsApp", "Click", name)}
+                  >
+                    <span>{content.whatsappLabel}&nbsp;&nbsp;&nbsp;</span>
+                    <WhatsAppLogo className="inline text-right h-5" />
+                  </Obfuscate>
+                }
+                {url && (
+                  <OutboundLink
+                    eventLabel={name}
+                    to={url.includes('http') ? url : 'https://' + url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-secondary rounded flex-1 h-full flex justify-center items-center text-xs py-2"
+                  >
+                    <span>{content.webLabel}&nbsp;&nbsp;&nbsp;⟶</span>
+                  </OutboundLink>
+                )}
+              </div>
 
               <div className="absolute inset-x-0 bottom-0 flex justify-center">
                 <div

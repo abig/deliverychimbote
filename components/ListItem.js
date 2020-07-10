@@ -4,22 +4,19 @@ import Obfuscate from 'react-obfuscate'
 import WhatsAppLogo from './WhatsAppLogo'
 import { OutboundLink } from 'react-ga'
 import { Event } from './Analytics'
+import slugify from 'slugify'
+import Link from 'next/link'
+import { MapPin, ArrowRight } from 'react-feather'
 
 const pageContent = {
   'es-PE': {
     hours: 'Horario de atención',
     moreZones: 'Ver zonas donde llegamos',
     delivery: 'Delivery disponible',
-    whatsappLabel: 'Pedir por WhatsApp',
+    whatsappLabel: 'Pedir por',
     webLabel: 'Ir a web',
-  },
-  'en-US': {
-    hours: 'Opening hours',
-    moreZones: 'See zones were we get',
-    delivery: 'Delivery available',
-    whatsappLabel: 'Order via WhatsApp',
-    webLabel: 'Website',
-  },
+    seeMap: 'Ver en mapa'
+  }
 }
 
 export default ({ item, standalone }) => {
@@ -51,7 +48,7 @@ export default ({ item, standalone }) => {
   const [zoneCollapse, setZoneCollapse] = useState(false)
 
   return (
-    <li className={!standalone ? 'w-full md:w-1/2 p-3' : 'list-none'}>
+    <li className={!standalone ? 'w-full md:w-1/2 p-3' : 'list-none'} id={slugify(name.toLowerCase())}>
       <div className="rounded relative h-full flex flex-col items-start border border-sand overflow-hidden p-4 sm:p-8 lg:px-12">
         <div className="flex-auto">
           {name && <h3 className="uppercase text-xl sm:text-2xl">{name}</h3>}
@@ -125,18 +122,18 @@ export default ({ item, standalone }) => {
             </ul>
           }
         </div>
-        <div className="mt-4 items-center">
+        <div className="w-full flex flex-wrap items-center space-x-2 mt-4">
           {phone && whatsapp &&
             <Obfuscate
               href={`https://api.whatsapp.com/send?phone=${phone}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-primary mr-4 rounded text-sm"
+              className="btn btn-primary flex-1 h-full rounded text-sm flex justify-center items-center space-x-2"
               obfuscateChildren={false}
               onClick={() => Event("WhatsApp", "Click", name)}
             >
-              {content.whatsappLabel}&nbsp;&nbsp;&nbsp;
-              <WhatsAppLogo className="inline flex-auto text-right" />
+              <span>{content.whatsappLabel}</span>
+              <WhatsAppLogo className="h-5" />
             </Obfuscate>
           }
           {url && (
@@ -145,11 +142,20 @@ export default ({ item, standalone }) => {
               to={url.includes('http') ? url : 'https://' + url}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-secondary rounded text-sm mt-2"
+              className="btn btn-secondary flex-1 h-full rounded text-sm flex justify-center items-center space-x-2"
             >
-              {content.webLabel}&nbsp;&nbsp;&nbsp;⟶
+              <span>{content.webLabel}</span>
+              <ArrowRight className="h-5" />
             </OutboundLink>
           )}
+        </div>
+        <div className="w-full flex flex-wrap items-center mt-2">
+          <Link href={{ pathname: '/map', hash: slugify(name.toLowerCase()) }}>
+            <button className="btn btn-primary flex-1 h-full rounded text-sm flex justify-center items-center space-x-2">
+              <span>{content.seeMap}</span>
+              <MapPin className="h-5" />
+            </button>
+          </Link>
         </div>
         {delivery && (
           <div className="sm:absolute rounded top-0 right-0 font-medium text-sm sm:bg-sand sm:border-b border-sand sm:px-2 sm:py-1 mt-4 sm:m-2">

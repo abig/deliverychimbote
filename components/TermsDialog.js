@@ -42,10 +42,5 @@ const pageContent = {
     text: 'Al registrarte en nuestro sitio web, aceptas nuestros términos y condiciones.',
     read: 'Ver términos',
     accept: 'Aceptar términos'
-  },
-  'en-US': {
-    text: 'If you submit your business in our website, you are accepting our terms of service.',
-    read: 'Read terms',
-    accept: 'Accept terms'
   }
 }

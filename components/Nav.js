@@ -12,21 +12,12 @@ const content = {
       map: 'Mapa',
       list: 'Listado',
       submit: 'Registra tu negocio'
-    },
-    'en-US': {
-      label: 'Businesses',
-      map: 'Map view',
-      list: 'List view',
-      submit: 'Submit your business'
-    },
+    }
   },
-  about: { 'es-PE': 'Nosotros', 'en-US': 'About' },
+  about: { 'es-PE': 'Nosotros' },
   dropdown: { 
     'es-PE': {
       soon: 'Próximamente'
-    },
-    'en-US': {
-      soon: 'Soon'
     }
   },
   forRestaurants: {
@@ -34,17 +25,11 @@ const content = {
       label: 'Para negocios',
       resources: 'Recursos',
       submit: 'Registra tu negocio',
-    },
-    'en-US': {
-      label: 'For restaurants',
-      resources: 'Resources',
-      submit: 'Submit your business',
-    },
+    }
   },
   submit: {
-    'es-PE': 'Regístrate',
-    'en-US': 'Submit',
-  },
+    'es-PE': 'Regístrate'
+  }
 }
 
 export default () => {
@@ -66,9 +51,9 @@ export default () => {
           {!maintenance &&
             <Dropdown
               items={[
+                { href: '/map', label: content.restaurants[language].map },
                 { href: '/list', label: content.restaurants[language].list },
                 { href: '/submit', label: content.restaurants[language].submit },
-                { href: '/map', label: content.restaurants[language].map, disabled: true }
               ]}
               label={content.restaurants[language].label}
               soon={content.dropdown[language].soon}

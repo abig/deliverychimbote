@@ -1,27 +1,41 @@
-import { useContext } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import Promise from 'promise-polyfill'
 import fetch from 'isomorphic-unfetch'
 import { LanguageContext } from '../components/LanguageSelector'
 import Head from '../components/Head'
 import Nav from '../components/Nav'
+import Footer from '../components/Footer'
 import Map from '../components/Map'
-import { FiltersList } from '../components/FiltersList'
+import slugify from 'slugify'
 
 // start search from google maps: https://www.google.com/maps/place/?q=something (url encoded)
 
 const pageContent = {
   'es-PE': {
-    offers: FiltersList.offers,
     orderLabel: 'Ir a web',
     delivery: 'Delivery disponible',
-    whatsappLabel: 'Pedir por WhatsApp',
+    whatsappLabel: 'Pedir por',
     webLabel: 'Ir a web',
+    more: 'Y más',
+    seeMore: 'Ver más'
   }
 }
 
 export default ({ items }) => {
   const { language } = useContext(LanguageContext)
   const content = pageContent[language]
+  const [active, setActive] = useState(false);
+
+  useEffect(
+    () => {
+      if (typeof window !== "undefined") {
+        if (location.hash) {
+          setActive(items.find(item => slugify(item.name.toLowerCase()) === location.hash.substr(1)))
+        }
+      }
+    },
+    []
+  )
 
   return (
     <>
@@ -29,8 +43,9 @@ export default ({ items }) => {
       <div className="h-screen flex flex-col">
         <Nav />
         <main className="flex-auto">
-          <Map items={items} content={content} />
+          <Map items={items} content={content} active={active} />
         </main>
+        <Footer />
       </div>
     </>
   )
@@ -64,10 +79,10 @@ export async function getStaticProps() {
     i++
     const query = item.pluscode
       ? item.pluscode
-      : item.address
+      : item.address + " " + item.district
     const res = await fetch(
       'https://maps.googleapis.com/maps/api/geocode/json?address=' +
-        encodeURIComponent(query) +
+        encodeURIComponent(query) + 
         '&key=' +
         googleMapsApiKey
     ).catch(err => {

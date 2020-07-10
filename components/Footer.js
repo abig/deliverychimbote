@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import LanguageSelector, { LanguageContext } from './LanguageSelector'
 import Link from 'next/link'
-import { Facebook, Instagram, Twitter } from 'react-feather'
+import { Facebook, Instagram, Twitter, ArrowRight } from 'react-feather'
 import WhatsAppLogo from './WhatsAppLogo'
 import { OutboundLink } from 'react-ga'
 
@@ -77,6 +77,13 @@ export default () => {
             {content.about}
           </button>
         </Link>
+        <div className="mb-4">
+          <Link href="/terms">
+            <button className="font-extrabold underline leading-normal">
+              {content.terms}
+            </button>
+          </Link>
+        </div>
         <p className="mb-4">
           {content.prefix}{' '}
           <OutboundLink eventLabel="https://abig.pe" to="https://abig.pe" target="_blank" rel="noopener noreferrer">
@@ -102,13 +109,6 @@ export default () => {
             Diego Albitres
           </OutboundLink>.
         </p>
-        <div className="mb-4">
-          <Link href="/terms">
-            <button className="font-extrabold underline leading-normal">
-              {content.terms}
-            </button>
-          </Link>
-        </div>
         <p className="mb-12">
           {content.dinePrefix}{' '}
           <OutboundLink eventLabel="https://dinecph.dk" to="https://dinecph.dk" target="_blank" rel="noopener noreferrer">
@@ -131,9 +131,9 @@ export default () => {
             Honduras
           </OutboundLink>
         </p>
-        <p className="border-t-2 border-sand py-8">
-          {content.os}
-          {' ⟶ '}
+        <p className="border-t-2 border-sand flex justify-start items-center space-x-2 py-8">
+          <span>{content.os}</span>
+          <ArrowRight className="h-5" />
           <OutboundLink
             eventLabel="https://github.com/dalbitresb12/deliverychimbote"
             className="ml-1"
