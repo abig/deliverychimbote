@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { GoogleMap, LoadScriptNext, Marker, OverlayView } from '@react-google-maps/api'
-import { X } from 'react-feather'
+import { X, ArrowRight } from 'react-feather'
 import { OutboundLink } from 'react-ga'
 import Obfuscate from 'react-obfuscate'
 import WhatsAppLogo from './WhatsAppLogo'
@@ -158,11 +158,11 @@ const Tooltip = ({ tooltip, setTooltip, content }) => {
                     href={`https://api.whatsapp.com/send?phone=${phone}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-secondary rounded flex-1 h-full flex justify-center items-center text-xs py-2"
+                    className="btn btn-secondary rounded flex-1 h-full flex justify-center items-center text-xs py-2 space-x-2"
                     obfuscateChildren={false}
                     onClick={() => Event("WhatsApp", "Click", name)}
                   >
-                    <span>{content.whatsappLabel}&nbsp;&nbsp;&nbsp;</span>
+                    <span>{content.whatsappLabel}</span>
                     <WhatsAppLogo className="inline text-right h-5" />
                   </Obfuscate>
                 }
@@ -172,9 +172,10 @@ const Tooltip = ({ tooltip, setTooltip, content }) => {
                     to={url.includes('http') ? url : 'https://' + url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-secondary rounded flex-1 h-full flex justify-center items-center text-xs py-2"
+                    className="btn btn-secondary rounded flex-1 h-full flex justify-center items-center text-xs py-2 space-x-2"
                   >
-                    <span>{content.webLabel}&nbsp;&nbsp;&nbsp;⟶</span>
+                    <span>{content.webLabel}</span>
+                    <ArrowRight className="h-5" />
                   </OutboundLink>
                 )}
               </div>

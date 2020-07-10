@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, ChevronUp } from 'react-feather'
+import { ChevronDown, ChevronUp, ArrowRight } from 'react-feather'
 import { LanguageContext } from './LanguageSelector'
 import Logo from './Logo'
 
@@ -139,13 +139,11 @@ const Dropdown = ({ align, items, label, soon, className }) => {
                       <Link href={disabled ? '#' : href}>
                         <a
                           onClick={handleClick}
-                          className="group flex font-medium px-3 py-2 my-2"
+                          className="group flex items-center font-medium px-3 py-2 my-2 justify-between sm:space-x-2"
                           disabled={disabled}
                         >
-                          {label} {disabled && '(' + soon + ')'}
-                          <span className="flex-auto text-right text-sand-light group-hover:text-indigo-light transition-color duration-150 ease-in-out">
-                            ⟶
-                          </span>
+                          <span>{label} {disabled && '(' + soon + ')'}</span>
+                          <ArrowRight className="h-5 text-sand-light group-hover:text-indigo-light transition-color duration-150 ease-in-out" />
                         </a>
                       </Link>
                     </li>
