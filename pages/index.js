@@ -63,12 +63,5 @@ const pageContent = {
     description: `Encuentra negocios en Chimbote que te pueden llevar lo que necesites a la puerta de tu casa.`,
     find: 'Buscar negocios',
     add: 'Registra tu negocio',
-  },
-  'en-US': {
-    titleBlue: 'Support local businesses',
-    titleOrange: 'cope with the pandemic',
-    description: `Find businesses in Chimbote that can bring what you need to your door.`,
-    find: 'Find businesses',
-    add: 'Add your business',
-  },
+  }
 }

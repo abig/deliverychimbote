@@ -83,18 +83,5 @@ const pageContent = {
       'enlace',
       'Cada ícono de marca es una marca registrada del propietario respectivo. El uso de esta marca no indica el respaldo del titular de la marca por parte de Delivery Chimbote, ni viceversa.'
     ],
-  },
-  'en-US': {
-    title: 'About',
-    description: `The Covid-19 crisis has hit the Chimbote businesses scene hard. Many establishments have started offering delivery for their products. We've made this site to help spread the word — inspired by `,
-    and: ' and ',
-    contact: 'Most inquiries: ',
-    webmaster: 'Site feedback: ',
-    icons: [
-      'Some icons have been extracted from the icon library ',
-      '. This icons are licensed under the Creative Commons Attribution 4.0 International license. No changes were made to the icons. The license can be read in the following ',
-      'link',
-      'Each brand icon is a trademark of the respective owner. The use of this trademark does not indicate endorsement of the trademark holder by Delivery Chimbote, nor vice versa.'
-    ],
-  },
+  }
 }

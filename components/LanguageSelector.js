@@ -1,7 +1,6 @@
 import { useState, createContext, useContext } from 'react'
 
 const languages = {
-  'en-US': 'Switch to English',
   'es-PE': 'Cambiar a español',
 }
 

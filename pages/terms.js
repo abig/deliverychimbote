@@ -126,12 +126,7 @@ export default () => {
 const pageContent = {
   'es-PE': {
     title: 'Términos y Condiciones',
-    label: 'Actualizado: Junio 2020. Solo en disponible en español.',
+    label: 'Actualizado: Junio 2020.',
     contact: 'Consultas y comentarios sobre la página web: ',
-  },
-  'en-US': {
-    title: 'Terms of Service',
-    label: 'Last modified: June 2020. Only available in spanish.',
-    contact: 'Most inquiries and comments about the site: ',
-  },
+  }
 }

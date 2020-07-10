@@ -66,12 +66,5 @@ const pageContent = {
     description: `Muy pronto estaremos lanzando una nueva plataforma para ayudarte a sobrellevar la pandemia y que puedas llegar a tus clientes fácilmente.`,
     more: '¿Quieres saber más? Escríbenos: ',
     add: 'Registra tu negocio',
-  },
-  'en-US': {
-    titleBlue: 'Soon your business',
-    titleOrange: 'could be here',
-    description: `Soon we'll be launching a platform to help you cope with the pandemic and get to your clients easily.`,
-    more: 'Want to know more? Write us: ',
-    add: 'Add your business',
-  },
+  }
 }

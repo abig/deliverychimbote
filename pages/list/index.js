@@ -5,36 +5,20 @@ import Head from '../../components/Head'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import LoadingSpinner from '../../components/LoadingSpinner'
-import { FiltersList, FiltersTranslation } from '../../components/FiltersList'
+import { FiltersList } from '../../components/FiltersList'
 import ListItem from '../../components/ListItem'
 
 const pageContent = {
   'es-PE': {
     title: 'Negocios',
     districtLabel: 'Distritos',
-    districts: FiltersTranslation["es-PE"].districts,
     selectDistrict: 'Seleccione un distrito...',
     businessTypeLabel: 'Rubro',
-    businessTypes: FiltersTranslation["es-PE"].businessTypes,
     selectType: 'Seleccione un rubro...',
     zonesLabel: 'Zonas',
     offersLabel: 'Productos',
-    offers: FiltersTranslation["es-PE"].offers,
     delivery: 'Delivery disponible',
-  },
-  'en-US': {
-    title: 'Businesses',
-    districtLabel: 'Districts',
-    districts: FiltersTranslation["en-US"].districts,
-    selectDistrict: 'Select a district...',
-    businessTypeLabel: 'Business Type',
-    businessTypes: FiltersTranslation["en-US"].businessTypes,
-    selectType: 'Select a business type...',
-    zonesLabel: 'Zones',
-    offersLabel: 'Offers',
-    offers: FiltersTranslation["en-US"].offers,
-    delivery: 'Delivery available',
-  },
+  }
 }
 
 const FilterLabel = ({ handleChange, isChecked, label }) => (
@@ -159,7 +143,7 @@ export default ({ items }) => {
                       key={type}
                       handleChange={handleChange}
                       isChecked={isChecked}
-                      label={content.businessTypes[type]}
+                      label={type}
                     />
                   )
                 })}
@@ -187,7 +171,7 @@ export default ({ items }) => {
                               key={offer}
                               handleChange={handleChange}
                               isChecked={isChecked}
-                              label={content.offers[type][offer]}
+                              label={offer}
                             />
                           )
                         })

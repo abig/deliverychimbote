@@ -93,29 +93,5 @@ const pageContent = {
       email: 'tucorreo@tunegocio.com',
       hours: 'Lunes a Sábado de 00:00am a 00:00pm'
     }
-  },
-  'en-US': {
-    titleBlue: 'Soon your business',
-    titleOrange: 'could be here',
-    description: [
-      `Signing up isn't difficult. We only need some basic data about you so that we can list you on our platform. Once you've sent your submission, we'll be in touch soon to confirm the aproval. You should know that aproved submissions can take up 24 hours to appear on the site.`,
-      `If you want us to add a business type, neighbourhood or category, drop us a letter: `
-    ],
-    more: 'Need help? Write us: ',
-    register: 'Add your business',
-    demo: {
-      name: 'Your Business',
-      address: 'Av. Avenue 123',
-      description: 'Your business data should show up in a card similar like the one here.',
-      district: ['District 1', 'District 2'],
-      zones: ['Zone 1', 'Zone 2', 'Zone 3'],
-      offerings: ['Product 1', 'Product 2', 'Product 3', 'Product 4'],
-      delivery: true,
-      phone: '123456789',
-      url: 'https://example.com',
-      whatsapp: true,
-      email: 'yourmail@yourbusiness.com',
-      hours: 'Monday - Saturday 00:00am - 00:00pm'
-    }
-  },
+  }
 }

@@ -20,7 +20,6 @@ export default () => {
             </h2>
             <p className="max-w-xl text-indigo-light text-lg mb-8">
               {content.resourcesDescription}{' '}
-              <a href="mailto:">{content.contact}</a>
               <Obfuscate
                 email="deliverychimbote@abig.pe"
                 obfuscateChildren={false}
@@ -73,14 +72,7 @@ const pageContent = {
       'Hemos listado aquí algunos recursos que podrían servirte en estos tiempos. ¿Conoces algunos otros que podrían ayudar?',
     contact: 'Ponte en contacto con nosotros',
     submitTitle: 'Registra tu negocio',
-  },
-  'en-US': {
-    resourcesTitle: 'Resources',
-    resourcesDescription:
-      "We've added a few resources that might be useful for restaurants at this time. Do you know of others that we should add?",
-    contact: 'Get in touch',
-    submitTitle: 'Add your business',
-  },
+  }
 }
 
 const resourcesList = [

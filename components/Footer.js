@@ -14,57 +14,49 @@ const pageContent = {
     dinePrefix: 'También en',
     about: 'Sobre nosotros',
     terms: 'Términos y Condiciones'
-  },
-  'en-US': {
-    prefix: 'An initiative by',
-    built: 'Originally built by',
-    adapted: 'Adapted for Chimbote by',
-    os: "It's open-source",
-    dinePrefix: 'Also in',
-    about: 'About us',
-    terms: 'Terms of Service'
-  },
-  'social': {
-    facebook: 'https://www.facebook.com/deliverychimboteapp/',
-    instagram: 'https://www.instagram.com/deliverychimboteapp/',
-    twitter: 'https://twitter.com/delivchimbotapp',
-    whatsapp: 'https://wa.me/5143489026'
   }
+}
+
+const socialLinks = {
+  facebook: 'https://www.facebook.com/deliverychimboteapp/',
+  instagram: 'https://www.instagram.com/deliverychimboteapp/',
+  twitter: 'https://twitter.com/delivchimbotapp',
+  whatsapp: 'https://wa.me/5143489026'
 }
 
 const Social = ({ size, strokeWidth, ...props }) => (
   <div {...props}>
     <OutboundLink
-      eventLabel={pageContent.social.facebook}
+      eventLabel={socialLinks.facebook}
       className="text-facebook"
-      to={pageContent.social.facebook}
+      to={socialLinks.facebook}
       target="_blank"
       rel="noopener noreferrer"
     >
       <Facebook className="h-auto" size={size} strokeWidth={strokeWidth} />
     </OutboundLink>
     <OutboundLink
-      eventLabel={pageContent.social.instagram}
+      eventLabel={socialLinks.instagram}
       className="text-instagram ml-4 mr-2"
-      to={pageContent.social.instagram}
+      to={socialLinks.instagram}
       target="_blank"
       rel="noopener noreferrer"
     > 
       <Instagram className="h-auto" size={size} strokeWidth={strokeWidth} />
     </OutboundLink>
     <OutboundLink
-      eventLabel={pageContent.social.whatsapp}
+      eventLabel={socialLinks.whatsapp}
       className="text-whatsapp ml-2 mr-4"
-      to={pageContent.social.whatsapp}
+      to={socialLinks.whatsapp}
       target="_blank"
       rel="noopener noreferrer"
     >
       <WhatsAppLogo className="h-auto" size={size} strokeWidth={strokeWidth} />
     </OutboundLink>
     <OutboundLink
-      eventLabel={pageContent.social.twitter}
+      eventLabel={socialLinks.twitter}
       className="text-twitter"
-      to={pageContent.social.twitter}
+      to={socialLinks.twitter}
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -85,9 +77,6 @@ export default () => {
             {content.about}
           </button>
         </Link>
-        <div className="mb-4">
-            <LanguageSelector />
-        </div>
         <p className="mb-4">
           {content.prefix}{' '}
           <OutboundLink eventLabel="https://abig.pe" to="https://abig.pe" target="_blank" rel="noopener noreferrer">

@@ -1,11 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import {
-  GoogleMap,
-  LoadScriptNext,
-  Marker,
-  OverlayView,
-} from '@react-google-maps/api'
+import { GoogleMap, LoadScriptNext, Marker, OverlayView } from '@react-google-maps/api'
 import { X } from 'react-feather'
 import { OutboundLink } from 'react-ga'
 import Obfuscate from 'react-obfuscate'

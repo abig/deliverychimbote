@@ -5,25 +5,18 @@ import { LanguageContext } from '../components/LanguageSelector'
 import Head from '../components/Head'
 import Nav from '../components/Nav'
 import Map from '../components/Map'
-import { FiltersTranslation } from '../components/FiltersList'
+import { FiltersList } from '../components/FiltersList'
 
 // start search from google maps: https://www.google.com/maps/place/?q=something (url encoded)
 
 const pageContent = {
   'es-PE': {
-    offers: FiltersTranslation["es-PE"].offers,
+    offers: FiltersList.offers,
     orderLabel: 'Ir a web',
     delivery: 'Delivery disponible',
     whatsappLabel: 'Pedir por WhatsApp',
     webLabel: 'Ir a web',
-  },
-  'en-US': {
-    offers: FiltersTranslation["en-US"].offers,
-    orderLabel: 'Website',
-    delivery: 'Delivery available',
-    whatsappLabel: 'Order via WhatsApp',
-    webLabel: 'Website',
-  },
+  }
 }
 
 export default ({ items }) => {
