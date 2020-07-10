@@ -56,8 +56,7 @@ export async function getStaticProps() {
   const airtableBaseKey = process.env.AIRTABLE_BASE_KEY
   // Reducing number of requests to Maps API
   const googleMapsApiKey =
-    // process.env.NODE_ENV === 'production'
-    true
+    process.env.NODE_ENV === 'production'
       ? process.env.GOOGLE_MAPS_API_KEY
       : undefined
 
