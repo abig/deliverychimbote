@@ -144,7 +144,6 @@ const Tooltip = ({ tooltip, setTooltip, content }) => {
                 </ul>
               )}
               {delivery && <div className="mb-3">✓ {content.delivery}</div>}
-              {phone && <div className="mb-3">{phone}</div>}
               <div className="w-full flex items-center">
                 <Link href={{ pathname: '/list', hash: slugify(name.toLowerCase()) }}>
                   <button className="btn btn-primary flex-1 h-full flex justify-center items-center rounded text-xs py-2">
