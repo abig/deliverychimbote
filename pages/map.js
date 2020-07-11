@@ -4,7 +4,6 @@ import fetch from 'isomorphic-unfetch'
 import { LanguageContext } from '../components/LanguageSelector'
 import Head from '../components/Head'
 import Nav from '../components/Nav'
-import Footer from '../components/Footer'
 import Map from '../components/Map'
 import slugify from 'slugify'
 
@@ -25,13 +24,21 @@ export default ({ items }) => {
   const { language } = useContext(LanguageContext)
   const content = pageContent[language]
   const [active, setActive] = useState(false);
+  let hash = typeof window !== "undefined"
+    ? location.hash
+    : undefined
 
   useEffect(
     () => {
       if (typeof window !== "undefined") {
-        if (location.hash) {
-          setActive(items.find(item => slugify(item.name.toLowerCase()) === location.hash.substr(1)))
+        const handleHash = () => {
+          hash = location.hash
+          if (hash) setActive(items.find(item => slugify(item.name.toLowerCase()) === hash.substr(1)))
+          else setActive(false)
         }
+        
+        handleHash()
+        window.addEventListener("hashchange", handleHash)
       }
     },
     []
@@ -45,7 +52,6 @@ export default ({ items }) => {
         <main className="flex-auto">
           <Map items={items} content={content} active={active} />
         </main>
-        <Footer />
       </div>
     </>
   )
@@ -56,7 +62,8 @@ export async function getStaticProps() {
   const airtableBaseKey = process.env.AIRTABLE_BASE_KEY
   // Reducing number of requests to Maps API
   const googleMapsApiKey =
-    process.env.NODE_ENV === 'production'
+    // process.env.NODE_ENV === 'production'
+    true
       ? process.env.GOOGLE_MAPS_API_KEY
       : undefined
 

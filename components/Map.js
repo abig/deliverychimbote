@@ -24,6 +24,12 @@ export default ({ items, content, active }) => {
           lat: active.positionData.results[0].geometry.location.lat - (-0.001),
           lng: active.positionData.results[0].geometry.location.lng
         })
+      } else {
+        setTooltip(false)
+        setCenter({
+          lat: -9.1067845,
+          lng: -78.5647257,
+        })
       }
     },
     [active]
@@ -31,7 +37,8 @@ export default ({ items, content, active }) => {
 
   // Reducing number of requests to Maps API
   const restrictedGoogleMapsApiKey =
-    process.env.NODE_ENV === 'production'
+    // process.env.NODE_ENV === 'production'
+    true
       ? process.env.RESTRICTED_GOOGLE_MAPS_API_KEY
       : undefined
 
@@ -63,7 +70,7 @@ export default ({ items, content, active }) => {
                 <Marker
                   key={item.name}
                   position={position}
-                  onClick={() => setTooltip(item)}
+                  onClick={() => location.hash = slugify(item.name.toLowerCase())}
                 />
               )
             return null
@@ -120,7 +127,7 @@ const Tooltip = ({ tooltip, setTooltip, content }) => {
             <div className="absolute bottom-0 w-96 bg-sand-light px-8 py-6">
               <button
                 type="button"
-                onClick={() => setTooltip(false)}
+                onClick={() => location.hash = ""}
                 className="absolute top-0 right-0 text-indigo-light m-2"
               >
                 <X className="text-lg" />
