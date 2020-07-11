@@ -132,7 +132,7 @@ const Tooltip = ({ tooltip, setTooltip, content }) => {
                 <X className="text-lg" />
               </button>
 
-              {name && <h3 className="text-base mb-2">{name}</h3>}
+              {name && <h3 className="uppercase text-base mb-2">{name}</h3>}
               {description && <p className="text-xs mb-3">{description}</p>}
               {offers && !!offers.length && (
                 <ul className="-m-1 mb-3">
