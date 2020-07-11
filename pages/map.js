@@ -75,6 +75,11 @@ export async function getStaticProps() {
   const base = await airtable('Negocios')
   const records = await base
     .select({
+      fields: [
+        "name", "address", "pluscode", "description", "district", "zones", "businesstype",
+        "offerings", "delivery", "email", "phone", "whatsapp", "secondaryphone", "secondarywhatsapp",
+        "url", "display", "hours"
+      ],
       maxRecords: 999999, // don't want to paginate...
       view: 'Grid view', // NOTE: changing the view name will break things
     })
