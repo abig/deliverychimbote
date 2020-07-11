@@ -28,18 +28,20 @@ export default ({ items }) => {
     ? location.hash
     : undefined
 
+  const handleHashChange = () => {
+    hash = location.hash
+    if (hash) setActive(items.find(item => slugify(item.name.toLowerCase()) === hash.substr(1)))
+    else setActive(false)
+  }
+
   useEffect(
     () => {
-      if (typeof window !== "undefined") {
-        const handleHash = () => {
-          hash = location.hash
-          if (hash) setActive(items.find(item => slugify(item.name.toLowerCase()) === hash.substr(1)))
-          else setActive(false)
-        }
-        
-        handleHash()
-        window.addEventListener("hashchange", handleHash)
+      if (typeof window !== "undefined") {        
+        handleHashChange()
+        window.addEventListener("hashchange", handleHashChange)
       }
+
+      return () => window.removeEventListener("hashchange", handleHashChange)
     },
     []
   )
@@ -62,8 +64,7 @@ export async function getStaticProps() {
   const airtableBaseKey = process.env.AIRTABLE_BASE_KEY
   // Reducing number of requests to Maps API
   const googleMapsApiKey =
-    // process.env.NODE_ENV === 'production'
-    true
+    process.env.NODE_ENV === 'production'
       ? process.env.GOOGLE_MAPS_API_KEY
       : undefined
 
