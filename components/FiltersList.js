@@ -130,8 +130,15 @@ export const FiltersList = {
     ]
   },
   districts: [
-    'Chimbote',
-    'Nuevo Chimbote'
+    "Chimbote",
+    "Nuevo Chimbote",
+    "Coishco",
+    "Santa",
+    "Samanco",
+    "Nepeña",
+    "San Jacinto",
+    "Moro",
+    "Casma"
   ],
   zones: {
     ['Chimbote']: [
@@ -153,6 +160,13 @@ export const FiltersList = {
       "Jose Carlos Mariategui - Bruces",
       "Los Alamos - Nicolas Garatea",
       "Las Poncianas - San Luis"
-    ]
+    ],
+    ['Coishco']: ["Coishco"],
+    ['Santa']: ["Santa"],
+    ['Samanco']: ["Samanco"],
+    ['Nepeña']: ["Nepeña"],
+    ['San Jacinto']: ["San Jacinto"],
+    ['Moro']: ["Moro"],
+    ['Casma']: ["Casma"]
   }
 }
