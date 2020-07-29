@@ -1,8 +1,7 @@
 import { useContext } from 'react'
-import LanguageSelector, { LanguageContext } from './LanguageSelector'
+import { LanguageContext } from './LanguageSelector'
 import Link from 'next/link'
 import { Facebook, Instagram, Twitter, ArrowRight } from 'react-feather'
-import WhatsAppLogo from './WhatsAppLogo'
 import { OutboundLink } from 'react-ga'
 
 const pageContent = {
@@ -17,51 +16,40 @@ const pageContent = {
   }
 }
 
-const socialLinks = {
-  facebook: 'https://www.facebook.com/deliverychimboteapp/',
-  instagram: 'https://www.instagram.com/deliverychimboteapp/',
-  twitter: 'https://twitter.com/delivchimbotapp',
-  whatsapp: 'https://wa.me/5143489026'
+const socialData = {
+  facebook: {
+    url: 'https://www.facebook.com/deliverychimboteapp/',
+    className: 'text-facebook',
+    icon: Facebook,
+  },
+  instagram: {
+    url: 'https://www.instagram.com/deliverychimboteapp/',
+    className: 'text-instagram',
+    icon: Instagram,
+  },
+  twitter: {
+    url: 'https://twitter.com/delivchimbotapp',
+    className: 'text-twitter',
+    icon: Twitter,
+  },
 }
 
 const Social = ({ size, strokeWidth, ...props }) => (
   <div {...props}>
-    <OutboundLink
-      eventLabel={socialLinks.facebook}
-      className="text-facebook"
-      to={socialLinks.facebook}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <Facebook className="h-auto" size={size} strokeWidth={strokeWidth} />
-    </OutboundLink>
-    <OutboundLink
-      eventLabel={socialLinks.instagram}
-      className="text-instagram ml-4 mr-2"
-      to={socialLinks.instagram}
-      target="_blank"
-      rel="noopener noreferrer"
-    > 
-      <Instagram className="h-auto" size={size} strokeWidth={strokeWidth} />
-    </OutboundLink>
-    <OutboundLink
-      eventLabel={socialLinks.whatsapp}
-      className="text-whatsapp ml-2 mr-4"
-      to={socialLinks.whatsapp}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <WhatsAppLogo className="h-auto" size={size} strokeWidth={strokeWidth} />
-    </OutboundLink>
-    <OutboundLink
-      eventLabel={socialLinks.twitter}
-      className="text-twitter"
-      to={socialLinks.twitter}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <Twitter className="h-auto" size={size} strokeWidth={strokeWidth} />
-    </OutboundLink>
+    {Object.keys(socialData).map(social => {
+      const { url, className, icon: Icon } = socialData[social]
+      return (
+        <OutboundLink
+          eventLabel={url}
+          className={className}
+          to={url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon className="h-auto" size={size} strokeWidth={strokeWidth} />
+        </OutboundLink>
+      )
+    })}
   </div>
 )
 
@@ -71,7 +59,7 @@ export default () => {
   return (
     <footer className="px-3">
       <div className="max-w-6xl border-t-2 border-sand mx-auto">
-        <Social size={32} strokeWidth={1.5} className="mt-10 mb-4" />
+        <Social size={32} strokeWidth={1.5} className="mt-10 mb-4 w-32 flex justify-between" />
         <Link href="/about">
           <button className="block sm:hidden font-medium underline leading-normal mb-4">
             {content.about}
