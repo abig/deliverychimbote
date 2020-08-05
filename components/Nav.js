@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, ChevronUp, ArrowRight } from 'react-feather'
+import { ChevronDown, ChevronUp, MapPin, List, UserPlus } from 'react-feather'
 import { LanguageContext } from './LanguageSelector'
 import Logo from './Logo'
 
@@ -19,16 +19,6 @@ const content = {
     'es-PE': {
       soon: 'Próximamente'
     }
-  },
-  forRestaurants: {
-    'es-PE': {
-      label: 'Para negocios',
-      resources: 'Recursos',
-      submit: 'Registra tu negocio',
-    }
-  },
-  submit: {
-    'es-PE': 'Regístrate'
   }
 }
 
@@ -37,7 +27,7 @@ export default () => {
   const { language } = useContext(LanguageContext)
 
   return (
-    <nav className="px-3 py-6">
+    <nav className="px-3 py-6 border-t-4 border-orange box-shadow">
       <div className="max-w-6xl flex items-center mx-auto">
         <div className="flex-auto flex items-center -mx-3">
           <Link href="/">
@@ -51,9 +41,9 @@ export default () => {
           {!maintenance &&
             <Dropdown
               items={[
-                { href: '/map', label: content.restaurants[language].map },
-                { href: '/list', label: content.restaurants[language].list },
-                { href: '/submit', label: content.restaurants[language].submit },
+                { href: '/map', label: content.restaurants[language].map, icon: MapPin },
+                { href: '/list', label: content.restaurants[language].list, icon: List },
+                { href: '/submit', label: content.restaurants[language].submit, icon: UserPlus },
               ]}
               label={content.restaurants[language].label}
               soon={content.dropdown[language].soon}
@@ -61,18 +51,8 @@ export default () => {
           }
           <NavLink className="hidden sm:inline-block" href="/about" label={content.about[language]} />
         </div>
-        <div className="-mx-3">
-          <Dropdown
-            className="hidden sm:block"
-            align="right-0"
-            items={[
-              { href: '/submit', label: content.forRestaurants[language].submit },
-              { href: '/resources', label: content.forRestaurants[language].resources }
-            ]}
-            label={content.forRestaurants[language].label}
-            soon={content.dropdown[language].soon}
-          />
-          <NavLink className="inline-block sm:hidden" href="/submit" label={content.submit[language]} />
+        <div className="-mx-3 hidden md:block">
+          <NavLink className="inline-block" href="/submit" label={content.restaurants[language].submit} />
         </div>
       </div>
     </nav>
@@ -129,7 +109,7 @@ const Dropdown = ({ align, items, label, soon, className }) => {
                   'absolute top-0 z-20 w-48 bg-alice-blue border border-sand'
                 }
               >
-                {items.map(({ href, label, disabled }) => {
+                {items.map(({ href, label, icon: Icon, disabled }) => {
                   const handleClick = (event) => {
                     if (!disabled) setShowDropdown(false)
                     else event.preventDefault()
@@ -139,11 +119,11 @@ const Dropdown = ({ align, items, label, soon, className }) => {
                       <Link href={disabled ? '#' : href}>
                         <a
                           onClick={handleClick}
-                          className="group flex items-center font-medium px-3 py-2 my-2 justify-between sm:space-x-2"
+                          className="group flex items-center font-medium px-3 py-2 my-2 space-x-2"
                           disabled={disabled}
                         >
+                          <Icon className="h-5 text-teal group-hover:text-indigo transition-color duration-150 ease-in-out" />
                           <span>{label} {disabled && '(' + soon + ')'}</span>
-                          <ArrowRight className="h-5 text-sand-light group-hover:text-indigo-light transition-color duration-150 ease-in-out" />
                         </a>
                       </Link>
                     </li>
