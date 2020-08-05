@@ -56,7 +56,7 @@ export default ({ items }) => {
           <Nav />
           <main className="flex-auto px-3 pt-8 sm:pt-16 pb-16">
             <div className="max-w-6xl mx-auto">
-              <h2 className="flex-auto font-extrabold text-2xl sm:text-3xl leading-none mb-4 sm:mb-6">
+              <h2 className="flex-auto font-bold text-2xl sm:text-3xl leading-none mb-4 sm:mb-6">
                 {content.title}
               </h2>
               <div className="flex flex-wrap items-center -m-1 mb-4">
