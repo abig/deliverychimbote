@@ -21,7 +21,7 @@ export default () => {
           <main className="flex-auto px-3 md:pr-0 pt-8 lg:pt-0 pb-16">
             <div className="max-w-6xl flex items-center md:overflow-hidden mx-auto">
               <div className="flex-auto w-128 md:flex-shrink-0 lg:pr-16">
-                <h1 className="max-w-xl font-bold uppercase text-3xl sm:text-5xl leading-none mb-6">
+                <h1 className="max-w-xl font-extrabold uppercase text-4xl leading-none mb-6">
                   {content.titleBlue}{' '}
                   <span className="text-orange">{content.titleOrange}</span>
                 </h1>
@@ -43,11 +43,12 @@ export default () => {
                   </Link>
                 </div>
               </div>
-              <img
-                src="/assets/main-image.jpeg"
-                alt="Main image"
-                className="hidden lg:block w-128 h-auto"
-              />
+              <div className="w-128 h-128 hidden lg:flex lg:justify-center lg:items-center lg:pr-4">
+                <img
+                  src="/assets/undraw_on_the_way.svg"
+                  alt="Persona en motocicleta llevando un paquete"
+                />
+              </div>
             </div>
           </main>
           <Footer />
