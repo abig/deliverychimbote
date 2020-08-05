@@ -11,7 +11,7 @@ const pageContent = {
     adapted: 'Adaptado para Chimbote por',
     os: 'Open-source',
     dinePrefix: 'También en',
-    about: 'Sobre nosotros',
+    about: 'Nosotros',
     terms: 'Términos y Condiciones'
   }
 }
@@ -40,6 +40,7 @@ const Social = ({ size, strokeWidth, ...props }) => (
       const { url, className, icon: Icon } = socialData[social]
       return (
         <OutboundLink
+          key={social}
           eventLabel={url}
           className={className}
           to={url}
@@ -61,13 +62,13 @@ export default () => {
       <div className="max-w-6xl border-t-2 border-sand mx-auto">
         <Social size={32} strokeWidth={1.5} className="mt-10 mb-4 w-32 flex justify-between" />
         <Link href="/about">
-          <button className="block sm:hidden font-medium underline leading-normal mb-4">
+          <button className="block sm:hidden font-medium underline leading-normal">
             {content.about}
           </button>
         </Link>
         <div className="mb-4">
           <Link href="/terms">
-            <button className="font-extrabold underline leading-normal">
+            <button className="font-medium underline leading-normal">
               {content.terms}
             </button>
           </Link>
