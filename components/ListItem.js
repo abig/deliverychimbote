@@ -10,7 +10,7 @@ import { MapPin, ArrowRight } from 'react-feather'
 
 const pageContent = {
   'es-PE': {
-    hours: 'Horario de atención',
+    hours: 'Atención',
     moreZones: 'Ver zonas donde llegamos',
     delivery: 'Delivery disponible',
     whatsappLabel: 'Pedir por',
@@ -49,9 +49,9 @@ export default ({ item, standalone }) => {
 
   return (
     <li className={!standalone ? 'w-full md:w-1/2 p-3' : 'list-none'} id={slugify(name.toLowerCase())}>
-      <div className="rounded relative h-full flex flex-col items-start border border-sand overflow-hidden p-4 sm:p-8 lg:px-12">
+      <div className="rounded box-shadow relative h-full flex flex-col items-start border border-sand overflow-hidden p-4 sm:p-8 lg:px-12">
         <div className="flex-auto">
-          {name && <h3 className="uppercase text-xl sm:text-2xl">{name}</h3>}
+          {name && <h3 className="uppercase font-bold text-xl sm:text-2xl">{name}</h3>}
           {district && district.length && <p className="text-xs sm:text-sm mb-4">{district.join(", ")}</p>}
           {address &&
             <p className="text-sm mb-2">
@@ -96,7 +96,7 @@ export default ({ item, standalone }) => {
               {offers.map(offer => (
                 <li
                   key={offer}
-                  className="inline-block rounded font-medium text-xs sm:text-sm bg-sand px-2 py-1 m-1"
+                  className="inline-block rounded-full font-medium text-xs sm:text-sm bg-sand px-2 py-1 m-1"
                 >
                   {offer}
                 </li>
@@ -114,7 +114,7 @@ export default ({ item, standalone }) => {
               {zones.map(zone => (
                 <li
                   key={zone}
-                  className="inline-block rounded font-medium text-xs sm:text-sm bg-sand px-2 py-1 m-1"
+                  className="inline-block rounded-full font-medium text-xs sm:text-sm bg-sand px-2 py-1 m-1"
                 >
                   {zone}
                 </li>
@@ -158,7 +158,7 @@ export default ({ item, standalone }) => {
           </Link>
         </div>
         {delivery && (
-          <div className="sm:absolute rounded top-0 right-0 font-medium text-sm sm:bg-sand sm:border-b border-sand sm:px-2 sm:py-1 mt-4 sm:m-2">
+          <div className="sm:absolute rounded-full top-0 right-0 font-medium text-sm sm:bg-sand sm:border-b border-sand sm:px-2 sm:py-1 mt-4 sm:m-2">
             ✓ {content.delivery}
           </div>
         )}
