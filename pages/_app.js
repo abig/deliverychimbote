@@ -1,7 +1,11 @@
-import '../css/base.css'
+import Head from 'next/head'
+import { useEffect } from 'react'
+import { DefaultSeo } from 'next-seo'
 import { LanguageProvider } from '../components/LanguageSelector'
 import { initGA, logPageView } from '../components/Analytics'
-import { useEffect } from 'react'
+import '../css/base.css'
+
+const description = "Encuentra negocios en Chimbote que te pueden llevar lo que necesites a la puerta de tu casa."
 
 const App = ({ Component, pageProps }) => {
 
@@ -31,9 +35,37 @@ const App = ({ Component, pageProps }) => {
   )
 
   return (
-    <LanguageProvider>
-      <Component {...pageProps} />
-    </LanguageProvider>
+    <>
+      <DefaultSeo
+        titleTemplate="%s | Delivery Chimbote"
+        description={description}
+        openGraph={{
+          type: 'website',
+          url: 'https://deliverychimbote.com',
+          title: 'Delivery Chimbote',
+          description: description,
+          images: [{
+            url: 'https://deliverychimbote.com/og-dch.png',
+            width: 1200,
+            height: 630,
+            alt: 'Ayudemos a los negocios locales a sobrellevar la pandemia.'
+          }]
+        }}
+        twitter={{
+          cardType: 'summary_large_image',
+          site: '@delivchimbotapp',
+          handle: '@delivchimbotapp'
+        }}
+      />
+      <Head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel="icon" href="/favicon.png" />
+      </Head>
+      <LanguageProvider>
+        <Component {...pageProps} />
+      </LanguageProvider>
+    </>
   )
 }
 

@@ -1,11 +1,11 @@
 import { useContext } from 'react'
 import { LanguageContext } from '../components/LanguageSelector'
-import Head from '../components/Head'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import Obfuscate from 'react-obfuscate'
 import { Event } from '../components/Analytics'
 import Link from 'next/link'
+import { NextSeo } from 'next-seo'
 
 export default () => {
   const { language } = useContext(LanguageContext)
@@ -13,7 +13,7 @@ export default () => {
 
   return (
     <>
-      <Head />
+      <NextSeo title="Términos y Condiciones" />
       <div className="min-h-screen flex flex-col">
         <Nav />
         <main className="flex-auto px-3 pt-8 sm:pt-16 pb-16">

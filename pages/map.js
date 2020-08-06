@@ -2,10 +2,10 @@ import { useContext, useState, useEffect } from 'react'
 import Promise from 'promise-polyfill'
 import fetch from 'isomorphic-unfetch'
 import { LanguageContext } from '../components/LanguageSelector'
-import Head from '../components/Head'
 import Nav from '../components/Nav'
 import Map from '../components/Map'
 import slugify from 'slugify'
+import { NextSeo } from 'next-seo'
 
 // start search from google maps: https://www.google.com/maps/place/?q=something (url encoded)
 
@@ -48,7 +48,7 @@ export default ({ items }) => {
 
   return (
     <>
-      <Head />
+      <NextSeo title="Mapa" />
       <div className="h-screen flex flex-col">
         <Nav />
         <main className="flex-auto">

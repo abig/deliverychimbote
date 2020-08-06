@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import { useContext } from 'react'
 import { LanguageContext } from '../components/LanguageSelector'
-import Head from '../components/Head'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import Maintenance from './maintenance'
 import { MapPin, ArrowRight } from 'react-feather'
+import { NextSeo } from 'next-seo'
 
 export default () => {
   const maintenance = (process.env.MAINTENANCE_MODE === 'true')
@@ -15,7 +15,7 @@ export default () => {
   if (!maintenance) {
     return (
       <>
-        <Head />
+        <NextSeo title="Inicio" />
         <div className="min-h-screen flex flex-col">
           <Nav />
           <main className="flex-auto px-3 md:pr-0 pt-8 lg:pt-0 pb-16">

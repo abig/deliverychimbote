@@ -1,11 +1,13 @@
-import Head from '../../components/Head'
+import Head from 'next/head'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import TermsDialog from '../../components/TermsDialog'
+import { NextSeo } from 'next-seo'
 
 export default () => {
   return (
     <>
+      <NextSeo title="Registrar Negocio" />
       <Head>
         <script src="https://static.airtable.com/js/embed/embed_snippet_v1.js"></script>
       </Head>

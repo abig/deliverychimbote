@@ -1,12 +1,12 @@
 import { useContext, useState, useEffect } from 'react'
 import Promise from 'promise-polyfill'
 import { LanguageContext } from '../../components/LanguageSelector'
-import Head from '../../components/Head'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import LoadingSpinner from '../../components/LoadingSpinner'
 import { FiltersList } from '../../components/FiltersList'
 import ListItem from '../../components/ListItem'
+import { NextSeo } from 'next-seo'
 
 const pageContent = {
   'es-PE': {
@@ -51,7 +51,7 @@ export default ({ items }) => {
   if (items)
     return (
       <>
-        <Head />
+        <NextSeo title="Listado" />
         <div className="min-h-screen flex flex-col">
           <Nav />
           <main className="flex-auto px-3 pt-8 sm:pt-16 pb-16">

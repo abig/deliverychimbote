@@ -1,17 +1,17 @@
 import { useContext } from 'react'
 import Obfuscate from 'react-obfuscate'
 import { LanguageContext } from '../components/LanguageSelector'
-import Head from '../components/Head'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import { Event } from '../components/Analytics'
+import { NextSeo } from 'next-seo'
 
 export default () => {
   const { language } = useContext(LanguageContext)
   const content = pageContent[language]
   return (
     <>
-      <Head />
+      <NextSeo title="Nosotros" />
       <div className="min-h-screen flex flex-col">
         <Nav />
         <main className="flex-auto px-3 pt-8 sm:pt-16 pb-16">
