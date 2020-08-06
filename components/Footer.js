@@ -118,7 +118,7 @@ export default () => {
           {', '}
           <OutboundLink eventLabel="https://vamosatucasa.com/" to="https://vamosatucasa.com/" target="_blank" rel="noopener noreferrer">
             Honduras
-          </OutboundLink>
+          </OutboundLink>.
         </p>
         <p className="border-t-2 border-sand flex justify-start items-center space-x-2 py-8">
           <span>{content.os}</span>
