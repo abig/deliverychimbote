@@ -48,7 +48,7 @@ export default ({ items, content, active }) => {
           center={center}
           clickableIcons={false}
           mapContainerClassName="border-t border-sand"
-          mapContainerStyle={{ height: 'calc( 100vh - 128px)' }}
+          mapContainerStyle={{ height: 'calc( 100vh - 132px)' }}
           zoom={active ? 18 : 13}
         >
           <Tooltip
