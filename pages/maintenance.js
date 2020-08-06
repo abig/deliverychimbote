@@ -32,7 +32,7 @@ export default () => {
                   email="info.dch@abig.pe"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => Event("Email", "Click", "info.dch@abig.pe")}
+                  onClick={() => Event("Email", "Click", "info.dch")}
                 />
               </p>
               <div className="sm:-m-2">

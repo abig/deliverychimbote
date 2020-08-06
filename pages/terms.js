@@ -112,7 +112,7 @@ export default () => {
                 email="deliverychimbote@abig.pe"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => Event("Email", "Click", "deliverychimbote@abig.pe")}
+                onClick={() => Event("Email", "Click", "deliverychimbote")}
               />.
             </p>
           </div>

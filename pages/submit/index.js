@@ -34,7 +34,7 @@ export default () => {
                   email="registro.dch@abig.pe"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => Event("Email", "Click", "registro.dch@abig.pe")}
+                  onClick={() => Event("Email", "Click", "registro.dch")}
                 />
               </p>
               <p className="max-w-xl text-indigo-light text-base sm:text-lg md:text-xl mb-8">
@@ -43,7 +43,7 @@ export default () => {
                   email="soporte.dch@abig.pe"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => Event("Email", "Click", "soporte.dch@abig.pe")}
+                  onClick={() => Event("Email", "Click", "soporte.dch")}
                 />
               </p>
               <div className="sm:-m-2">
