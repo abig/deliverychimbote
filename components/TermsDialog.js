@@ -3,7 +3,7 @@ import { LanguageContext } from '../components/LanguageSelector'
 import {get, set} from 'local-storage'
 import { useEffect, useContext, useState } from 'react'
 
-export default () => {
+const TermsDialog = () => {
   const { language } = useContext(LanguageContext)
   const content = pageContent[language]
   const [termsAccepted, setTermsAccepted] = useState(get("terms_accepted"))
@@ -44,3 +44,5 @@ const pageContent = {
     accept: 'Aceptar términos'
   }
 }
+
+export default TermsDialog

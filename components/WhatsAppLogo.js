@@ -1,4 +1,4 @@
-export default ({ className, size, fill, stroke, strokeWidth, strokeLinecap, strokeLinejoin }) => (
+const WhatsAppLogo = ({ className, size, fill, stroke, strokeWidth, strokeLinecap, strokeLinejoin }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}
@@ -16,3 +16,5 @@ export default ({ className, size, fill, stroke, strokeWidth, strokeLinecap, str
     />
   </svg>
 )
+
+export default WhatsAppLogo

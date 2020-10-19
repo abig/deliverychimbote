@@ -54,7 +54,7 @@ const Social = ({ size, strokeWidth, ...props }) => (
   </div>
 )
 
-export default () => {
+const Footer = () => {
   const { language } = useContext(LanguageContext)
   const content = pageContent[language]
   return (
@@ -137,3 +137,5 @@ export default () => {
     </footer>
   )
 }
+
+export default Footer

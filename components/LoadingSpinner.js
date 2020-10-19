@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 
-export default () => (
+const LoadingSpinner = () => (
   <motion.svg
     xmlns="http://www.w3.org/2000/svg"
     enableBackground="new 0 0 24 24"
@@ -28,3 +28,5 @@ export default () => (
     />
   </motion.svg>
 )
+
+export default LoadingSpinner

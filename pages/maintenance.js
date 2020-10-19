@@ -7,7 +7,7 @@ import Obfuscate from 'react-obfuscate'
 import { Event } from '../components/Analytics'
 import { NextSeo } from 'next-seo'
 
-export default () => {
+const Maintenance = () => {
   const { language } = useContext(LanguageContext)
   const content = pageContent[language]
 
@@ -68,3 +68,5 @@ const pageContent = {
     add: 'Registra tu negocio',
   }
 }
+
+export default Maintenance

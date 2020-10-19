@@ -6,7 +6,7 @@ import Footer from '../components/Footer'
 import { Event } from '../components/Analytics'
 import { NextSeo } from 'next-seo'
 
-export default () => {
+const About = () => {
   const { language } = useContext(LanguageContext)
   const content = pageContent[language]
   return (
@@ -85,3 +85,5 @@ const pageContent = {
     ],
   }
 }
+
+export default About

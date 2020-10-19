@@ -7,7 +7,7 @@ import { Event } from '../components/Analytics'
 import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 
-export default () => {
+const Terms = () => {
   const { language } = useContext(LanguageContext)
   const content = pageContent[language]
 
@@ -130,3 +130,5 @@ const pageContent = {
     contact: 'Consultas y comentarios sobre la página web: ',
   }
 }
+
+export default Terms

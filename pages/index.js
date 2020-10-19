@@ -7,7 +7,7 @@ import Maintenance from './maintenance'
 import { MapPin, ArrowRight } from 'react-feather'
 import { NextSeo } from 'next-seo'
 
-export default () => {
+const Index = () => {
   const maintenance = (process.env.MAINTENANCE_MODE === 'true')
   const { language } = useContext(LanguageContext)
   const content = pageContent[language]
@@ -72,3 +72,5 @@ const pageContent = {
     add: 'Registra tu negocio',
   }
 }
+
+export default Index

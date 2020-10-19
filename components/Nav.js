@@ -22,7 +22,7 @@ const content = {
   }
 }
 
-export default () => {
+const Nav = () => {
   const maintenance = (process.env.MAINTENANCE_MODE === 'true')
   const { language } = useContext(LanguageContext)
 
@@ -137,3 +137,5 @@ const Dropdown = ({ align, items, label, soon, className }) => {
     </>
   )
 }
+
+export default Nav

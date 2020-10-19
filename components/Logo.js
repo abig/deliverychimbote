@@ -1,4 +1,4 @@
-export default ({ isHovered, ...props }) => (
+const Logo = ({ isHovered, ...props }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fillRule="evenodd"
@@ -29,3 +29,5 @@ export default ({ isHovered, ...props }) => (
     </g>
   </svg>
 )
+
+export default Logo

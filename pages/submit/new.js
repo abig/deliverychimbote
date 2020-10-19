@@ -4,7 +4,7 @@ import Footer from '../../components/Footer'
 import TermsDialog from '../../components/TermsDialog'
 import { NextSeo } from 'next-seo'
 
-export default () => {
+const SubmitNew = () => {
   return (
     <>
       <NextSeo title="Registrar Negocio" />
@@ -28,3 +28,5 @@ export default () => {
     </>
   )
 }
+
+export default SubmitNew
