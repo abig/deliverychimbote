@@ -9,7 +9,7 @@ import ListItem from '../../components/ListItem'
 import { ArrowRight } from 'react-feather'
 import { NextSeo } from 'next-seo'
 
-export default () => {
+const SubmitIndex = () => {
   const { language } = useContext(LanguageContext)
   const content = pageContent[language]
 
@@ -17,9 +17,9 @@ export default () => {
     <>
       <NextSeo title="Registra tu negocio" />
       <div className="min-h-screen flex flex-col">
-        <Nav maint={true} />
-        <main className="flex-auto px-3 md:pr-0 pt-8 lg:pt-0 pb-16">
-          <div className="max-w-6xl flex flex-wrap items-center md:overflow-hidden mx-auto">
+        <Nav />
+        <main className="flex-auto px-3 md:pr-0 pt-8 pb-16">
+          <div className="max-w-6xl flex flex-wrap items-center mx-auto">
             <div className="flex-auto w-128 md:flex-shrink-0 lg:pr-8 mb-4 lg:mb-0">
               <h1 className="max-w-xl font-bold uppercase text-4xl leading-none mb-6 mt-8">
                 {content.titleBlue}{' '}
@@ -77,18 +77,20 @@ const pageContent = {
     more: '¿Necesitas ayuda? Escríbenos: ',
     register: 'Registra tu negocio',
     demo: {
-      name: 'Tu Negocio',
-      address: 'Av. Avenida 123 - Urb. Urbanización',
-      description: 'Los datos que ingreses de tu negocio entrarían en una tarjeta similar a esta.',
-      district: ['Distrito 1', 'Distrito 2'],
-      zones: ['Zona 1', 'Zona 2', 'Zona 3'],
-      offerings: ['Producto 1', 'Producto 2', 'Producto 3', 'Producto 4'],
-      delivery: true,
-      phone: '123456789',
-      url: 'https://example.com',
-      whatsapp: true,
-      email: 'tucorreo@tunegocio.com',
-      hours: 'Lunes a Sábado de 00:00am a 00:00pm'
+      ["Nombre"]: 'Tu Negocio',
+      ["Dirección"]: 'Av. Avenida 123 - Urb. Urbanización',
+      ["Descripción"]: 'Los datos que ingreses de tu negocio entrarían en una tarjeta similar a esta.',
+      ["Distritos"]: ['Distrito 1', 'Distrito 2'],
+      ["Urbanizaciones"]: ['Zona 1', 'Zona 2', 'Zona 3'],
+      ["Ofertas"]: ['Producto 1', 'Producto 2', 'Producto 3', 'Producto 4'],
+      ["Delivery"]: true,
+      ["Teléfono"]: '123456789',
+      ["URL"]: 'https://example.com',
+      ["WhatsApp"]: true,
+      ["Email"]: 'tucorreo@tunegocio.com',
+      ["Horario de Atención"]: 'Lunes a Sábado de 00:00am a 00:00pm'
     }
   }
 }
+
+export default SubmitIndex

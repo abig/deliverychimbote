@@ -20,17 +20,17 @@ const pageContent = {
   }
 }
 
-export default ({ items }) => {
+const MapPage = ({ items }) => {
   const { language } = useContext(LanguageContext)
   const content = pageContent[language]
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(false)
   let hash = typeof window !== "undefined"
     ? location.hash
     : undefined
 
   const handleHashChange = () => {
     hash = location.hash
-    if (hash) setActive(items.find(item => slugify(item.name.toLowerCase()) === hash.substr(1)))
+    if (hash) setActive(items.find(item => slugify(item["Nombre"].toLowerCase()) === hash.substr(1)))
     else setActive(false)
   }
 
@@ -59,6 +59,8 @@ export default ({ items }) => {
   )
 }
 
+export default MapPage
+
 export async function getStaticProps() {
   const airtableApiKey = process.env.AIRTABLE_API_KEY
   const airtableBaseKey = process.env.AIRTABLE_BASE_KEY
@@ -69,40 +71,76 @@ export async function getStaticProps() {
       : undefined
 
   const Airtable = require('airtable')
+
   const airtable = new Airtable({
     apiKey: airtableApiKey,
   }).base(airtableBaseKey)
-  const base = await airtable('Negocios')
+  const base = airtable('Negocios')
+  
   const records = await base
     .select({
       fields: [
-        "name", "address", "pluscode", "description", "district", "zones", "businesstype",
-        "offerings", "delivery", "email", "phone", "whatsapp", "secondaryphone", "secondarywhatsapp",
-        "url", "display", "hours"
+        "Nombre", "Dirección", "Código Plus", "Geocode JSON", "Descripción",
+        "Distritos", "Ofertas", "Delivery", "Teléfono", "WhatsApp", "URL"
       ],
+      filterByFormula: "{Mostrar} = '1'",
       maxRecords: 999999, // don't want to paginate...
       view: 'Grid view', // NOTE: changing the view name will break things
     })
     .all()
-  const items = await Promise.all(records.map(record => record.fields))
 
-  let i = -1
-  for await (let item of items) {
-    i++
-    const query = item.pluscode
-      ? item.pluscode
-      : item.address + " " + item.district
-    const res = await fetch(
-      'https://maps.googleapis.com/maps/api/geocode/json?address=' +
-        encodeURIComponent(query) + 
-        '&key=' +
-        googleMapsApiKey
-    ).catch(err => {
-      console.log(err)
-    })
-    const positionData = await res.json()
-    if (positionData) items[i].positionData = positionData
+  const recordsToUpdate = []
+
+  const items = await Promise.all(records.map(async ({ id, fields }) => {
+    const item = fields
+
+    if (!item["Geocode JSON"]) {
+      const positionData = await fetch(getMapsUrl(item, googleMapsApiKey))
+        .then(res => JSON.parse(res))
+        .catch(err => console.log(err))
+
+      if (positionData) {
+        item["Geocode JSON"] = positionData
+
+        recordsToUpdate.push({
+          id,
+          fields: {
+            ["Geocode JSON"]: JSON.stringify(positionData)
+          }
+        })
+      }
+    } else {
+      item["Geocode JSON"] = JSON.parse(item["Geocode JSON"])
+    }
+
+    return item
+  }))
+
+  for (let i = 0; i < recordsToUpdate.length; i += 10) {
+    await base.update(recordsToUpdate.slice(i, i + 10))
+      .catch(err => console.log(err))
   }
 
   return { props: { items } }
+}
+
+const getMapsUrl = (record, mapsApiKey) => {
+  if (!record || !mapsApiKey)
+    return ""
+
+  const district = Array.isArray(record["Distritos"])
+    ? record["Distritos"][0]
+    : record["Distritos"]
+
+  const query = Object.prototype.hasOwnProperty.call(record, "Código Plus")
+    ? record["Código Plus"]
+    : record["Dirección"] + " " + district
+
+  const url =
+    "https://maps.googleapis.com/maps/api/geocode/json?address=" +
+    encodeURIComponent(query) +
+    "&key=" +
+    mapsApiKey
+
+  return url
 }

@@ -19,40 +19,40 @@ const pageContent = {
   }
 }
 
-export default ({ item, standalone }) => {
+const ListItem = ({ item, standalone }) => {
   const { language } = useContext(LanguageContext)
   const content = pageContent[language]
 
-  const name = item.name || undefined
-  const address = item.address || undefined
-  const description = item.description || undefined
-  const district = item.district || undefined
-  const zones = item.zones || undefined
-  const offers = item.offerings || undefined
-  const delivery = item.delivery || false
-  const phone = item.phone
-    ? item.phone.includes("+51")
-      ? item.phone
-      : "+51" + item.phone
+  const name = item["Nombre"] || undefined
+  const address = item["Dirección"] || undefined
+  const description = item["Descripción"] || undefined
+  const districts = item["Distritos"] || undefined
+  const zones = item["Urbanizaciones"] || undefined
+  const offers = item["Ofertas"] || undefined
+  const delivery = item["Delivery"] || false
+  const phone = item["Teléfono"]
+    ? item["Teléfono"].includes("+51")
+      ? item["Teléfono"]
+      : "+51" + item["Teléfono"]
     : undefined
-  const url = item.url || undefined
-  const whatsapp = item.whatsapp || undefined
-  const email = item.email
-    ? item.email.toLowerCase()
+  const url = item["URL"] || undefined
+  const whatsapp = item["WhatsApp"] || undefined
+  const email = item["Email"]
+    ? item["Email"].toLowerCase()
     : undefined
-  const addrQuery = item.pluscode
-    ? encodeURIComponent(item.pluscode)
-    : encodeURIComponent(item.address)
-  const hours = item.hours || undefined
+  const addrQuery = item["Código Plus"]
+    ? encodeURIComponent(item["Código Plus"])
+    : encodeURIComponent(item["Dirección"])
+  const hours = item["Horario de Atención"] || undefined
 
   const [zoneCollapse, setZoneCollapse] = useState(false)
 
   return (
     <li className={!standalone ? 'w-full md:w-1/2 p-3' : 'list-none'} id={slugify(name.toLowerCase())}>
-      <div className="rounded box-shadow relative h-full flex flex-col items-start border border-sand overflow-hidden p-4 sm:p-8 lg:px-12">
+      <div className="rounded box-shadow relative h-full flex flex-col items-start border border-alice-blue overflow-hidden p-4 sm:p-8 lg:px-12">
         <div className="flex-auto">
           {name && <h3 className="uppercase font-bold text-xl sm:text-2xl">{name}</h3>}
-          {district && district.length && <p className="text-xs sm:text-sm mb-4">{district.join(", ")}</p>}
+          {districts && districts.length && <p className="text-xs sm:text-sm mb-4">{districts.join(", ")}</p>}
           {address &&
             <p className="text-sm mb-2">
               <OutboundLink
@@ -166,3 +166,5 @@ export default ({ item, standalone }) => {
     </li>
   )
 }
+
+export default ListItem

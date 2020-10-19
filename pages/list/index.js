@@ -38,7 +38,7 @@ const FilterLabel = ({ handleChange, isChecked, label }) => (
   </label>
 )
 
-export default ({ items }) => {
+const List = ({ items }) => {
   const { language } = useContext(LanguageContext)
   const content = pageContent[language]
 
@@ -198,23 +198,22 @@ export default ({ items }) => {
                   // Filter for necessary content
                   .filter(
                     item =>
-                      item.display &&
-                      item.name &&
-                      item.description &&
-                      item.district &&
-                      item.address 
+                      item["Nombre"] &&
+                      item["Descripción"] &&
+                      item["Distritos"] &&
+                      item["Dirección"]
                   )
                   // Filter for district
                   .filter(item =>
                     filterDistrict
-                      ? item.district.includes(filterDistrict)
+                      ? item["Distritos"].includes(filterDistrict)
                       : true  
                   )
                   // Filter for zones
                   .filter(item =>
                     filterZone && filterZone.length
                       ? filterZone.some(zone =>
-                          item.zones.includes(filterDistrict + ": " + zone)
+                          item["Urbanizaciones"].includes(filterDistrict + ": " + zone)
                         )
                       : true
                   )
@@ -222,7 +221,7 @@ export default ({ items }) => {
                   .filter(item =>
                     filterTypes && filterTypes.length
                       ? filterTypes.some(type =>
-                          item.businesstype.includes(type)
+                          item["Tipo de Negocio"].includes(type)
                         )
                       : true
                   )
@@ -230,13 +229,13 @@ export default ({ items }) => {
                   .filter(item =>
                     filterOffers && filterOffers.length
                       ? filterOffers.some(offer =>
-                          item.offerings.includes(offer)
+                          item["Ofertas"].includes(offer)
                         )
                       : true
                   )
                   // Filter for delivery
                   .filter(item =>
-                    filterDelivery ? item.delivery : true
+                    filterDelivery ? item["Delivery"] : true
                   )
                   .map((item, index) => (
                     <ListItem
@@ -258,6 +257,8 @@ export default ({ items }) => {
   )
 }
 
+export default List
+
 export async function getStaticProps() {
   const airtableApiKey = process.env.AIRTABLE_API_KEY
   const airtableBaseKey = process.env.AIRTABLE_BASE_KEY
@@ -266,18 +267,21 @@ export async function getStaticProps() {
   const airtable = new Airtable({
     apiKey: airtableApiKey,
   }).base(airtableBaseKey)
-  const base = await airtable('Negocios')
+  const base = airtable('Negocios')
+
   const records = await base
     .select({
       fields: [
-        "name", "address", "pluscode", "description", "district", "zones", "businesstype",
-        "offerings", "delivery", "email", "phone", "whatsapp", "secondaryphone", "secondarywhatsapp",
-        "url", "display", "hours"
+        "Nombre", "Dirección", "Código Plus", "Descripción", "Distritos", "Urbanizaciones",
+        "Tipo de Negocio", "Ofertas", "Delivery", "Email", "Teléfono", "WhatsApp", "URL",
+        "Horario de Atención"
       ],
+      filterByFormula: "{Mostrar} = '1'",
       maxRecords: 999999, // don't want to paginate...
       view: 'Grid view', // NOTE: changing the view name will break things
     })
     .all()
+
   const items = await Promise.all(
     records.sort(() => 0.5 - Math.random()).map(record => record.fields)
   )

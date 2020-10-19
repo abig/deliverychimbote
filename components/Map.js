@@ -9,7 +9,16 @@ import LoadingSpinner from './LoadingSpinner'
 import Link from 'next/link'
 import slugify from 'slugify'
 
-export default ({ items, content, active }) => {
+const getGeocodeJson = record => {
+  const field = record && record["Geocode JSON"]
+  if (
+    field && field.results && !!field.results.length &&
+    field.results[0].geometry && field.results[0].geometry.location
+  ) return field.results[0].geometry.location
+  return false
+}
+
+const Map = ({ items, content, active }) => {
   const [tooltip, setTooltip] = useState(false)
   const [center, setCenter] = useState({
     lat: -9.1067845,
@@ -18,11 +27,12 @@ export default ({ items, content, active }) => {
 
   useEffect(
     () => {
-      if (active && active.positionData && active.positionData.results && !!active.positionData.results.length && active.positionData.results[0].geometry && active.positionData.results[0].geometry.location) {
+      const geocode = getGeocodeJson(active)
+      if (geocode) {
         setTooltip(active)
         setCenter({
-          lat: active.positionData.results[0].geometry.location.lat - (-0.001),
-          lng: active.positionData.results[0].geometry.location.lng
+          lat: geocode.lat - (-0.001),
+          lng: geocode.lng
         })
       } else {
         setTooltip(false)
@@ -53,23 +63,17 @@ export default ({ items, content, active }) => {
         >
           <Tooltip
             tooltip={tooltip}
-            setTooltip={setTooltip}
             content={content}
           />
           {items.map(item => {
-            const position =
-              item &&
-              item.positionData &&
-              item.positionData.results &&
-              !!item.positionData.results.length &&
-              item.positionData.results[0].geometry &&
-              item.positionData.results[0].geometry.location
-            if (item.display && position)
+            const name = item["Nombre"]
+            const position = getGeocodeJson(item)
+            if (position)
               return (
                 <Marker
-                  key={item.name}
+                  key={name}
                   position={position}
-                  onClick={() => location.hash = slugify(item.name.toLowerCase())}
+                  onClick={() => location.hash = slugify(name.toLowerCase())}
                 />
               )
             return null
@@ -84,30 +88,23 @@ export default ({ items, content, active }) => {
   )
 }
 
-const Tooltip = ({ tooltip, setTooltip, content }) => {
-  const name = tooltip.name || undefined
-  const description = tooltip.description
-    ? tooltip.description.length > 140
-      ? tooltip.description.slice(0, 140) + ' ...'
-      : tooltip.description
+const Tooltip = ({ tooltip, content }) => {
+  const name = tooltip["Nombre"] || undefined
+  const description = tooltip["Descripción"]
+    ? tooltip["Descripción"].length > 140
+      ? tooltip["Descripción"].slice(0, 140) + ' ...'
+      : tooltip["Descripción"]
     : undefined
-  const offers = tooltip.offerings || undefined
-  const delivery = tooltip.delivery || false
-  const phone = tooltip.phone
-    ? tooltip.phone.includes("+51")
-      ? tooltip.phone
-      : "+51" + tooltip.phone
+  const offers = tooltip["Ofertas"] || undefined
+  const delivery = tooltip["Delivery"] || false
+  const phone = tooltip["Teléfono"]
+    ? tooltip["Teléfono"].includes("+51")
+      ? tooltip["Teléfono"]
+      : "+51" + tooltip["Teléfono"]
     : undefined
-  const url = tooltip.url || undefined
-  const whatsapp = tooltip.whatsapp || undefined
-  const position =
-    (tooltip &&
-      tooltip.positionData &&
-      tooltip.positionData.results &&
-      !!tooltip.positionData.results.length &&
-      tooltip.positionData.results[0].geometry &&
-      tooltip.positionData.results[0].geometry.location) ||
-    false
+  const url = tooltip["URL"] || undefined
+  const whatsapp = tooltip["WhatsApp"] || undefined
+  const position = getGeocodeJson(tooltip)
   return (
     <AnimatePresence>
       {tooltip && position && (
@@ -123,7 +120,7 @@ const Tooltip = ({ tooltip, setTooltip, content }) => {
             exit={{ opacity: 0, y: -32 }}
             className="relative flex justify-center"
           >
-            <div className="absolute bottom-0 w-96 bg-sand-light px-8 py-6">
+            <div className="absolute bottom-0 w-96 bg-alice-blue rounded box-shadow px-8 py-6">
               <button
                 type="button"
                 onClick={() => location.hash = ""}
@@ -188,7 +185,7 @@ const Tooltip = ({ tooltip, setTooltip, content }) => {
               <div className="absolute inset-x-0 bottom-0 flex justify-center">
                 <div
                   style={{ transform: 'rotate(45deg)' }}
-                  className="bg-sand-light p-2 -mb-1"
+                  className="bg-alice-blue p-2 -mb-1"
                 />
               </div>
             </div>
@@ -198,3 +195,5 @@ const Tooltip = ({ tooltip, setTooltip, content }) => {
     </AnimatePresence>
   )
 }
+
+export default Map
