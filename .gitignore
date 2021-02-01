@@ -17,6 +17,7 @@
 
 # misc
 .DS_Store
+.env.local
 .env
 .env.build
 
@@ -26,8 +27,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # VS Code
-.vscode/
+*.code-workspace
 
+# Vercel
 .now
-
 .vercel

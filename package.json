@@ -3,41 +3,39 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 8190",
+    "dev": "next dev -p 4000",
     "build": "next build",
     "build:prod": "NODE_ENV=production next build",
-    "start": "next start",
+    "start": "next start -p 4000",
+    "start:prod": "NODE_ENV=production next start -p 4000",
     "export": "next build && next export"
   },
   "dependencies": {
-    "@react-google-maps/api": "^1.9.0",
-    "@svgr/webpack": "^4.3.3",
+    "@react-google-maps/api": "^2.1.1",
     "@tailwindcss/custom-forms": "^0.2.1",
     "airtable": "^0.10.0",
     "cssnano": "^4.1.10",
-    "dotenv": "^8.2.0",
-    "framer-motion": "^1.10.3",
+    "framer-motion": "^3.2.2-rc.1",
     "gray-matter": "^4.0.2",
     "isomorphic-unfetch": "^3.0.0",
     "local-storage": "^2.0.0",
-    "next": "^9.5.5",
+    "next": "^10.0.6",
     "next-seo": "^4.7.3",
     "promise-polyfill": "^8.1.3",
-    "raw-loader": "^4.0.1",
-    "react": "16.12.0",
-    "react-dom": "16.12.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "react-feather": "^2.0.8",
-    "react-ga": "^2.7.0",
-    "react-markdown": "^4.3.1",
+    "react-ga": "^3.3.0",
     "react-obfuscate": "^3.6.7",
     "slugify": "^1.4.4",
     "tailwindcss": "^1.4.4"
   },
   "devDependencies": {
-    "prettier": "^1.19.1"
+    "prettier": "^2.2.1"
   },
   "prettier": {
     "trailingComma": "es5",
+    "arrowParens": "avoid",
     "tabWidth": 2,
     "semi": false,
     "singleQuote": true
