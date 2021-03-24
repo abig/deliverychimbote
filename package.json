@@ -13,7 +13,10 @@
     "dev": "next dev -p 4000",
     "build": "NODE_ENV=production next build",
     "start": "NODE_ENV=production next start -p 4000",
-    "export": "next build && next export"
+    "export": "next build && next export",
+    "analyze": "NODE_ENV=production ANALYZE=true next build",
+    "analyze:server": "NODE_ENV=production BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "NODE_ENV=production BUNDLE_ANALYZE=server next build"
   },
   "dependencies": {
     "@react-google-maps/api": "^2.1.1",
@@ -35,5 +38,7 @@
     "slugify": "^1.5.0",
     "tailwindcss": "^1.4.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@next/bundle-analyzer": "^10.0.9"
+  }
 }
