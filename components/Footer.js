@@ -124,9 +124,9 @@ const Footer = () => {
           <span>{content.os}</span>
           <ArrowRight className="h-5" />
           <OutboundLink
-            eventLabel="https://github.com/dalbitresb12/deliverychimbote"
+            eventLabel="https://github.com/abig/deliverychimbote"
             className="ml-1"
-            to="https://github.com/dalbitresb12/deliverychimbote"
+            to="https://github.com/abig/deliverychimbote"
             target="_blank"
             rel="noopener noreferrer"
           >
