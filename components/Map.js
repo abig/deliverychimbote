@@ -120,7 +120,7 @@ const Tooltip = ({ tooltip, content }) => {
             exit={{ opacity: 0, y: -32 }}
             className="relative flex justify-center"
           >
-            <div className="absolute bottom-0 w-96 bg-alice-blue rounded box-shadow px-8 py-6">
+            <div className="absolute bottom-0 w-96 bg-alice-blue rounded shadow-md px-8 py-6">
               <button
                 type="button"
                 onClick={() => location.hash = ""}
@@ -142,7 +142,7 @@ const Tooltip = ({ tooltip, content }) => {
                     </li>
                   ))}
                   {offers.length > 5 &&
-                    <li className="inline-block font-medium bg-sand px-2 py-1 m-1">{content.more}...</li>
+                    <li className="inline-block font-medium rounded bg-sand px-2 py-1 m-1">{content.more}...</li>
                   }
                 </ul>
               )}

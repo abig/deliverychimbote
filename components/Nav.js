@@ -27,13 +27,13 @@ const Nav = () => {
   const { language } = useContext(LanguageContext);
 
   return (
-    <nav className="px-3 py-6 border-t-4 border-orange box-shadow">
+    <nav className="px-3 py-6 border-t-4 border-orange">
       <div className="max-w-6xl flex items-center mx-auto">
         <div className="flex-auto flex items-center -mx-3">
           <Link href="/">
             <a className="inline-flex items-center ml-3 sm:mr-6">
               <Logo className="h-20 stroke-none sm:mr-2" />
-              <h2 className="hidden sm:inline-block font-fredoka-one font-spacing-1 uppercase text-2xl">
+              <h2 className="hidden sm:inline-block font-fredoka-one tracking-wider uppercase text-2xl">
                 Delivery Chimbote
               </h2>
             </a>

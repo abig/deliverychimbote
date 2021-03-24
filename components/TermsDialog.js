@@ -1,33 +1,40 @@
-import Router from 'next/router';
 import { LanguageContext } from '../components/LanguageSelector';
-import {get, set} from 'local-storage';
+import * as localStorage from 'local-storage';
 import { useEffect, useContext, useState } from 'react';
+import Link from 'next/link';
 
 const TermsDialog = () => {
   const { language } = useContext(LanguageContext);
   const content = pageContent[language];
-  const [termsAccepted, setTermsAccepted] = useState(get("terms_accepted"));
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
-  useEffect(
-    () => {
-      set("terms_accepted", termsAccepted);
-    },
-    [termsAccepted]
-  );
+  useEffect(() => {
+    const value = localStorage.get('terms_accepted');
+    setTermsAccepted(value);
+  }, []);
+
+  useEffect(() => {
+    const currentValue = localStorage.get('terms_accepted');
+    if (currentValue !== termsAccepted) {
+      localStorage.set('terms_accepted', termsAccepted);
+    }
+  }, [termsAccepted]);
 
   return (
     <>
       {!termsAccepted &&
-        <div id="dialog" className="box-shadow">
+        <div id="dialog" className="shadow-lg">
           <div className="dialog-overlay" />
           <div className="dialog-content">
             <span className="text-white">
               {content.text}
             </span>
-            <button className="rounded box-shadow btn btn-primary mx-4 text-white" onClick={() => Router.push("/terms")}>
-              {content.read}
-            </button>
-            <button className="rounded box-shadow btn btn-secondary text-white" onClick={() => setTermsAccepted(true)}>
+            <Link href="/terms">
+              <button className="rounded shadow-md btn btn-primary mx-4 text-white">
+                {content.read}
+              </button>
+            </Link>
+            <button className="rounded shadow-md btn btn-secondary text-white" onClick={() => setTermsAccepted(true)}>
               {content.accept}
             </button>
           </div>

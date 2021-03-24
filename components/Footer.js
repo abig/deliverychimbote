@@ -61,16 +61,16 @@ const Footer = () => {
     <footer className="px-3">
       <div className="max-w-6xl border-t-2 border-sand mx-auto">
         <Social size={32} strokeWidth={1.5} className="mt-10 mb-4 w-32 flex justify-between" />
-        <Link href="/about">
-          <button className="block sm:hidden font-medium underline leading-normal">
+        <Link href="/about" passHref>
+          <a className="block sm:hidden font-medium underline leading-normal">
             {content.about}
-          </button>
+          </a>
         </Link>
         <div className="mb-4">
-          <Link href="/terms">
-            <button className="font-medium underline leading-normal">
+          <Link href="/terms" passHref>
+            <a className="font-medium underline leading-normal">
               {content.terms}
-            </button>
+            </a>
           </Link>
         </div>
         <p className="mb-4">

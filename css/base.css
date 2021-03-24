@@ -6,9 +6,10 @@
 /* Boilerplate */
 
 html {
-  @apply antialiased font-inter leading-tight text-indigo smooth-scroll;
+  @apply antialiased font-inter leading-tight text-indigo;
 
   font-feature-settings: 'liga' 1;
+  scroll-behavior: smooth;
 }
 
 @supports (font-variation-settings: normal) {
@@ -22,8 +23,7 @@ body {
 }
 
 svg {
-  height: 1em;
-  width: auto;
+  @apply h-4 w-auto;
 }
 
 svg * {
@@ -46,12 +46,12 @@ a {
 
 a,
 button {
-  @apply transition duration-150 ease-in-out;
+  @apply transition duration-150 ease-in-out focus:outline-none focus:ring;
 }
 
-a:focus,
-button:focus {
-  @apply outline-none shadow-outline;
+a[disabled],
+button[disabled] {
+  pointer-events: none;
 }
 
 h1,
@@ -90,18 +90,6 @@ p > a {
 @tailwind utilities;
 
 /* Custom utilities */
-
-.smooth-scroll {
-  scroll-behavior: smooth;
-}
-
-.font-spacing-1 {
-  letter-spacing: 1px;
-}
-
-a[disabled] {
-  pointer-events: none;
-}
 
 #terms ol,
 #terms ul {

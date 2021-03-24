@@ -190,7 +190,7 @@ const List = ({ items }) => {
                   type="checkbox"
                   checked={filterDelivery}
                   onChange={() => setFilterDelivery(!filterDelivery)}
-                  className="form-checkbox"
+                  className="bg-sand-light border-2 border-indigo rounded-none focus:border-indigo focus:ring checked:bg-indigo"
                 />
               </label>
               <ul className="flex flex-wrap -m-3">

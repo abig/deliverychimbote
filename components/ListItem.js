@@ -49,7 +49,7 @@ const ListItem = ({ item, standalone }) => {
 
   return (
     <li className={!standalone ? 'w-full md:w-1/2 p-3' : 'list-none'} id={slugify(name.toLowerCase())}>
-      <div className="rounded box-shadow relative h-full flex flex-col items-start border border-alice-blue overflow-hidden p-4 sm:p-8 lg:px-12">
+      <div className="rounded shadow-lg relative h-full flex flex-col items-start border border-alice-blue overflow-hidden p-4 sm:p-8 lg:px-12">
         <div className="flex-auto">
           {name && <h3 className="uppercase font-bold text-xl sm:text-2xl">{name}</h3>}
           {districts && districts.length && <p className="text-xs sm:text-sm mb-4">{districts.join(", ")}</p>}

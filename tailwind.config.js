@@ -23,48 +23,27 @@ module.exports = {
       'fredoka-one':
         '"Fredoka One", cursive, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
     },
+    screens: {
+      'sm': '576px',
+      'md': '768px',
+      'lg': '992px',
+      'xl': '1200px',
+      '2xl': '1536px',
+    },
     extend: {
-      boxShadow: {
-        outline: '0 0 0 2px #f582ae',
-      },
       spacing: {
-        '80': '20rem',
-        '96': '24rem',
         '128': '32rem',
       },
     },
-    customForms: theme => ({
-      default: {
-        'checkbox, input, multiselect, radio, select, textarea': {
-          backgroundColor: theme('color.sand-light'),
-          borderColor: theme('colors.indigo'),
-          borderRadius: theme('borderRadius.none'),
-          borderWidth: theme('borderWidth.2'),
-          '&:focus': {
-            borderColor: theme('colors.indigo'),
-            boxShadow: theme('boxShadow.outline'),
-          },
-        },
-        'checkbox, radio': {
-          '&:checked': {
-            backgroundColor: theme('colors.indigo'),
-          },
-        },
-        'input, multiselect, select, textarea': {
-          width: theme('width.full'),
-        },
-      },
-    }),
-    screens: {
-      'sm': {'min': '576px'},
-      'md': {'min': '768px'},
-      'lg': {'min': '992px'},
-      'xl': {'min': '1200px'}
-    }
   },
   variants: {
-    margin: ['responsive', 'last'],
-    textColor: ['responsive', 'hover', 'focus', 'group-hover'],
+    extends: {
+      margin: ['responsive', 'last'],
+      textColor: ['responsive', 'hover', 'focus', 'group-hover'],
+      backgroundColor: ['checked'],
+    }
   },
-  plugins: [require('@tailwindcss/custom-forms')]
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 };
