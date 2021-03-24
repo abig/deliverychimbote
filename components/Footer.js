@@ -1,8 +1,8 @@
-import { useContext } from 'react'
-import { LanguageContext } from './LanguageSelector'
-import Link from 'next/link'
-import { Facebook, Instagram, Twitter, ArrowRight } from 'react-feather'
-import { OutboundLink } from 'react-ga'
+import { useContext } from 'react';
+import { LanguageContext } from './LanguageSelector';
+import Link from 'next/link';
+import { Facebook, Instagram, Twitter, ArrowRight } from 'react-feather';
+import { OutboundLink } from 'react-ga';
 
 const pageContent = {
   'es-PE': {
@@ -14,7 +14,7 @@ const pageContent = {
     about: 'Nosotros',
     terms: 'Términos y Condiciones'
   }
-}
+};
 
 const socialData = {
   facebook: {
@@ -32,12 +32,12 @@ const socialData = {
     className: 'text-twitter',
     icon: Twitter,
   },
-}
+};
 
 const Social = ({ size, strokeWidth, ...props }) => (
   <div {...props}>
     {Object.keys(socialData).map(social => {
-      const { url, className, icon: Icon } = socialData[social]
+      const { url, className, icon: Icon } = socialData[social];
       return (
         <OutboundLink
           key={social}
@@ -49,14 +49,14 @@ const Social = ({ size, strokeWidth, ...props }) => (
         >
           <Icon className="h-auto" size={size} strokeWidth={strokeWidth} />
         </OutboundLink>
-      )
+      );
     })}
   </div>
-)
+);
 
 const Footer = () => {
-  const { language } = useContext(LanguageContext)
-  const content = pageContent[language]
+  const { language } = useContext(LanguageContext);
+  const content = pageContent[language];
   return (
     <footer className="px-3">
       <div className="max-w-6xl border-t-2 border-sand mx-auto">
@@ -135,7 +135,7 @@ const Footer = () => {
         </p>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

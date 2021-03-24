@@ -1,15 +1,15 @@
-import { useContext } from 'react'
-import { LanguageContext } from '../components/LanguageSelector'
-import Nav from '../components/Nav'
-import Footer from '../components/Footer'
-import Obfuscate from 'react-obfuscate'
-import { Event } from '../components/Analytics'
-import Link from 'next/link'
-import { NextSeo } from 'next-seo'
+import { useContext } from 'react';
+import { LanguageContext } from '../components/LanguageSelector';
+import Nav from '../components/Nav';
+import Footer from '../components/Footer';
+import Obfuscate from 'react-obfuscate';
+import { Event } from '../components/Analytics';
+import Link from 'next/link';
+import { NextSeo } from 'next-seo';
 
 const Terms = () => {
-  const { language } = useContext(LanguageContext)
-  const content = pageContent[language]
+  const { language } = useContext(LanguageContext);
+  const content = pageContent[language];
 
   return (
     <>
@@ -120,8 +120,8 @@ const Terms = () => {
         <Footer />
       </div>
     </>
-  )
-}
+  );
+};
 
 const pageContent = {
   'es-PE': {
@@ -129,6 +129,6 @@ const pageContent = {
     label: 'Actualizado: Junio 2020.',
     contact: 'Consultas y comentarios sobre la página web: ',
   }
-}
+};
 
-export default Terms
+export default Terms;

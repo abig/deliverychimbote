@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
 
 const LoadingSpinner = () => (
   <motion.svg
@@ -27,6 +27,6 @@ const LoadingSpinner = () => (
       d="M1,12a11,11 0 1,0 22,0a11,11 0 1,0 -22,0"
     />
   </motion.svg>
-)
+);
 
-export default LoadingSpinner
+export default LoadingSpinner;

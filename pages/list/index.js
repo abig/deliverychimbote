@@ -1,12 +1,12 @@
-import { useContext, useState, useEffect } from 'react'
-import Promise from 'promise-polyfill'
-import { LanguageContext } from '../../components/LanguageSelector'
-import Nav from '../../components/Nav'
-import Footer from '../../components/Footer'
-import LoadingSpinner from '../../components/LoadingSpinner'
-import { FiltersList } from '../../components/FiltersList'
-import ListItem from '../../components/ListItem'
-import { NextSeo } from 'next-seo'
+import { useContext, useState } from 'react';
+import Promise from 'promise-polyfill';
+import { LanguageContext } from '../../components/LanguageSelector';
+import Nav from '../../components/Nav';
+import Footer from '../../components/Footer';
+import LoadingSpinner from '../../components/LoadingSpinner';
+import { FiltersList } from '../../components/FiltersList';
+import ListItem from '../../components/ListItem';
+import { NextSeo } from 'next-seo';
 
 const pageContent = {
   'es-PE': {
@@ -19,7 +19,7 @@ const pageContent = {
     offersLabel: 'Productos',
     delivery: 'Delivery disponible',
   }
-}
+};
 
 const FilterLabel = ({ handleChange, isChecked, label }) => (
   <label
@@ -36,17 +36,17 @@ const FilterLabel = ({ handleChange, isChecked, label }) => (
     />
     <span className="select-none">{label}</span>
   </label>
-)
+);
 
 const List = ({ items }) => {
-  const { language } = useContext(LanguageContext)
-  const content = pageContent[language]
+  const { language } = useContext(LanguageContext);
+  const content = pageContent[language];
 
-  const [filterDistrict, setFilterDistrict] = useState('')
-  const [filterZone, setFilterZone] = useState([])
-  const [filterTypes, setFilterTypes] = useState([])
-  const [filterOffers, setFilterOffers] = useState([])
-  const [filterDelivery, setFilterDelivery] = useState(false)
+  const [filterDistrict, setFilterDistrict] = useState('');
+  const [filterZone, setFilterZone] = useState([]);
+  const [filterTypes, setFilterTypes] = useState([]);
+  const [filterOffers, setFilterOffers] = useState([]);
+  const [filterDelivery, setFilterDelivery] = useState(false);
 
   if (items)
     return (
@@ -64,14 +64,14 @@ const List = ({ items }) => {
                   {content.districtLabel}
                 </p>
                 {FiltersList.districts.map(district => {
-                  const isChecked = filterDistrict === district
+                  const isChecked = filterDistrict === district;
                   const handleChange = () => {
-                    setFilterZone([])
+                    setFilterZone([]);
                     if (isChecked) {
-                      setFilterDistrict('')
+                      setFilterDistrict('');
                     }
-                    else setFilterDistrict(district)
-                  }
+                    else setFilterDistrict(district);
+                  };
                   return (
                     <FilterLabel
                       key={district}
@@ -79,7 +79,7 @@ const List = ({ items }) => {
                       isChecked={isChecked}
                       label={district}
                     />
-                  )
+                  );
                 })}
               </div>
               <div className="flex flex-wrap items-center -m-1 mb-4">
@@ -88,32 +88,32 @@ const List = ({ items }) => {
                 </p>
                 {filterDistrict
                   ? (
-                      FiltersList.zones[filterDistrict].map(zone => {
-                        const isChecked = filterZone.includes(zone)
-                        const handleChange = () => {
-                          if (isChecked) {
-                            const newZones = [...filterZone]
-                            newZones.splice(newZones.indexOf(zone), 1)
-                            setFilterZone(newZones)
-                          } else {
-                            setFilterZone([...filterZone, zone])
-                          }
+                    FiltersList.zones[filterDistrict].map(zone => {
+                      const isChecked = filterZone.includes(zone);
+                      const handleChange = () => {
+                        if (isChecked) {
+                          const newZones = [...filterZone];
+                          newZones.splice(newZones.indexOf(zone), 1);
+                          setFilterZone(newZones);
+                        } else {
+                          setFilterZone([...filterZone, zone]);
                         }
-                        return (
-                          <FilterLabel
-                            key={zone}
-                            handleChange={handleChange}
-                            isChecked={isChecked}
-                            label={zone}
-                          />
-                        )
-                      })
-                    )
+                      };
+                      return (
+                        <FilterLabel
+                          key={zone}
+                          handleChange={handleChange}
+                          isChecked={isChecked}
+                          label={zone}
+                        />
+                      );
+                    })
+                  )
                   : (
-                      <p className="w-full md:w-auto font-medium m-1 mr-2">
-                        {content.selectDistrict}
-                      </p>
-                    )
+                    <p className="w-full md:w-auto font-medium m-1 mr-2">
+                      {content.selectDistrict}
+                    </p>
+                  )
                 }
               </div>
               <div className="flex flex-wrap items-center -m-1 mb-4">
@@ -121,23 +121,23 @@ const List = ({ items }) => {
                   {content.businessTypeLabel}
                 </p>
                 {FiltersList.businesses.map(type => {
-                  const isChecked = filterTypes.includes(type)
+                  const isChecked = filterTypes.includes(type);
                   const handleChange = () => {
                     if (isChecked) {
-                      const newTypes = [...filterTypes]
-                      newTypes.splice(newTypes.indexOf(type), 1)
-                      setFilterTypes(newTypes)
-                      const newOffers = [...filterOffers]
+                      const newTypes = [...filterTypes];
+                      newTypes.splice(newTypes.indexOf(type), 1);
+                      setFilterTypes(newTypes);
+                      const newOffers = [...filterOffers];
                       filterOffers.forEach(offer => {
                         if (FiltersList.offers[type].indexOf(offer) !== -1) {
-                          newOffers.splice(newOffers.indexOf(offer), 1)
+                          newOffers.splice(newOffers.indexOf(offer), 1);
                         }
-                      })
-                      setFilterOffers(newOffers)
+                      });
+                      setFilterOffers(newOffers);
                     } else {
-                      setFilterTypes([...filterTypes, type])
+                      setFilterTypes([...filterTypes, type]);
                     }
-                  }
+                  };
                   return (
                     <FilterLabel 
                       key={type}
@@ -145,7 +145,7 @@ const List = ({ items }) => {
                       isChecked={isChecked}
                       label={type}
                     />
-                  )
+                  );
                 })}
               </div>
               <div className="w-full flex flex-wrap items-center -m-1 mb-4">
@@ -154,34 +154,34 @@ const List = ({ items }) => {
                 </p>
                 {filterTypes.length
                   ? (
-                      filterTypes.map(type => {
-                        return FiltersList.offers[type].map(offer => {
-                          const isChecked = filterOffers.includes(offer)
-                          const handleChange = () => {
-                            if (isChecked) {
-                              const newOffers = [...filterOffers]
-                              newOffers.splice(newOffers.indexOf(offer), 1)
-                              setFilterOffers(newOffers)
-                            } else {
-                              setFilterOffers([...filterOffers, offer])
-                            }
+                    filterTypes.map(type => {
+                      return FiltersList.offers[type].map(offer => {
+                        const isChecked = filterOffers.includes(offer);
+                        const handleChange = () => {
+                          if (isChecked) {
+                            const newOffers = [...filterOffers];
+                            newOffers.splice(newOffers.indexOf(offer), 1);
+                            setFilterOffers(newOffers);
+                          } else {
+                            setFilterOffers([...filterOffers, offer]);
                           }
-                          return (
-                            <FilterLabel
-                              key={offer}
-                              handleChange={handleChange}
-                              isChecked={isChecked}
-                              label={offer}
-                            />
-                          )
-                        })
-                      })
-                    )
+                        };
+                        return (
+                          <FilterLabel
+                            key={offer}
+                            handleChange={handleChange}
+                            isChecked={isChecked}
+                            label={offer}
+                          />
+                        );
+                      });
+                    })
+                  )
                   : (
-                      <p className="w-full md:w-auto font-medium m-1 mr-2">
-                        {content.selectType}
-                      </p>
-                    )
+                    <p className="w-full md:w-auto font-medium m-1 mr-2">
+                      {content.selectType}
+                    </p>
+                  )
                 }
               </div>
               <label className="inline-flex items-center font-medium cursor-pointer mb-6">
@@ -213,24 +213,24 @@ const List = ({ items }) => {
                   .filter(item =>
                     filterZone && filterZone.length
                       ? filterZone.some(zone =>
-                          item["Urbanizaciones"].includes(filterDistrict + ": " + zone)
-                        )
+                        item["Urbanizaciones"].includes(filterDistrict + ": " + zone)
+                      )
                       : true
                   )
                   // Filter for business type
                   .filter(item =>
                     filterTypes && filterTypes.length
                       ? filterTypes.some(type =>
-                          item["Tipo de Negocio"].includes(type)
-                        )
+                        item["Tipo de Negocio"].includes(type)
+                      )
                       : true
                   )
                   // Filter for offers
                   .filter(item =>
                     filterOffers && filterOffers.length
                       ? filterOffers.some(offer =>
-                          item["Ofertas"].includes(offer)
-                        )
+                        item["Ofertas"].includes(offer)
+                      )
                       : true
                   )
                   // Filter for delivery
@@ -249,25 +249,25 @@ const List = ({ items }) => {
           <Footer />
         </div>
       </>
-    )
+    );
   return (
     <div className="w-full h-full flex items-center justify-center text-3xl text-orange">
       <LoadingSpinner />
     </div>
-  )
-}
+  );
+};
 
-export default List
+export default List;
 
 export async function getStaticProps() {
-  const airtableApiKey = process.env.AIRTABLE_API_KEY
-  const airtableBaseKey = process.env.AIRTABLE_BASE_KEY
+  const airtableApiKey = process.env.AIRTABLE_API_KEY;
+  const airtableBaseKey = process.env.AIRTABLE_BASE_KEY;
 
-  const Airtable = require('airtable')
+  const Airtable = require('airtable');
   const airtable = new Airtable({
     apiKey: airtableApiKey,
-  }).base(airtableBaseKey)
-  const base = airtable('Negocios')
+  }).base(airtableBaseKey);
+  const base = airtable('Negocios');
 
   const records = await base
     .select({
@@ -280,11 +280,11 @@ export async function getStaticProps() {
       maxRecords: 999999, // don't want to paginate...
       view: 'Grid view', // NOTE: changing the view name will break things
     })
-    .all()
+    .all();
 
   const items = await Promise.all(
     records.sort(() => 0.5 - Math.random()).map(record => record.fields)
-  )
+  );
 
-  return { props: { items } }
+  return { props: { items } };
 }

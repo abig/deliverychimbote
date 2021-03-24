@@ -14,6 +14,9 @@
     "build": "NODE_ENV=production next build",
     "start": "NODE_ENV=production next start -p 4000",
     "export": "next build && next export",
+    "lint": "yarn run -s lint:code && yarn run -s lint:css",
+    "lint:code": "eslint --ext .js .",
+    "lint:css": "stylelint **/*.css",
     "analyze": "NODE_ENV=production ANALYZE=true next build",
     "analyze:server": "NODE_ENV=production BUNDLE_ANALYZE=server next build",
     "analyze:browser": "NODE_ENV=production BUNDLE_ANALYZE=server next build"
@@ -39,6 +42,10 @@
     "tailwindcss": "^1.4.4"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^10.0.9"
+    "@next/bundle-analyzer": "^10.0.9",
+    "eslint": "^7.22.0",
+    "eslint-plugin-react": "^7.23.1",
+    "stylelint": "^13.12.0",
+    "stylelint-config-standard": "^21.0.0"
   }
 }

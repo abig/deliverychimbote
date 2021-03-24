@@ -1,8 +1,8 @@
-import Head from 'next/head'
-import Nav from '../../components/Nav'
-import Footer from '../../components/Footer'
-import TermsDialog from '../../components/TermsDialog'
-import { NextSeo } from 'next-seo'
+import Head from 'next/head';
+import Nav from '../../components/Nav';
+import Footer from '../../components/Footer';
+import TermsDialog from '../../components/TermsDialog';
+import { NextSeo } from 'next-seo';
 
 const SubmitNew = () => {
   return (
@@ -26,7 +26,7 @@ const SubmitNew = () => {
         <Footer />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default SubmitNew
+export default SubmitNew;

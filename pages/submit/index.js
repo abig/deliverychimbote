@@ -1,17 +1,17 @@
-import Link from 'next/link'
-import { useContext } from 'react'
-import { LanguageContext } from '../../components/LanguageSelector'
-import Nav from '../../components/Nav'
-import Footer from '../../components/Footer'
-import Obfuscate from 'react-obfuscate'
-import { Event } from '../../components/Analytics'
-import ListItem from '../../components/ListItem'
-import { ArrowRight } from 'react-feather'
-import { NextSeo } from 'next-seo'
+import Link from 'next/link';
+import { useContext } from 'react';
+import { LanguageContext } from '../../components/LanguageSelector';
+import Nav from '../../components/Nav';
+import Footer from '../../components/Footer';
+import Obfuscate from 'react-obfuscate';
+import { Event } from '../../components/Analytics';
+import ListItem from '../../components/ListItem';
+import { ArrowRight } from 'react-feather';
+import { NextSeo } from 'next-seo';
 
 const SubmitIndex = () => {
-  const { language } = useContext(LanguageContext)
-  const content = pageContent[language]
+  const { language } = useContext(LanguageContext);
+  const content = pageContent[language];
 
   return (
     <>
@@ -63,8 +63,8 @@ const SubmitIndex = () => {
         <Footer />
       </div>
     </>
-  )
-}
+  );
+};
 
 const pageContent = {
   'es-PE': {
@@ -91,6 +91,6 @@ const pageContent = {
       ["Horario de Atención"]: 'Lunes a Sábado de 00:00am a 00:00pm'
     }
   }
-}
+};
 
-export default SubmitIndex
+export default SubmitIndex;

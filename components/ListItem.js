@@ -1,12 +1,12 @@
-import { useState, useContext } from 'react'
-import { LanguageContext } from './LanguageSelector'
-import Obfuscate from 'react-obfuscate'
-import WhatsAppLogo from './WhatsAppLogo'
-import { OutboundLink } from 'react-ga'
-import { Event } from './Analytics'
-import slugify from 'slugify'
-import Link from 'next/link'
-import { MapPin, ArrowRight } from 'react-feather'
+import { useState, useContext } from 'react';
+import { LanguageContext } from './LanguageSelector';
+import Obfuscate from 'react-obfuscate';
+import WhatsAppLogo from './WhatsAppLogo';
+import { OutboundLink } from 'react-ga';
+import { Event } from './Analytics';
+import slugify from 'slugify';
+import Link from 'next/link';
+import { MapPin, ArrowRight } from 'react-feather';
 
 const pageContent = {
   'es-PE': {
@@ -17,35 +17,35 @@ const pageContent = {
     webLabel: 'Ir a web',
     seeMap: 'Ver en mapa'
   }
-}
+};
 
 const ListItem = ({ item, standalone }) => {
-  const { language } = useContext(LanguageContext)
-  const content = pageContent[language]
+  const { language } = useContext(LanguageContext);
+  const content = pageContent[language];
 
-  const name = item["Nombre"] || undefined
-  const address = item["Dirección"] || undefined
-  const description = item["Descripción"] || undefined
-  const districts = item["Distritos"] || undefined
-  const zones = item["Urbanizaciones"] || undefined
-  const offers = item["Ofertas"] || undefined
-  const delivery = item["Delivery"] || false
+  const name = item["Nombre"] || undefined;
+  const address = item["Dirección"] || undefined;
+  const description = item["Descripción"] || undefined;
+  const districts = item["Distritos"] || undefined;
+  const zones = item["Urbanizaciones"] || undefined;
+  const offers = item["Ofertas"] || undefined;
+  const delivery = item["Delivery"] || false;
   const phone = item["Teléfono"]
     ? item["Teléfono"].includes("+51")
       ? item["Teléfono"]
       : "+51" + item["Teléfono"]
-    : undefined
-  const url = item["URL"] || undefined
-  const whatsapp = item["WhatsApp"] || undefined
+    : undefined;
+  const url = item["URL"] || undefined;
+  const whatsapp = item["WhatsApp"] || undefined;
   const email = item["Email"]
     ? item["Email"].toLowerCase()
-    : undefined
+    : undefined;
   const addrQuery = item["Código Plus"]
     ? encodeURIComponent(item["Código Plus"])
-    : encodeURIComponent(item["Dirección"])
-  const hours = item["Horario de Atención"] || undefined
+    : encodeURIComponent(item["Dirección"]);
+  const hours = item["Horario de Atención"] || undefined;
 
-  const [zoneCollapse, setZoneCollapse] = useState(false)
+  const [zoneCollapse, setZoneCollapse] = useState(false);
 
   return (
     <li className={!standalone ? 'w-full md:w-1/2 p-3' : 'list-none'} id={slugify(name.toLowerCase())}>
@@ -164,7 +164,7 @@ const ListItem = ({ item, standalone }) => {
         )}
       </div>
     </li>
-  )
-}
+  );
+};
 
-export default ListItem
+export default ListItem;

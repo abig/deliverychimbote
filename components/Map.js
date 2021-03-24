@@ -1,55 +1,55 @@
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { GoogleMap, LoadScriptNext, Marker, OverlayView } from '@react-google-maps/api'
-import { X, ArrowRight } from 'react-feather'
-import { OutboundLink } from 'react-ga'
-import Obfuscate from 'react-obfuscate'
-import WhatsAppLogo from './WhatsAppLogo'
-import LoadingSpinner from './LoadingSpinner'
-import Link from 'next/link'
-import slugify from 'slugify'
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { GoogleMap, LoadScriptNext, Marker, OverlayView } from '@react-google-maps/api';
+import { X, ArrowRight } from 'react-feather';
+import { OutboundLink } from 'react-ga';
+import Obfuscate from 'react-obfuscate';
+import WhatsAppLogo from './WhatsAppLogo';
+import LoadingSpinner from './LoadingSpinner';
+import Link from 'next/link';
+import slugify from 'slugify';
 
 const getGeocodeJson = record => {
-  const field = record && record["Geocode JSON"]
+  const field = record && record["Geocode JSON"];
   if (
     field && field.results && !!field.results.length &&
     field.results[0].geometry && field.results[0].geometry.location
-  ) return field.results[0].geometry.location
-  return false
-}
+  ) return field.results[0].geometry.location;
+  return false;
+};
 
 const Map = ({ items, content, active }) => {
-  const [tooltip, setTooltip] = useState(false)
+  const [tooltip, setTooltip] = useState(false);
   const [center, setCenter] = useState({
     lat: -9.1067845,
     lng: -78.5647257,
-  })
+  });
 
   useEffect(
     () => {
-      const geocode = getGeocodeJson(active)
+      const geocode = getGeocodeJson(active);
       if (geocode) {
-        setTooltip(active)
+        setTooltip(active);
         setCenter({
           lat: geocode.lat - (-0.001),
           lng: geocode.lng
-        })
+        });
       } else {
-        setTooltip(false)
+        setTooltip(false);
         setCenter({
           lat: -9.1067845,
           lng: -78.5647257,
-        })
+        });
       }
     },
     [active]
-  )
+  );
 
   // Reducing number of requests to Maps API
   const restrictedGoogleMapsApiKey =
     process.env.NODE_ENV === 'production'
       ? process.env.RESTRICTED_GOOGLE_MAPS_API_KEY
-      : undefined
+      : undefined;
 
   if (items && !!items.length)
     return (
@@ -66,8 +66,8 @@ const Map = ({ items, content, active }) => {
             content={content}
           />
           {items.map(item => {
-            const name = item["Nombre"]
-            const position = getGeocodeJson(item)
+            const name = item["Nombre"];
+            const position = getGeocodeJson(item);
             if (position)
               return (
                 <Marker
@@ -75,36 +75,36 @@ const Map = ({ items, content, active }) => {
                   position={position}
                   onClick={() => location.hash = slugify(name.toLowerCase())}
                 />
-              )
-            return null
+              );
+            return null;
           })}
         </GoogleMap>
       </LoadScriptNext>
-    )
+    );
   return (
     <div className="w-full h-full flex items-center justify-center text-3xl text-orange">
       <LoadingSpinner />
     </div>
-  )
-}
+  );
+};
 
 const Tooltip = ({ tooltip, content }) => {
-  const name = tooltip["Nombre"] || undefined
+  const name = tooltip["Nombre"] || undefined;
   const description = tooltip["Descripción"]
     ? tooltip["Descripción"].length > 140
       ? tooltip["Descripción"].slice(0, 140) + ' ...'
       : tooltip["Descripción"]
-    : undefined
-  const offers = tooltip["Ofertas"] || undefined
-  const delivery = tooltip["Delivery"] || false
+    : undefined;
+  const offers = tooltip["Ofertas"] || undefined;
+  const delivery = tooltip["Delivery"] || false;
   const phone = tooltip["Teléfono"]
     ? tooltip["Teléfono"].includes("+51")
       ? tooltip["Teléfono"]
       : "+51" + tooltip["Teléfono"]
-    : undefined
-  const url = tooltip["URL"] || undefined
-  const whatsapp = tooltip["WhatsApp"] || undefined
-  const position = getGeocodeJson(tooltip)
+    : undefined;
+  const url = tooltip["URL"] || undefined;
+  const whatsapp = tooltip["WhatsApp"] || undefined;
+  const position = getGeocodeJson(tooltip);
   return (
     <AnimatePresence>
       {tooltip && position && (
@@ -193,7 +193,7 @@ const Tooltip = ({ tooltip, content }) => {
         </OverlayView>
       )}
     </AnimatePresence>
-  )
-}
+  );
+};
 
-export default Map
+export default Map;

@@ -1,19 +1,19 @@
-import Router from 'next/router'
-import { LanguageContext } from '../components/LanguageSelector'
-import {get, set} from 'local-storage'
-import { useEffect, useContext, useState } from 'react'
+import Router from 'next/router';
+import { LanguageContext } from '../components/LanguageSelector';
+import {get, set} from 'local-storage';
+import { useEffect, useContext, useState } from 'react';
 
 const TermsDialog = () => {
-  const { language } = useContext(LanguageContext)
-  const content = pageContent[language]
-  const [termsAccepted, setTermsAccepted] = useState(get("terms_accepted"))
+  const { language } = useContext(LanguageContext);
+  const content = pageContent[language];
+  const [termsAccepted, setTermsAccepted] = useState(get("terms_accepted"));
 
   useEffect(
     () => {
-      set("terms_accepted", termsAccepted)
+      set("terms_accepted", termsAccepted);
     },
     [termsAccepted]
-  )
+  );
 
   return (
     <>
@@ -34,8 +34,8 @@ const TermsDialog = () => {
         </div>
       }
     </>
-  )
-}
+  );
+};
 
 const pageContent = {
   'es-PE': {
@@ -43,6 +43,6 @@ const pageContent = {
     read: 'Ver términos',
     accept: 'Aceptar términos'
   }
-}
+};
 
-export default TermsDialog
+export default TermsDialog;

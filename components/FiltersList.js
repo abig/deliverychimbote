@@ -169,4 +169,4 @@ export const FiltersList = {
     ['Moro']: ["Moro"],
     ['Casma']: ["Casma"]
   }
-}
+};

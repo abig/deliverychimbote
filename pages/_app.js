@@ -1,11 +1,11 @@
-import Head from 'next/head'
-import { useEffect } from 'react'
-import { DefaultSeo } from 'next-seo'
-import { LanguageProvider } from '../components/LanguageSelector'
-import { initGA, logPageView } from '../components/Analytics'
-import '../css/base.css'
+import Head from 'next/head';
+import { useEffect } from 'react';
+import { DefaultSeo } from 'next-seo';
+import { LanguageProvider } from '../components/LanguageSelector';
+import { initGA, logPageView } from '../components/Analytics';
+import '../css/base.css';
 
-const description = "Encuentra negocios en Chimbote que te pueden llevar lo que necesites a la puerta de tu casa."
+const description = "Encuentra negocios en Chimbote que te pueden llevar lo que necesites a la puerta de tu casa.";
 
 const App = ({ Component, pageProps }) => {
 
@@ -13,26 +13,26 @@ const App = ({ Component, pageProps }) => {
     () => {
       if (process.env.NODE_ENV === 'production') {
         if (!window.GA_INITIALIZED) {
-          initGA()
-          window.GA_INITIALIZED = true
+          initGA();
+          window.GA_INITIALIZED = true;
         }
-        logPageView()
+        logPageView();
       }
     },
     [Component]
-  )
+  );
 
   useEffect(
     () => {
       if (process.env.NODE_ENV === 'production') {
-        console.log("¡Hola! ¿Eres un programador chimbotano y tienes sugerencias o quieres ayudar?")
-        console.log("El proyecto está desarrollado usando Next.js y hosteado en Vercel (http://vercel.com/).")
-        console.log("Nuestro código es open-source, puedes encontrarlo en GitHub: https://github.com/dalbitresb12/deliverychimbote.")
-        console.log("Estaremos muy agradecidos si deseas ayudarnos con este proyecto.")
+        console.log("¡Hola! ¿Eres un programador chimbotano y tienes sugerencias o quieres ayudar?");
+        console.log("El proyecto está desarrollado usando Next.js y hosteado en Vercel (http://vercel.com/).");
+        console.log("Nuestro código es open-source, puedes encontrarlo en GitHub: https://github.com/dalbitresb12/deliverychimbote.");
+        console.log("Estaremos muy agradecidos si deseas ayudarnos con este proyecto.");
       }
     },
     []
-  )
+  );
 
   return (
     <>
@@ -66,8 +66,8 @@ const App = ({ Component, pageProps }) => {
         <Component {...pageProps} />
       </LanguageProvider>
     </>
-  )
-}
+  );
+};
 
 // Only uncomment this method if you have blocking data requirements for
 // every single page in your application. This disables the ability to
@@ -81,4 +81,4 @@ const App = ({ Component, pageProps }) => {
 //   return { ...appProps }
 // }
 
-export default App
+export default App;

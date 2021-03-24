@@ -1,9 +1,9 @@
-import { useContext, useState } from 'react'
-import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, ChevronUp, MapPin, List, UserPlus } from 'react-feather'
-import { LanguageContext } from './LanguageSelector'
-import Logo from './Logo'
+import { useContext, useState } from 'react';
+import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown, ChevronUp, MapPin, List, UserPlus } from 'react-feather';
+import { LanguageContext } from './LanguageSelector';
+import Logo from './Logo';
 
 const content = {
   restaurants: {
@@ -20,11 +20,11 @@ const content = {
       soon: 'Próximamente'
     }
   }
-}
+};
 
 const Nav = () => {
-  const maintenance = (process.env.MAINTENANCE_MODE === 'true')
-  const { language } = useContext(LanguageContext)
+  const maintenance = (process.env.MAINTENANCE_MODE === 'true');
+  const { language } = useContext(LanguageContext);
 
   return (
     <nav className="px-3 py-6 border-t-4 border-orange box-shadow">
@@ -56,17 +56,17 @@ const Nav = () => {
         </div>
       </div>
     </nav>
-  )
-}
+  );
+};
 
 const NavLink = ({ href, label, className }) => (
   <Link href={href}>
     <a className={className ? 'font-medium mx-3 ' + className : 'font-medium mx-3'}>{label}</a>
   </Link>
-)
+);
 
 const Dropdown = ({ align, items, label, soon, className }) => {
-  const [showDropdown, setShowDropdown] = useState(false)
+  const [showDropdown, setShowDropdown] = useState(false);
   return (
     <>
       {showDropdown && (
@@ -111,9 +111,9 @@ const Dropdown = ({ align, items, label, soon, className }) => {
               >
                 {items.map(({ href, label, icon: Icon, disabled }) => {
                   const handleClick = (event) => {
-                    if (!disabled) setShowDropdown(false)
-                    else event.preventDefault()
-                  }
+                    if (!disabled) setShowDropdown(false);
+                    else event.preventDefault();
+                  };
                   return (
                     <li key={label} className="w-full">
                       <Link href={disabled ? '#' : href}>
@@ -127,7 +127,7 @@ const Dropdown = ({ align, items, label, soon, className }) => {
                         </a>
                       </Link>
                     </li>
-                  )
+                  );
                 })}
               </motion.ul>
             )}
@@ -135,7 +135,7 @@ const Dropdown = ({ align, items, label, soon, className }) => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Nav
+export default Nav;

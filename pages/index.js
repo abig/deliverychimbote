@@ -1,16 +1,16 @@
-import Link from 'next/link'
-import { useContext } from 'react'
-import { LanguageContext } from '../components/LanguageSelector'
-import Nav from '../components/Nav'
-import Footer from '../components/Footer'
-import Maintenance from './maintenance'
-import { MapPin, ArrowRight } from 'react-feather'
-import { NextSeo } from 'next-seo'
+import Link from 'next/link';
+import { useContext } from 'react';
+import { LanguageContext } from '../components/LanguageSelector';
+import Nav from '../components/Nav';
+import Footer from '../components/Footer';
+import Maintenance from './maintenance';
+import { MapPin, ArrowRight } from 'react-feather';
+import { NextSeo } from 'next-seo';
 
 const Index = () => {
-  const maintenance = (process.env.MAINTENANCE_MODE === 'true')
-  const { language } = useContext(LanguageContext)
-  const content = pageContent[language]
+  const maintenance = (process.env.MAINTENANCE_MODE === 'true');
+  const { language } = useContext(LanguageContext);
+  const content = pageContent[language];
 
   if (!maintenance) {
     return (
@@ -54,13 +54,13 @@ const Index = () => {
           <Footer />
         </div>
       </>
-    )
+    );
   } else {
     return (
       <Maintenance />
-    )
+    );
   }
-}
+};
 
 const pageContent = {
   'es-PE': {
@@ -71,6 +71,6 @@ const pageContent = {
     find: 'Buscar en el listado',
     add: 'Registra tu negocio',
   }
-}
+};
 
-export default Index
+export default Index;

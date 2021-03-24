@@ -1,15 +1,15 @@
-import Link from 'next/link'
-import { useContext, useState } from 'react'
-import { LanguageContext } from '../components/LanguageSelector'
-import Nav from '../components/Nav'
-import Footer from '../components/Footer'
-import Obfuscate from 'react-obfuscate'
-import { Event } from '../components/Analytics'
-import { NextSeo } from 'next-seo'
+import Link from 'next/link';
+import { useContext } from 'react';
+import { LanguageContext } from '../components/LanguageSelector';
+import Nav from '../components/Nav';
+import Footer from '../components/Footer';
+import Obfuscate from 'react-obfuscate';
+import { Event } from '../components/Analytics';
+import { NextSeo } from 'next-seo';
 
 const Maintenance = () => {
-  const { language } = useContext(LanguageContext)
-  const content = pageContent[language]
+  const { language } = useContext(LanguageContext);
+  const content = pageContent[language];
 
   return (
     <>
@@ -56,8 +56,8 @@ const Maintenance = () => {
         <Footer />
       </div>
     </>
-  )
-}
+  );
+};
 
 const pageContent = {
   'es-PE': {
@@ -67,6 +67,6 @@ const pageContent = {
     more: '¿Quieres saber más? Escríbenos: ',
     add: 'Registra tu negocio',
   }
-}
+};
 
-export default Maintenance
+export default Maintenance;
