@@ -1,13 +1,18 @@
 {
   "name": "@abig/deliverychimbote",
-  "version": "0.0.1",
+  "description": "Official repository for the Delivery Chimbote project.",
+  "author": {
+    "name": "AB Investment Group",
+    "email": "deliverychimbote@abig.pe",
+    "url": "https://deliverychimbote.com"
+  },
+  "version": "1.0.0",
+  "homepage": "https://deliverychimbote.com",
   "private": true,
   "scripts": {
     "dev": "next dev -p 4000",
-    "build": "next build",
-    "build:prod": "NODE_ENV=production next build",
-    "start": "next start -p 4000",
-    "start:prod": "NODE_ENV=production next start -p 4000",
+    "build": "NODE_ENV=production next build",
+    "start": "NODE_ENV=production next start -p 4000",
     "export": "next build && next export"
   },
   "dependencies": {
@@ -30,14 +35,5 @@
     "slugify": "^1.4.4",
     "tailwindcss": "^1.4.4"
   },
-  "devDependencies": {
-    "prettier": "^2.2.1"
-  },
-  "prettier": {
-    "trailingComma": "es5",
-    "arrowParens": "avoid",
-    "tabWidth": 2,
-    "semi": false,
-    "singleQuote": true
-  }
+  "devDependencies": {}
 }
