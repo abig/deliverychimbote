@@ -29,10 +29,10 @@ const TermsDialog = () => {
             <span className="text-white">
               {content.text}
             </span>
-            <Link href="/terms">
-              <button className="rounded shadow-md btn btn-primary mx-4 text-white">
+            <Link href="/terms" passHref>
+              <a className="rounded shadow-md btn btn-primary mx-4 text-white">
                 {content.read}
-              </button>
+              </a>
             </Link>
             <button className="rounded shadow-md btn btn-secondary text-white" onClick={() => setTermsAccepted(true)}>
               {content.accept}

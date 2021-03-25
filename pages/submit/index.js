@@ -47,7 +47,7 @@ const SubmitIndex = () => {
                 />
               </p>
               <div className="sm:-m-2">
-                <Link href="/submit/new">
+                <Link href="/submit/new" passHref>
                   <a className="w-full sm:w-auto rounded h-12 btn btn-primary inline-flex items-center justify-between sm:space-x-2 sm:m-2">
                     <span>{content.register}</span>
                     <ArrowRight className="h-5" />

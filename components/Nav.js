@@ -30,7 +30,7 @@ const Nav = () => {
     <nav className="px-3 py-6 border-t-4 border-orange">
       <div className="max-w-6xl flex items-center mx-auto">
         <div className="flex-auto flex items-center -mx-3">
-          <Link href="/">
+          <Link href="/" passHref>
             <a className="inline-flex items-center ml-3 sm:mr-6">
               <Logo className="h-20 stroke-none sm:mr-2" />
               <h2 className="hidden sm:inline-block font-fredoka-one tracking-wider uppercase text-2xl">
@@ -60,7 +60,7 @@ const Nav = () => {
 };
 
 const NavLink = ({ href, label, className }) => (
-  <Link href={href}>
+  <Link href={href} passHref>
     <a className={className ? 'font-medium mx-3 ' + className : 'font-medium mx-3'}>{label}</a>
   </Link>
 );
@@ -116,7 +116,7 @@ const Dropdown = ({ align, items, label, soon, className }) => {
                   };
                   return (
                     <li key={label} className="w-full">
-                      <Link href={disabled ? '#' : href}>
+                      <Link href={disabled ? '#' : href} passHref>
                         <a
                           onClick={handleClick}
                           className="group flex items-center font-medium px-3 py-2 my-2 space-x-2"
