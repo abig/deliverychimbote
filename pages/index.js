@@ -29,13 +29,13 @@ const Index = () => {
                   {content.description}
                 </p>
                 <div className="sm:-m-2">
-                  <Link href="/map">
+                  <Link href="/map" passHref>
                     <a className="w-full sm:w-auto rounded h-12 btn btn-primary inline-flex items-center justify-between sm:space-x-2 mb-3 sm:m-2">
                       <span>{content.map}</span>
                       <MapPin className="h-5" />
                     </a>
                   </Link>
-                  <Link href="/list">
+                  <Link href="/list" passHref>
                     <a className="w-full sm:w-auto rounded h-12 btn btn-secondary inline-flex items-center justify-between sm:space-x-2 mb-3 sm:m-2">
                       <span>{content.find}</span>
                       <ArrowRight className="h-5" />
