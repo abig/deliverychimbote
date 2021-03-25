@@ -8,7 +8,7 @@ import { MapPin, ArrowRight } from 'react-feather';
 import { NextSeo } from 'next-seo';
 
 const Index = () => {
-  const maintenance = (process.env.MAINTENANCE_MODE === 'true');
+  const maintenance = (process.env.NEXT_PUBLIC_MAINTENANCE_MODE === 'true');
   const { language } = useContext(LanguageContext);
   const content = pageContent[language];
 

@@ -48,7 +48,7 @@ const Map = ({ items, content, active }) => {
   // Reducing number of requests to Maps API
   const restrictedGoogleMapsApiKey =
     process.env.NODE_ENV === 'production'
-      ? process.env.RESTRICTED_GOOGLE_MAPS_API_KEY
+      ? process.env.NEXT_PUBLIC_RESTRICTED_GOOGLE_MAPS_API_KEY
       : undefined;
 
   if (items && !!items.length)

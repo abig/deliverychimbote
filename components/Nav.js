@@ -23,7 +23,7 @@ const content = {
 };
 
 const Nav = () => {
-  const maintenance = (process.env.MAINTENANCE_MODE === 'true');
+  const maintenance = (process.env.NEXT_PUBLIC_MAINTENANCE_MODE === 'true');
   const { language } = useContext(LanguageContext);
 
   return (
