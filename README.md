@@ -1,6 +1,6 @@
 # Delivery Chimbote
 
-This project is forked from the original, designed for Copenhagen. It's source code is visible in [GitHub](https://github.com/covid19-group/dinecph)
+This project is forked from the original, designed for Copenhagen. It's source code is visible in [GitHub](https://github.com/covid19-group/dinecph).
 
 ## Prerequisites
 
@@ -12,22 +12,23 @@ You will need:
 
 ## Setup
 
-1. Run `npm install` (or `yarn`).
-2. Copy the template file `.env.example` to `.env` and populate with keys from earlier.
+1. Run `yarn`.
+2. Copy the template file `.env.example` to `.env.local` and populate with keys from earlier.
 3. Done.
 
 ## Development
 
-Run `npm run dev` (or `yarn dev`) to start the development loop.
+Run `yarn dev` to start the development loop.
 
 ## Deployment
 
-The Copenhagen project is deployed with [Zeit Now](https://zeit.co/home), utilising [Now Secrets](https://zeit.co/docs/v2/build-step#using-environment-variables-and-secrets) (see now.json file), but could be deployed wherever.
+This project is deployed with [Vercel](https://vercel.com) but it could be deployed wherever.
 
 ## Local projects
 
+- [x] [Copenhagen](https://dinecph.dk)
 - [x] [Berlin](https://dineinberlin.com)
 - [x] [Portugal](https://jantarada.pt)
 - [x] [Lima](https://llegamosatucasa.com)
-- [x] [Honduras](https://vamosatucasa.com/)
+- [x] [Honduras](https://vamosatucasa.com)
 - [ ] Your city
