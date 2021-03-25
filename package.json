@@ -22,6 +22,7 @@
     "analyze:browser": "NODE_ENV=production BUNDLE_ANALYZE=server next build"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^10.0.9",
     "@react-google-maps/api": "^2.1.1",
     "@tailwindcss/forms": "^0.2.1",
     "airtable": "^0.10.0",
@@ -43,7 +44,6 @@
     "tailwindcss": "^2.0.4"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^10.0.9",
     "eslint": "^7.22.0",
     "eslint-plugin-react": "^7.23.1",
     "stylelint": "^13.12.0",
