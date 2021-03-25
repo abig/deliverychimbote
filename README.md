@@ -22,7 +22,7 @@ Run `yarn dev` to start the development loop.
 
 ## Deployment
 
-This project is deployed with [Vercel](https://vercel.com) but it could be deployed wherever.
+This project is deployed with [Cloudflare Pages](https://pages.cloudflare.com) but it could be deployed wherever.
 
 ## Local projects
 
