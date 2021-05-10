@@ -1,6 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
 import Promise from 'promise-polyfill';
-import fetch from 'isomorphic-unfetch';
 import { LanguageContext } from '../components/LanguageSelector';
 import Nav from '../components/Nav';
 import Map from '../components/Map';
