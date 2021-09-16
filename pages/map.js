@@ -25,27 +25,26 @@ const MapPage = ({ items }) => {
   const { language } = useContext(LanguageContext);
   const content = pageContent[language];
   const [active, setActive] = useState(false);
-  let hash = typeof window !== "undefined"
-    ? location.hash
-    : undefined;
 
-  const handleHashChange = () => {
-    hash = location.hash;
-    if (hash) setActive(items.find(item => slugify(item["Nombre"].toLowerCase()) === hash.substr(1)));
-    else setActive(false);
-  };
-
-  useEffect(
-    () => {
-      if (typeof window !== "undefined") {        
-        handleHashChange();
-        window.addEventListener("hashchange", handleHashChange);
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (location.hash) {
+        const item = items.find(current => {
+          const slug = slugify(current["Nombre"].toLowerCase());
+          return slug === location.hash.substr(1);
+        });
+        return setActive(item);
       }
+      return setActive(false);
+    };
 
-      return () => window.removeEventListener("hashchange", handleHashChange);
-    },
-    []
-  );
+    if (typeof window !== "undefined") {
+      handleHashChange();
+      window.addEventListener("hashchange", handleHashChange);
+    }
+
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
 
   return (
     <>
@@ -73,7 +72,7 @@ export async function getStaticProps() {
   const base = airtable('Negocios');
 
   const maps = new MapsClient();
-  
+
   const records = await base
     .select({
       fields: [

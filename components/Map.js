@@ -148,10 +148,10 @@ const Tooltip = ({ tooltip, content }) => {
               )}
               {delivery && <div className="mb-3">✓ {content.delivery}</div>}
               <div className="w-full flex items-center">
-                <Link href={{ pathname: '/list', hash: slugify(name.toLowerCase()) }}>
-                  <button className="btn btn-primary flex-1 h-full flex justify-center items-center rounded text-xs py-2">
+                <Link href={{ pathname: '/list', hash: slugify(name.toLowerCase()) }} passHref>
+                  <a className="btn btn-primary flex-1 h-full flex justify-center items-center rounded text-xs py-2">
                     <span>{content.seeMore} +</span>
-                  </button>
+                  </a>
                 </Link>
               </div>
               <div className="w-full flex items-center mt-2 space-x-2">

@@ -150,11 +150,11 @@ const ListItem = ({ item, standalone }) => {
           )}
         </div>
         <div className="w-full flex flex-wrap items-center mt-2">
-          <Link href={{ pathname: '/map', hash: slugify(name.toLowerCase()) }}>
-            <button className="btn btn-primary flex-1 h-full rounded text-sm flex justify-center items-center space-x-2">
+          <Link href={{ pathname: '/map', hash: slugify(name.toLowerCase()) }} passHref>
+            <a className="btn btn-primary flex-1 h-full rounded text-sm flex justify-center items-center space-x-2">
               <span>{content.seeMap}</span>
               <MapPin className="h-5" />
-            </button>
+            </a>
           </Link>
         </div>
         {delivery && (
