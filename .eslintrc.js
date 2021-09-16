@@ -34,7 +34,8 @@ module.exports = {
   },
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:@next/next/core-web-vitals",
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -66,7 +67,8 @@ module.exports = {
   //     "extends": [
   //       "eslint:recommended",
   //       "plugin:react/recommended",
-  //       "plugin:@typescript-eslint/recommended"
+  //       "plugin:@typescript-eslint/recommended",
+  //       "plugin:@next/next/core-web-vitals",
   //     ],
   //     "parser": "@typescript-eslint/parser",
   //     "parserOptions": {

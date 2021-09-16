@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import Script from 'next/script';
 import Nav from '../../components/Nav';
 import Footer from '../../components/Footer';
 import TermsDialog from '../../components/TermsDialog';
@@ -8,9 +8,7 @@ const SubmitNew = () => {
   return (
     <>
       <NextSeo title="Registrar Negocio" />
-      <Head>
-        <script src="https://static.airtable.com/js/embed/embed_snippet_v1.js"></script>
-      </Head>
+      <Script src="https://static.airtable.com/js/embed/embed_snippet_v1.js" />
       <div className="min-h-screen flex flex-col">
         <Nav />
         <TermsDialog />
@@ -21,7 +19,7 @@ const SubmitNew = () => {
             frameBorder="0"
             width="100%"
             style={{ background: 'transparent', border: '1px solid #ccc' }}
-          ></iframe>
+          />
         </main>
         <Footer />
       </div>
