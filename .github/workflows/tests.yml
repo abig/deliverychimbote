@@ -1,6 +1,10 @@
 name: 'Tests'
 
-on: pull_request
+on: 
+  push:
+    branches:
+      - master
+  pull_request:
 
 jobs:
   lint:
@@ -29,7 +33,7 @@ jobs:
             ${{ runner.os }}-yarn-
       
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --frozen-lockfile
       
       - name: Run lint
         run: yarn run -s lint
